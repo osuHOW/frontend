@@ -2,8 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"strings"
-
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 	"gopkg.in/mailgun/mailgun-go.v1"
@@ -18,11 +16,6 @@ func passwordReset(c *gin.Context) {
 		return
 	}
 
-	field := "username"
-	if strings.Contains(c.PostForm("username"), "@") {
-		field = "email"
-	}
-
 	var (
 		id         int
 		username   string
@@ -30,8 +23,8 @@ func passwordReset(c *gin.Context) {
 		privileges uint64
 	)
 
-	err := db.QueryRow("SELECT id, username, email, privileges FROM users WHERE "+field+" = ?",
-		c.PostForm("username")).
+	err := db.QueryRow("SELECT id, username, email, privileges FROM users WHERE email = ?",
+		c.PostForm("email")).
 		Scan(&id, &username, &email, &privileges)
 
 	switch err {
@@ -48,7 +41,7 @@ func passwordReset(c *gin.Context) {
 
 	if common.UserPrivileges(privileges)&
 		(common.UserPrivilegeNormal|common.UserPrivilegePendingVerification) == 0 {
-		simpleReply(c, errorMessage{T(c, "You look pretty banned/locked here.")})
+		simpleReply(c, errorMessage{T(c, "Your account is disabled, if you think this was a mistake please contact an admin.")})
 		return
 	}
 
@@ -65,13 +58,12 @@ func passwordReset(c *gin.Context) {
 	}
 
 	content := T(c,
-		"Hey %s! Someone, which we really hope was you, requested a password reset for your account. In case it was you, please <a href='%s'>click here</a> to reset your password on Ripple. Otherwise, silently ignore this email.",
-		username,
+		"To reset your password, please <a href='%s'>click here</a>.",
 		config.BaseURL+"/pwreset/continue?k="+key,
 	)
 	msg := mailgun.NewMessage(
 		config.MailgunFrom,
-		T(c, "RealistikOsu! password recovery instructions"),
+		T(c, "Password Reset Link"),
 		content,
 		email,
 	)
@@ -84,7 +76,7 @@ func passwordReset(c *gin.Context) {
 		return
 	}
 
-	addMessage(c, successMessage{T(c, "Done! You should shortly receive an email from us at the email you used to sign up on Ripple.")})
+	addMessage(c, successMessage{T(c, "Done! You should shortly receive an email.")})
 	getSession(c).Save()
 	c.Redirect(302, "/")
 }
@@ -104,7 +96,7 @@ func passwordResetContinue(c *gin.Context) {
 	case nil:
 		// move on
 	case sql.ErrNoRows:
-		respEmpty(c, T(c, "Reset password"), errorMessage{T(c, "That key could not be found. Perhaps it expired?")})
+		respEmpty(c, T(c, "Reset password"), errorMessage{T(c, "That password reset key could not be found. Perhaps it expired?")})
 		return
 	default:
 		c.Error(err)
@@ -123,7 +115,7 @@ func passwordResetContinueSubmit(c *gin.Context) {
 	case nil:
 		// move on
 	case sql.ErrNoRows:
-		respEmpty(c, T(c, "Reset password"), errorMessage{T(c, "That key could not be found. Perhaps it expired?")})
+		respEmpty(c, T(c, "Reset password"), errorMessage{T(c, "That password reset key could not be found. Perhaps it expired?")})
 		return
 	default:
 		c.Error(err)
@@ -160,7 +152,7 @@ func passwordResetContinueSubmit(c *gin.Context) {
 		return
 	}
 
-	addMessage(c, successMessage{T(c, "All right, we have changed your password and you should now be able to login! Have fun!")})
+	addMessage(c, successMessage{T(c, "Your password has been reset.")})
 	getSession(c).Save()
 	c.Redirect(302, "/login")
 }

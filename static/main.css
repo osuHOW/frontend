@@ -6,8 +6,6 @@
     box-shadow: none;
     position: relative;
     background: #2E3836;
-    margin: 1rem 0em;
-    padding: 1em 1em;
     color: white;
 }
 
@@ -16,7 +14,6 @@
     box-shadow: none;
     position: relative;
     background: #1F2D28;
-    margin: 1rem 0em;
     padding: 28px;
     color: white;
     font-weight: 400;
@@ -128,16 +125,16 @@
 	line-height: 18px;
 	color: rgba(255, 255, 255, 0.5);
 }
-.tiny.container {
+.tiny-container {
 	margin: 0 auto;
 }
 @media (max-width: 720px) {
-	.tiny.container {
+	.tiny-container {
 		width: auto;
 	}
 }
 @media (min-width: 626px) {
-	.tiny.container {
+	.tiny-container {
 		width: 626px;
 	}
 }
@@ -150,20 +147,11 @@
 .red-background {
     background: #EB4B5E;
 }
-.no-margin {
-    margin: 0px!important;
-}
-.no-pad {
-    padding: 0px!important;
-}
-.no-border {
-    border: 0px!important;
-}
 .dark-background {
     background: #272D2B;
 }
 .flexbox {
-    position: flex;
+    display: flex;
 }
 .right-align {
     float: right;

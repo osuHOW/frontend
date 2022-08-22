@@ -3,7 +3,6 @@
     display: flex;
     border-radius: 12px 12px 0px 0px;
     color: white;
-    padding: 26px;
 }
 .topper-text {
     color: white;
@@ -25,21 +24,9 @@
     border: 5px solid;
     padding: 18px;
 }
-.button-container {
-    display: flex;
-    /* padding hax */
-    padding-block: 22px;
-    padding-inline: 12px;
-}
-.form-buttons {
-    margin-inline: 24px;
-}
-.filler{
+.form-filler{
     /* i hate */
     flex-grow: 1;
-}
-.form-textbox {
-    padding-inline: 22px;
 }
 .form-label-text{
     color: white;
@@ -48,4 +35,7 @@
     line-height: 18px;
     margin-bottom: 9px;
     
+}
+.form-padding {
+    padding: 22px 34px;
 }

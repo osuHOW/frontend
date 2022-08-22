@@ -6,15 +6,10 @@ KyutGrillHue=0deg
 */}}
 {{ define "tpl" }}
 <link rel="stylesheet" href="/static/css/pages/generic-form.css" />
-<div class="ui container">
-	{{ if .Context.User.ID }}
-		<div class="ui segment">
-			{{ .T "You're already logged in!" }}
-		</div>
-	{{ else }}
+<div>
 		<!-- TODO: captcha -->
-		<div class="tiny container">
-			<div class="form-topper red-background tiny-container">
+		<div class="tiny-container">
+			<div class="form-topper red-background tiny-container form-padding">
 				<div class="icon-container">
 					<i class="fa-solid fa-key"></i>
 				</div>
@@ -22,22 +17,31 @@ KyutGrillHue=0deg
 					Reset Password
 				</div>
 			</div>
+			{{ if .Context.User.ID }}
+			<div class="text-segment form-padding">
+				{{ .T "You're already logged in!" }}
+			</div>
+			<div class="content-segment round-bottom dark-background flexbox form-padding">
+				<button tabindex="2" class="solid-button left-align form-buttons" onclick="history.back()">{{ .T "go back" }}</button>
+			</div>
+			</div>
+			{{ else }}
 			<div>
-				<div class="text-segment no-margin">
+				<div class="text-segment form-padding">
 					{{ .T "Forgot your password? Worry not! Here you can reset it. Just tell us your username or email address, and we'll take care of it. You will receive an email at the email address you used to sign up. To continue the password reset procedure, click the link on that email. " }}
 				</div>
-				<div class="content-segment no-margin">
-					<form id="pw-reset-form" class="textbox form-textbox" method="post" action="/pwreset">
+				<div class="content-segment">
+					<form id="pw-reset-form" class="textbox form-textbox form-padding" method="post" action="/pwreset">
 						{{ ieForm .Gin }}
 						<div class="field">
 							<div class="form-label-text">{{ .T "Email" }}</div>
-							<input tabindex="1" type="text" name="email" placeholder="{{ .T "put it here :3" }}" value="{{ .FormData.username }}" required>
+							<input tabindex="1" type="text" name="email" placeholder="{{ .T "put it here :3" }}" value="{{ .FormData.email }}" required>
 						</div>
 					</form>
 				</div>
-				<div class="content-segment no-margin round-bottom dark-background button-container">
+				<div class="content-segment round-bottom dark-background flexbox form-padding">
 					<button tabindex="2" class="solid-button left-align form-buttons" onclick="history.back()">{{ .T "go back" }}</button>
-					<div class="filler"></div>
+					<div class="form-filler"></div>
 					<button tabindex="2" class="warning-button right-align form-buttons" type="submit" form="pw-reset-form">{{ .T "send reset request" }}</button>
 				</div>
 			</div>
