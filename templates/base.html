@@ -36,33 +36,34 @@ function recalcRestrictedBannerHeight() {
 
 		<link rel="stylesheet" type="text/css" href="/static/{{ if $ds }}dark/{{ end }}semantic.min.css?{{ unixNano }}">
 		<link rel="stylesheet" type="text/css" href="/static/ripple.css?{{ unixNano }}">
+		<link rel="stylesheet" type="text/css" href="/static/main.css">
 
 		<link rel="stylesheet" type="text/css" href="/static/snow/snow.css?{{ unixNano }}">
 		<link rel="stylesheet" href="/static/css/uniformityrightlads.css">
 		<!--LOADING BARZZZ-->
 		<script src="/static/js/pace.min.js"></script>
 		<link href="/static/css/loadingbar.css" rel="stylesheet" />
+		<link href="/static/fonts/fontawesome/css/all.css" rel="stylesheet">
 		
 		<meta name="theme-color" content="#eb4034">
 		<meta name="msapplication-navbutton-color" content="#eb4034">
 		<meta name="apple-mobile-web-app-status-bar-style" content="#eb4034">
 	</head>
+	{{/*<div class="background-image" style="--bg: url(/static/backgrounds/default.png);"></div>*/}}
+	{{ if .KyutGrillHue }}
+		<div class="background-image" style="--bg: url('/static/backgrounds/main.png'); --hue: {{ .KyutGrillHue }};"></div>
+	{{ else if .KyutGrill }}
+	<div class="background-image" style="--bg: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/backgrounds/{{ .KyutGrill }}{{ end }}');"></div>
+	{{ else if .SolidColour }}
+		<div class="background-image" style="--bg: background-color: {{ .SolidColour }}"></div>
+	{{ end }}
+	
 	<body {{ if $ds }} class="ds"{{ end }}>
-		{{/*
-			If we're asked to disable the hugeheading, but a KyutGrill is set, it will become the background of the page.
-			This is mainly used in user profiles, allowing users to set their profile background.
-			If we're asked to disable the hugeheading, and a KyutGrill is not set, navbar has the `dropped` class.
-		*/}}
 		<div class="ui full height main wrapper"
-			{{ if .KyutGrill }}
-				style="background-image: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/headers/{{ .KyutGrill }}{{ end }}');"
-			{{ else if .SolidColour }}
-				style="background-color: {{ .SolidColour }}"
-			{{ end }}>
+			>
 			{{ template "navbar" . }}
 			{{/*
-				<div class="huge heading {{ if .HeadingOnRight }}right{{ end }} dropped nodisplaymobile"
-					style="background-image: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/headers/{{ or .KyutGrill "default.jpg" }}{{ end }}');">
+				<div class="huge heading {{ if .HeadingOnRight }}right{{ end }} dropped nodisplaymobile">
 					<div id="snow-container">
 						<div>
 							<div class="snow large"></div>
@@ -110,14 +111,18 @@ function recalcRestrictedBannerHeight() {
 					</div>
 				{{ end }}
 				</div>
-				<div class="main-container-topper">
-					<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
-						<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ if .TitleBar }}{{ .T .TitleBar }}{{ end }}</span>
-					</div>
-				</div>
-				<div class="ui container main-container">
+				{{ if .DisableMainContainer }}
 					{{ template "tpl" . }}
-				</div>
+				{{ else }}
+					<div class="main-container-topper">
+						<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
+							<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ if .TitleBar }}{{ .T .TitleBar }}{{ end }}</span>
+						</div>
+					</div>
+					<div class="ui container main-container" {{ if .DisableMainContainerPadding }}style="padding: 0px;"{{ end }}>
+						{{ template "tpl" . }}
+					</div>
+				{{ end }}
 			</div>
 
 		</div>

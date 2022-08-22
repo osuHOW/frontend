@@ -2,14 +2,4 @@
     height: 150px;
     display: flex;
     border-radius: 12px 12px 0px 0px;
-    color: white;
-    padding: 26px;
-}
-.icon-container {
-    align-items: center;
-    text-align: center;
-    width: 96px;
-    height: 96px;
-    font-size: 64px;
-    border-radius: 100%;
 }

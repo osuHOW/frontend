@@ -145,7 +145,10 @@ type baseTemplateData struct {
 	HeadingOnRight    bool
 	Scripts           []string
 	KyutGrill         string
+	KyutGrillHue         string
 	KyutGrillAbsolute bool
+	DisableMainContainer bool
+	DisableMainContainerPadding bool
 	SolidColour       string
 	DisableHH         bool // HH = Huge Heading
 	Messages          []message
@@ -259,8 +262,11 @@ type templateConfig struct {
 	Handler          string
 	TitleBar         string
 	KyutGrill        string
+	KyutGrillHue        string
 	MinPrivileges    uint64
 	HugeHeadingRight bool
+	DisableMainContainer bool
+	DisableMainContainerPadding bool
 	AdditionalJS     string
 }
 

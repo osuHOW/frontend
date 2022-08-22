@@ -1,0 +1,132 @@
+.about-container {
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        flex-direction: column;
+}
+.sm-about-container {
+        flex-wrap: nowrap;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        flex-direction: column;
+}
+@media only screen and (min-width: 992px){
+        .sm-about-container {
+                flex-wrap: nowrap;
+                display: flex;
+                justify-content: space-between;
+                gap: 15px;
+                flex-direction: row;
+        }
+}
+@media only screen and (max-width: 991px){
+        .sm-about-container {
+                flex-wrap: nowrap;
+                display: flex;
+                justify-content: space-between;
+                gap: 15px;
+                flex-direction: column;
+        }
+}
+.aboutbox {
+        display: flex;
+        position: relative ;
+        position: flex ;
+        min-height: 285px;
+        border-radius: 10px ;
+        font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif ;
+        margin-top: 0px !important; 
+        overflow: hidden;
+        padding-top: 0px !important;
+        border-top: 0px !important;
+        margin-top: 10px;
+        width: 100%;
+        flex-direction: column;
+}
+@media only screen and (min-width: 992px){
+.aboutbox-sm {
+        min-height: 210px!important;
+}
+}
+.aboutbox-htext-container-sm {
+        border-radius: 0px 0px 15px 0px ;
+        transform: skew(-25deg) translatex(-40px);
+        background-color: #18FFB1;
+        display: flex;
+        flex-direction: column;
+        padding: 15px 21px;
+
+}
+.aboutbox-htext-container {
+        border-radius: 0px 0px 15px 0px ;
+        transform: skew(-25deg) translatex(-40px);
+        background-color: #18FFB1;
+        display: flex;
+        flex-direction: column;
+        padding: 24px 29px;
+
+}
+.aboutbox-htext {
+        font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif ;
+        font-size: 40px ;
+        font-weight: 500 ;
+        z-index: 900 ;
+        transform: skew(25deg);
+        font-weight: 700 ;
+        font-size: 25px ;
+        line-height: 28px ;
+        color: rgba(0, 0, 0, 0.8) ;
+        margin: 1px ;
+        margin-left: 38px ;
+        margin-right: 3em;
+
+}
+.aboutbox-htext-sm {
+        font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif ;
+        font-size: 40px ;
+        font-weight: 500 ;
+        z-index: 900 ;
+        transform: skew(25deg);
+        font-weight: 700 ;
+        font-size: 25px ;
+        line-height: 28px ;
+        color: rgba(0, 0, 0, 0.8) ;
+        margin: 1px ;
+        margin-left: 38px ;
+
+}
+.aboutbox-text {
+        font-family: 'Comfortaa';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FFFFFF;
+        padding: 1em;
+}
+.aboutbox-text-sm {
+        font-family: 'Comfortaa';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FFFFFF;
+        padding: 1em;
+}
+.background-fcu {
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(/static/about/fcu.png);
+        background-size: auto;
+        background-position: center;
+}
+.background-old {
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(/static/about/old.jpg);
+        background-size: auto;
+        background-position: center;
+}
+.background-osuhow {
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(/static/about/osuhow.png);
+        background-size: auto;
+        background-position: center;
+}

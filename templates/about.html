@@ -1,55 +1,61 @@
 {{/*###
 Handler=/about
 TitleBar=About
+KyutGrill=homepage.png
 */}}
 {{ define "tpl" }}
-<div class="ui container">
-	<div class="ui centered segments">
-		<div class="ui segment">
-			<!--<img src="/static/logos/logo-1.png">-->
-			<h1 class="ui no bottom margin header">
-				{{ .T "Welcome to osuHOW!" }}
-			</h1>
-			<div class="about subtitle">{{ .T "osuHOW is an osu! server." }}<br>
-			{{ .T "It is just like any other osu! server but this one works with old builds" }}</div>
+<link rel="stylesheet" href="/static/css/pages/about.css" />
+<div class="content-container">
+	<div class="about-container">
+		<div class="aboutbox background-osuhow">
+			<div class="aboutbox-htext-container">
+				<h1 class="aboutbox-htext">
+					{{ .T "main big panel!" }}
+				</h1>
+			</div>
+			<div>
+				<h2 class="aboutbox-text">
+					{{ .T "Down, down, down. Would the fall NEVER come to an end! ‘I wonder how many miles I’ve fallen by this time?’ she said aloud. ‘I must be getting somewhere near the centre of the earth. Let me see: that would be four thousand miles down, I think--’ (for, you see, Alice had learnt several things of this sort in her lessons in the schoolroom, and though this was not a VERY good opportunity for showing off her knowledge, as there was no one to listen to her, still it was good practice to say it over) ‘--yes, that’s about the right distance--but then I wonder what Latitude or Longitude I’ve got to?’ (Alice had no idea what Latitude was, or Longitude either, but thought they were nice grand words to say.)" }}
+				</h2>
+			</div>
 		</div>
-		<div class="ui segment">
-			<img src="/static/about/old.jpg">
+		<div class="sm-about-container">
+			<div class="aboutbox aboutbox-sm background-old">
+				<div class="aboutbox-htext-container-sm">
+					<h1 class="aboutbox-htext-sm">
+						{{ .T "alt smaller panel :3" }}
+					</h1>
+				</div>
+				<div>
+					<h2 class="aboutbox-text-sm">
+						{{ .T "The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, ‘It was the BEST butter, you know.’" }}
+					</h2>
+				</div>
+			</div>
+			<div class="aboutbox aboutbox-sm background-fcu">
+				<div class="aboutbox-htext-container-sm">
+					<h1 class="aboutbox-htext-sm">
+						{{ .T "another small panel" }}
+					</h1>
+				</div>
+				<div>
+					<h2 class="aboutbox-text-sm">
+						{{ .T "The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, ‘It was the BEST butter, you know.’" }}
+					</h2>
+				</div>
+			</div>
 		</div>
-		<div class="ui segment">
-			<h1 class="ui header">
-				{{ .T "We (almost) fully support (almost) every build from late 2013 to now!" }}
-			</h1>
-			<img src="/static/about/screenshot010.jpg">
-		</div>
-		<div class="ui segment">
-			<h1 class="ui header">
-				{{ .T "We have leaderboards." }}
-			</h1>
-			<img src="/static/about/screenshot011.jpg">
-		</div>
-		<div class="ui segment">
-			<h1 class="ui header">
-				{{ .T "(very) experimental osu!2007 support" }}
-			</h1>
-			<img src="/static/about/2007.PNG">
-		</div>
-		<div class="ui segment">
-			<h1 class="ui header">
-				{{ .T "Spectator." }}
-			</h1>
-			<img src="/static/about/screenshot005.jpg">
-		</div>
-		<div class="ui segment">
-			<h1 class="ui header">
-				{{ .T "And a lot more!" }}
-			</h1>
-			<p class="about title">
-				{{ .T "osuHOW was started because ripple banned a bunch of osu!archive staff for playing on old builds and there was no server that supported them." }}
-			</p>
-			<p class="about subtitle">
-				{{ .T "In case you want to make sure we're not doing shady stuff with your data, you can also check the <a href=\"https://github.com/osuHOW\">source code</a> osuHOW is running!" | html }}
-			</p>
+		<div class="aboutbox background-osuhow">
+			<div class="aboutbox-htext-container">
+				<h1 class="aboutbox-htext">
+					{{ .T "another big panel" }}
+				</h1>
+			</div>
+			<div>
+				<h2 class="aboutbox-text">
+					{{ .T "Just as she said this, she noticed that one of the trees had a door leading right into it. ‘That’s very curious!’ she thought. ‘But everything’s curious today. I think I may as well go in at once.’ And in she went. She stretched herself up on tiptoe, and peeped over the edge of the mushroom, and her eyes immediately met those of a large caterpillar, that was sitting on the top with its arms folded, quietly smoking a long hookah, and taking not the smallest notice of her or of anything else." }}
+				</h2>
+			</div>
 		</div>
 	</div>
 </div>

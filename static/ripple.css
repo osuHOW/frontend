@@ -5,10 +5,18 @@
  / /   | |/ |/ / /_/ / / / / /_    / /_/ / /  __/
 /_/    |__/|__/\__,_/_/ /_/\__/    \__,_/_/\___/ 
 */
-
+.about-box {
+        display: flex;
+        position: relative !important;
+        position: flex !important;
+        height: 285px;
+        border-radius: 10px !important;
+        font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+        margin-bottom: 1em !important;
+    }
 .main-container {
+	padding: 0.5em 2em;
 	background: #2E3836;
-	padding: 1em;
 	border-bottom-left-radius: 12px;
 	border-bottom-right-radius: 12px;
     box-sizing: border-box;
@@ -264,9 +272,13 @@ li.language-select:hover:before, li.language-select.selected:before {
 }
 
 .ui.segment {
+    border: 1px #2E3836;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   border-radius: 8px!important;
     position: relative;
-    background: #212121c2;
+    background: #2E3836;
     margin: 1rem 0em;
     padding: 1em 1em;
     border-radius: 0rem;
@@ -365,7 +377,13 @@ li.language-select:hover:before, li.language-select.selected:before {
   src: url(/static/fonts/comfortaa-lat.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+.text-about-box {
+        font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-size: 40px;
+        font-weight: 500;
+        z-index: 900;
 
+}
 .twelve.wide.column{
 font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 line-height: 1.4285em;
@@ -477,6 +495,7 @@ align-self: flex-end;
         visibility: hidden
     }
 }
+
 
 .adjust {
 
@@ -1207,7 +1226,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     min-width: 320px;
-    background-image: url("image/background.png");
+    /*background-image: url("backgrounds/main.png");*/
     font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
     font-size: 14px;
