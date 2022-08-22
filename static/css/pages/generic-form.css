@@ -2,4 +2,32 @@
     height: 150px;
     display: flex;
     border-radius: 12px 12px 0px 0px;
+    color: white;
+    padding: 26px;
+}
+.icon-container {
+    align-items: center;
+    text-align: center;
+    width: 96px;
+    height: 96px;
+    font-size: 48px;
+    border-radius: 100%;
+    border: 5px solid;
+    padding: 18px;
+}
+.button-container {
+    display: flex;
+    /* padding hax */
+    padding-block: 22px;
+    padding-inline: 12px;
+}
+.form-buttons {
+    margin-inline: 24px;
+}
+.filler{
+    /* i hate */
+    flex-grow: 1;
+}
+.form-textbox {
+    padding-inline: 22px;
 }

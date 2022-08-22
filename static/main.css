@@ -11,6 +11,19 @@
     color: white;
 }
 
+.text-segment {
+    border: 1px #2E3836;
+    box-shadow: none;
+    position: relative;
+    background: #1F2D28;
+    margin: 1rem 0em;
+    padding: 28px;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+}
+
 .background-image {
     z-index: -1;
     position: fixed;
@@ -106,7 +119,7 @@
 	border: 1px solid rgba(34,36,38,.15);
 	box-shadow: 0 0 0 0 transparent inset;
 	transition: color .1s ease,border-color .1s ease;
-	padding: 12px 378px 12px 12px;
+	padding: 12px 12px 12px 12px;
 	background: #181D1C;
 	border-radius: 6px;
 	font-style: normal;
@@ -147,11 +160,14 @@
     border: 0px!important;
 }
 .dark-background {
-    background: #1F2D28;
+    background: #272D2B;
 }
 .flexbox {
     position: flex;
 }
 .right-align {
-    text-align: right;
+    float: right;
+}
+.left-align {
+    float: left;
 }
