@@ -9,10 +9,10 @@
     font-weight: 700;
     font-size: 26px;
     line-height: 29px;
-    margin-top: auto;
-    margin-bottom: auto;
     margin-left: 25px;  
     text-align: center;
+    align-items: center;
+    display: flex;
 }
 .icon-container {
     align-items: center;
@@ -38,4 +38,8 @@
 }
 .form-padding {
     padding: 22px 34px;
+}
+
+.form-right-button {
+    margin-left: auto;
 }
