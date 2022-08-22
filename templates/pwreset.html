@@ -18,6 +18,9 @@ KyutGrillHue=0deg
 				<div class="icon-container">
 					<i class="fa-solid fa-key"></i>
 				</div>
+				<div class="topper-text">
+					Reset Password
+				</div>
 			</div>
 			<div>
 				<div class="text-segment no-margin">
@@ -27,8 +30,8 @@ KyutGrillHue=0deg
 					<form id="pw-reset-form" class="textbox form-textbox" method="post" action="/pwreset">
 						{{ ieForm .Gin }}
 						<div class="field">
-							<label>{{ .T "Username (or email)" }}</label>
-							<input tabindex="1" type="text" name="username" placeholder="{{ .T "put it here :3" }}" value="{{ .FormData.username }}" required>
+							<div class="form-label-text">{{ .T "Email" }}</div>
+							<input tabindex="1" type="text" name="email" placeholder="{{ .T "put it here :3" }}" value="{{ .FormData.username }}" required>
 						</div>
 					</form>
 				</div>

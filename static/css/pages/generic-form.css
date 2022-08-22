@@ -5,6 +5,16 @@
     color: white;
     padding: 26px;
 }
+.topper-text {
+    color: white;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 29px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 25px;  
+    text-align: center;
+}
 .icon-container {
     align-items: center;
     text-align: center;
@@ -30,4 +40,12 @@
 }
 .form-textbox {
     padding-inline: 22px;
+}
+.form-label-text{
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    
 }
