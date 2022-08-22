@@ -1,0 +1,352 @@
+{{/*###
+Handler=/
+TitleBar=Home
+KyutGrill=homepage.jpg
+*/}}
+{{ define "tpl" }}
+{{ $cf := .ClientFlags }}
+{{ $ds := band $cf 1 }}
+{{ $   := . }}
+
+{{/* CSS Zone */}}
+<style>
+	.status {
+		display: flex;
+		font-size: 14px;
+		font-weight: 500;
+		z-index: 3;
+		position: absolute;
+		-webkit-transform: translateY(-100px) translateX(5px);
+		transform: translateY(-px) translateX(5px);
+		padding: 2px 10px;
+		color: #fff;
+		margin-left: 5px;
+		border-radius: 20px;
+		background: rgba(0,0,0,.6);
+	}
+</style>
+{{/* End CSS */}}
+
+	<div class="ui container">
+	{{ if not .Context.User.ID }}
+        <div class="ui segment main-block " style="overflow: hidden; height: 350px;">
+		
+            <div style="position: absolute; left: 0; top: 0; transform: skew(-5deg, -5deg) scale(1.1) translate(0px, -75px);">
+                <video autoplay loop muted class="hideonmobile" src="/static/bgvideo.mp4" style="height: 100%; width: 100%; filter: blur(2px); transform: scale(1) translateY(-50px);"></video>
+            </div>
+			<div class="content">
+				<div class="status" style="margin-left: auto;margin-right: auto;text-align: center;align-content: center;align-self: center;">
+					<span>
+					{{ range $key, $value := (qb "SELECT COUNT(*) FROM users WHERE privileges >= 3") }}			
+						<span style="color: #4287f5;" class="counter-text"> {{ $value }} </span> total users
+                    {{ end }}
+					</span>
+					<span style="margin-left: 16px;"> 
+						<span class="counter-text" style="color: #eb4034;"> {{ .T "%s" (rediget "ripple:online_users")}} </span> online users
+					</span>
+				</div>
+				<br>
+				<span class="text-lg" style="text-align: center;margin-top: 0px;">
+					<br>
+					osuHOW
+				</span>
+				<span class="text-sm" style="text-align: center;">
+					<b>Welcome to osuHOW!</b>
+	
+	
+					osuHOW is a server with Relax and Autopilot pp, Support for old versions of osu! (Late 2013 or later), and our own beatmap ranking system. Why hesitate? You won't get your osu! account restricted for playing on osuHOW, you can also switch between osu! and osuHOW at any time!
+				</span>
+				<div class="buttons" style="margin-left: auto;margin-right: auto;">
+					{{ if not .Context.User.ID }}
+						<a href="/register" class="home-btn btn-key" >Register</a>
+					{{end}}
+					<a href="https://eggradio.tk/doc/connection_guide" class="home-btn btn-how" style="margin-left: 6px;">How to connect</a>
+				</div>
+			</div>
+		</div>
+	{{/* Global Statistics */}}
+
+	<div class="ui stackable column divided grid" id="first-grid">
+		<div class="five wide column">
+			<div class="ui segments" style="height: 100%;">
+				<div class="sixteen wide column" style="margin-bottom: 11px;">
+					<div class="ui red segment">
+						<div class="ui grid">
+							<div class="four wide column">
+								<i class="thumbs down icon status-icon"></i>
+							</div>
+							<div class="twelve wide column">
+								{{ range $key, $value := (qb "SELECT COUNT(*) FROM users WHERE privileges <= 2") }}
+								<p class="status-head">{{ $value }}</p>
+								{{ end }}
+								<p class="status-footer">{{ .T "Banned users" }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui orange segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="user plus icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ range $key, $value := (qb "SELECT username FROM users WHERE privileges >=3 ORDER BY id DESC LIMIT 1") }}
+							{{ range $key, $valu := (qb "SELECT id FROM users WHERE privileges >=3 ORDER BY id DESC LIMIT 1") }}
+							<p class="status-head" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+								<a href="/u/{{ $valu }}" style="color: inherit;">{{ $value }}</a>
+							</p>
+							{{ end }}
+							{{ end }}
+							<p class="status-footer">{{ .T "Latest Player" }}</p>
+						</div>
+					</div>
+			  </div>
+			  <div class="sixteen wide column">
+                <div class="ui green segment">
+                    <div class="ui grid">
+                        <div class="four wide column">
+                            <i class="user icon status-icon"></i>
+                        </div>
+                        <div class="twelve wide column">
+                             {{ $value := (qb "SELECT ROUND(SUM(scores.pp)) AS pp FROM scores INNER JOIN users ON scores.userid = users.id WHERE scores.completed = 3 AND scores.play_mode = 0 AND users.privileges > 2") }}
+                        <p class="status-head">{{ $value.pp }}</p>
+                        <p class="status-footer">{{ .T "Total PP" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+	<div class="six wide column">
+		<img src="/static/logos/logo1.png" style="align-self: center;">
+
+	</div>
+	<div class="five wide column">
+		<div class="ui segments" style="height: 100%;">
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui yellow segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs up icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ $d := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores INNER JOIN users ON scores.userid = users.id WHERE scores.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+							<p class="status-head">{{ $d.pp }}pp</p>
+							<p class="status-head" style="font-size: 10px!important;">{{ .T "Done by " }}<a href="/u/{{ $d.id }}">{{ $d.username }}</a></p>
+							<p class="status-footer">{{ .T "Top Score" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui pink segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs up icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ $rx := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores_relax INNER JOIN users ON scores_relax.userid = users.id WHERE scores_relax.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+							<p class="status-head">{{ $rx.pp }}pp</p>
+							<p class="status-head" style="font-size: 10px!important;">{{ .T "Done by " }}<a href="/u/{{ $rx.id }}">{{ $rx.username }}</a></p>
+							<p class="status-footer">{{ .T "Top Relax Score" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sixteen wide column">
+				<div class="ui purple segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs up icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ $ap := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores_ap INNER JOIN users ON scores_ap.userid = users.id WHERE scores_ap.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+							<p class="status-head">{{ $ap.pp }}pp</p>
+							<p class="status-head" style="font-size: 10px!important;">{{ .T "Done by " }}<a href="/u/{{ $ap.id }}">{{ $ap.username }}</a></p>
+							<p class="status-footer">{{ .T "Top Autopilot Score" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div> {{/* Global Stats end past this /div */}}
+	</div>
+	</div>
+
+	{{else}}
+	<div class="ui container nodisplaymobile">
+		<div class="ui pink segment">
+			<span class="text-lg fuckshittext" style="color: #FFFFFF; margin-top: 5px!important; font-size: 40px!important; margin-bottom: 20px;" class="counter-text">
+				Welcome back to osuHOW, 
+			</span>
+			<span class="text-lg fuckshittext" style="color: #FFFFFF; margin-top: 5px!important; font-size: 40px!important;" class="counter-text">
+				{{ .Context.User.Username }}
+			</span>
+
+			<br>
+			{{ if and .Context.User.Username (not (has .Context.User.Privileges 1)) }}
+			{{ end }}
+			<div class="ui" style="display: flex; align-items: center!important;align-self: center;/*! align-content: center; */text-align: center;margin-left: auto;margin-right: auto;width: 20em;">
+				<a href="/leaderboard" class="home-btn btn-key" >Rankings</a>
+				<a href="https://eggradio.tk/doc/connection_guide" class="home-btn btn-how" style="margin-left: 6px;">How to connect</a>
+				<br>
+			</div>
+		</div>
+	</div>
+	
+	<div><br></div>
+	<div class="ui stackable column divided grid" id="first-grid">
+		<div class="five wide column">
+			<div class="ui segments" style="height: 100%;">
+				<div class="sixteen wide column" style="margin-bottom: 11px;">
+					<div class="ui green segment">
+						<div class="ui grid">
+							<div class="four wide column">
+								<i class="check icon status-icon"></i>
+							</div>
+							<div class="twelve wide column">
+								{{ range $key, $value := (qb "SELECT COUNT(*) FROM users WHERE privileges >= 3") }}
+								<p class="status-head">{{ rediget "ripple:online_users" }}</p>
+								{{ end }}
+								<p class="status-footer">{{ .T "Online users" }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sixteen wide column" style="margin-bottom: 11px;">
+					<div class="ui blue segment">
+						<div class="ui grid">
+							<div class="four wide column">
+								<i class="user icon status-icon"></i>
+							</div>
+							<div class="twelve wide column">
+								{{ range $key, $value := (qb "SELECT COUNT(*) FROM users WHERE privileges >= 3") }}
+								<p class="status-head">{{ $value }}</p>
+								{{ end }}
+								<p class="status-footer">{{ .T "Total users" }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui yellow segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="gamepad icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							<p class="status-head">{{ rediget "ripple:total_plays" }}</p>
+							<p class="status-footer">{{ .T "Total scores" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui red segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs down icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ range $key, $value := (qb "SELECT COUNT(*) FROM users WHERE privileges <= 2") }}
+							<p class="status-head">{{ $value }}</p>
+							{{ end }}
+							<p class="status-footer">{{ .T "Banned users" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			  <div class="sixteen wide column">
+				<div class="sixteen wide column" style="margin-bottom: 11px;">
+				</div>
+            </div>
+		</div>
+	</div>
+
+	<div class="six wide column" style="align-items: center;">
+		<br>
+	<img src="/static/logos/logo1.png" style="align-self: center;">
+
+	</div>
+	<div class="five wide column">
+		<div class="ui segments" style="height: 100%;">
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui yellow segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs up icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ $d := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores INNER JOIN users ON scores.userid = users.id WHERE scores.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+							<p class="status-head">{{ $d.pp }}pp</p>
+							<p class="status-head" style="font-size: 10px!important;">{{ .T "Done by " }}<a href="/u/{{ $d.id }}">{{ $d.username }}</a></p>
+							<p class="status-footer">{{ .T "Top Score" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui pink segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs up icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ $rx := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores_relax INNER JOIN users ON scores_relax.userid = users.id WHERE scores_relax.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+							<p class="status-head">{{ $rx.pp }}pp</p>
+							<p class="status-head" style="font-size: 10px!important;">{{ .T "Done by " }}<a href="/u/{{ $rx.id }}">{{ $rx.username }}</a></p>
+							<p class="status-footer">{{ .T "Top Relax Score" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui purple segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="thumbs up icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ $ap := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores_ap INNER JOIN users ON scores_ap.userid = users.id WHERE scores_ap.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+							<p class="status-head">{{ $ap.pp }}pp</p>
+							<p class="status-head" style="font-size: 10px!important;">{{ .T "Done by " }}<a href="/u/{{ $ap.id }}">{{ $ap.username }}</a></p>
+							<p class="status-footer">{{ .T "Top Autopilot Score" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="sixteen wide column" style="margin-bottom: 11px;">
+				<div class="ui orange segment">
+					<div class="ui grid">
+						<div class="four wide column">
+							<i class="user plus icon status-icon"></i>
+						</div>
+						<div class="twelve wide column">
+							{{ range $key, $value := (qb "SELECT username FROM users WHERE privileges >=3 ORDER BY id DESC LIMIT 1") }}
+							{{ range $key, $valu := (qb "SELECT id FROM users WHERE privileges >=3 ORDER BY id DESC LIMIT 1") }}
+							<p class="status-head" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+								<a href="/u/{{ $valu }}" style="color: inherit;">{{ $value }}</a>
+							</p>
+							{{ end }}
+							{{ end }}
+							<p class="status-footer">{{ .T "Latest Player" }}</p>
+						</div>
+					</div>
+			  </div>
+
+		</div>
+	</div>
+
+	</div> {{/* Global Stats end past this /div */}}
+	</div>
+	</div>
+		{{end}}
+	
+	{{ end }}
+	
+

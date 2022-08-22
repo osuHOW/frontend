@@ -1,0 +1,23 @@
+{{ define "tpl" }}
+<div class="ui container">
+	<div class="ui segment">
+		<h1 class="ui heading">{{ .T "<a href='/doc/1'>The Guide,</a> tl;dr version" | html }}</h1>
+		<ol class="ui list">
+			<li><a href='https://eggradio.tk/static/switcher.exe'><b>{{ .T "Download the Switcher" }}</b></a></li>
+			<li>{{ .T "Run it and press install certificate, then click yes" | html }}</li>
+			<li>{{ .T "Press connect to osuHOW" | html }}</li>
+            <li>{{ .T "Open osu! and login with your osuHOW account" | html }}</li>
+		</ol>
+		<p>
+			{{ .T "If you're still having trouble, check <a href='/doc/1'>the full guide</a>" | html }}
+		</p>
+	</div>
+	<div class="ui centered error  message">
+		{{ .T "<b class='big text'>Do not let anyone except yourself log into your account!</b><br> Get on our Discord server's #support channel instead (after following the steps on this page) so that we can help you out if you have trouble connecting." | html }}
+	</div>
+	<div class="ui center aligned segment">
+		<h1 class="ui heading">{{ .T "Waiting for verification" }}</h1>
+		<i class="circle notched huge loading icon"></i>
+	</div>
+</div>
+{{ end }}

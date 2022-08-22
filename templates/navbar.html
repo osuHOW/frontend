@@ -1,0 +1,81 @@
+{{ define "navbar" }}
+{{ $isRAP   := and (hasAdmin .Context.User.Privileges) (isRAP .Path) }}
+{{ $isAdmin := hasAdmin .Context.User.Privileges }}
+{{ $isClanO := qb "SELECT user, clan FROM user_clans WHERE user = ? AND perms = 8" .Context.User.ID }}
+{{ $isClan := qb "SELECT user, clan FROM user_clans WHERE user = ?" .Context.User.ID }}
+{{ $ds      := band .ClientFlags 1 }}
+<div class="ui secondary fixed-height stackable white background main menu" id="navbar">
+	<div class="navbar container">
+		<div class="item">
+			<b><a href="/" title="{{ .T "Home page" }}"><img src="/static/logos/logo.svg" style="width: 34px;height: 34px;/*! margin-left: auto; *//*! margin-top: auto; *//*! margin-bottom: auto; *//*! margin-right: auto; *//*! display: flex; */"></a></b>
+		</div>
+		{{ if $isRAP }}
+		{{ else }}
+			{{ navbarItem .Path (.T "home") "/" }}
+			{{ navbarItem .Path (.T "rankings") "/leaderboard" }}
+			<div class="ui dropdown item">
+				<span>{{ .T "clans" }}</span>
+				<div class="menu">
+					{{ navbarItem .Path (.T "Clan Leaderboard") "/clans?mode=0" }}
+					{{ if not ($isClan) }}
+					{{ navbarItem .Path (.T "Create Clan") "/clans/create" }}
+					{{ end }}
+					{{ if ($isClanO) }}
+					{{ navbarItem .Path (.T "Clan Settings") "/settings/clansettings" }}
+					{{ end }}
+				</div>
+			</div>
+			{{ if .Context.User.Username }}
+			<div class="ui dropdown item">
+				<span>{{ .T "beatmaps" }}</span>
+				<div class="menu">
+					{{ navbarItem .Path (.T "Request beatmap ranking") "/beatmaps/rank_request" }}
+					{{ navbarItem .Path (.T "Beatmaps Listing") "/beatmaps" }}		
+				</div>
+			</div>
+			{{ end }}
+			<div class="ui dropdown item">
+				<span>{{ .T "help" }}</span>
+				<div class="menu">
+					{{ navbarItem .Path (.T "About") "/about" }}
+					{{ navbarItem .Path (.T "Discord") "https://discord.gg/5pEXYcw2yd" }}
+					{{ navbarItem .Path (.T "Rules") "/doc/rules" }}
+					{{ navbarItem .Path (.T "Documentation") "/doc" }}
+					{{ navbarItem .Path (.T "Our Team") "/team" }}
+				</div>
+			</div>
+			{{/* navbarItem .Path (.T "donate" | printf "<i class=\"red heart icon\"></i>%s") "/donate" */}}
+			{{ if $isAdmin }}{{ navbarItem .Path (.T "admin panel" | printf "<b>%s</b>") "https://aap.eggradio.tk/index.php?p=100" }}{{ end }}
+		{{ end }}
+		<div class="firetrucking-right-menu">
+			<div class="item">
+				<div class="ui search" id="user-search">
+					<div class="ui icon input">
+						<input class="prompt" type="text" placeholder="{{ .T "Looking for someone?" }}" id="user-search-input" style="background: #3D4C47;">
+						<i class="search link icon"></i>
+						
+				</div>
+			</div>
+		</div>
+			{{ if .Context.User.Username }}
+				<div class="item">
+					<div class="navbaruserdropdown ui dropdown item" tabindex="0">
+							<img id="avatar" class="fuckshitavatar ui avatar image " src="{{ config "AvatarURL" }}/{{ .Context.User.ID }}" style="/*! position: absolute; *//*! left: 93.49%; *//*! right: 4.11%; *//*! top: 14.06%; *//*! bottom: 14.06%; *//*! background: url(9fy8ajty.png); */border-radius: 5.24578px;width: 46px !important;height: 46px !important;margin-left: auto;margin-right: auto;"><div class="menu transition hidden" tabindex="-1">
+								{{ navbarItem .Path (.T "Profile") (printf "/u/%d" .Context.User.ID) }}
+								{{ navbarItem .Path (.T "Friends") "/friends" }}
+								{{ navbarItem .Path (.T "Settings") "/settings" }}
+								{{ navbarItem .Path (.T "Log out") (printf "/logout?k=%s" (.Session.Get "logout")) }}
+							</div>
+						</div>
+					</div>
+
+			{{ else }}
+				{{ navbarItem .Path (.T "Log in") "/login" }}
+				{{ navbarItem .Path (.T "Register") "/register" }}
+			{{ end }}
+		</div>
+
+	</div>
+</div>
+{{ end }}
+</div>

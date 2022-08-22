@@ -1,0 +1,90 @@
+{{/*###
+Handler=/team
+TitleBar=Team
+Include=user_group.html
+KyutGrill=team2.jpg
+*/}}
+{{ define "tpl" }}
+<div class="ui container">
+	<div class="ui segments">
+		<div class="ui center aligned segment">
+			<h3>{{ .T "This is a list of the outstanding individuals who keep the server and its community operating." }}</h3>
+		</div>
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Developer Team" }}</h1>
+			<p>
+				{{ .T "Developers are responsible for all the server side magic. They do all the behind the scene technical things." }}<br>
+				{{ .T "They have full power over the server as they run it. Developers have a blue name in the in-game chat." }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 2) }}
+		</div>
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Community Management Team" }}</h1>
+			<p>
+				{{ .T "Community Managers (as the name suggests) deal with the community. This can be anything from organising events to hunting hackers. They are cool people ready to help you." }}<br>
+				{{ .T "They have power in numerous sectors such as the discord server" | html }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 4) }}
+		</div>
+		
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Chat Moderation Team" }}</h1>
+			<p>
+				{{ .T "Chat moderators manage the chat to make sure The Law&trade; (the rules) is respected." | html }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 30) }}
+		</div>
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Beatmap Appreciation Team" }}</h1>
+			<p>
+				{{ .T "BATs play beatmaps in the ranking queue and decide whether they are good enough to be ranked or not." }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 5) }}
+		</div>
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Support Team" }}</h1>
+			<p>
+				{{ .T "The support team is here to help you with any issues you may face. They are accessable, nice people who enjoy working and helping people." }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 1006) }}
+		</div>
+	</div>
+	<div class="ui segments">
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Special thanks" }}</h1>
+			<p>{{ .T "Here's a list of people who helped with osuHOW" }}</p>
+		</div>
+		<div class="ui segment">
+			<ul class="ui list">
+				<li>{{ .T "<b>PurePeace</b>, for <a href='https://github.com/Pure-Peace/peace-performance-python'>their excellent pp calculator</a>, which we use as a replacement for oppai-ng." | html }}<br></li>
+				<li>{{ .T "<b>Furball</b>, for help with osu!2007." | html }}</li>
+				<li>{{ .T "<b>PoltixeTheDerg</b> and <b>Faith</b>, for helping with reverse proxy back in osuHOW 1." | html }}</li>
+				<li>{{ .T "<b>Ripple</b>, <b>RealistikOsu</b>, <b>osu!Ainu</b>, <b>osu!Akatsuki</b>, <b>osu!Kurikku</b>, <b>osu!gatari</b> for providing much of the code and resources osuHOW is based on" | html }}</li>
+
+				<li>{{ .T "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the osuHOW project by donating or inviting other people." | html }}</li>
+			</ul>
+		</div>
+	</div>
+	{{ $ := . }}
+	<div class="ui modal">
+		<div class="header"><h2 class="ui header">{{ .T "They told me these are very cool people." }}</h2></div>
+		{{ with .Get "users?sort=donor_expire,desc&l=52" }}
+			<div class="content">
+				<div class="ui four column grid">
+					{{ range .users }}
+						<div class="column">
+							<h4 class="ui image header">
+								<img src="{{ config "AvatarURL" }}/{{ .id }}" class="ui micro rounded image">
+								<div class="content">
+									<a href="/u/{{ .id }}">{{ .username }}</a>
+								</div>
+							</h4>
+						</div>
+					{{ end }}
+				</div>
+				</div>
+		{{ end }}
+	</div>
+</div>
+{{ end }}
+
