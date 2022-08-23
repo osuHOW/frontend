@@ -141,7 +141,7 @@ func registerSubmit(c *gin.Context) {
 	db.Exec("UPDATE beta_keys SET allowed = 0 WHERE key_md5 = ?", cmd5(c.PostForm("key")))
 	rd.Incr("ripple:registered_users")
 
-	addMessage(c, successMessage{T(c, "You have been successfully registered on osuHOW! You now need to verify your account.")})
+	addMessage(c, successMessage{T(c, "You have been successfully registered! You now need to verify your account.")})
 	getSession(c).Save()
 	c.Redirect(302, "/register/verify?u="+strconv.Itoa(int(lid)))
 }
@@ -149,7 +149,8 @@ func registerSubmit(c *gin.Context) {
 func registerResp(c *gin.Context, messages ...message) {
 	resp(c, 200, "register/register.html", &baseTemplateData{
 		TitleBar:  "Register",
-		KyutGrill: "register.jpg",
+		DisableMainContainer: true,
+		KyutGrillHue: "212deg",
 		Scripts:   []string{"https://www.google.com/recaptcha/api.js"},
 		Messages:  messages,
 		FormData:  normaliseURLValues(c.Request.PostForm),

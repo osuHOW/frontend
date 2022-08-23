@@ -20,12 +20,7 @@
 				window.userID = {{ .id }};
 			</script>
 			{{ if after .silence_info.end }}
-<div class="restricted" style="
-background: repeating-linear-gradient( -45deg, #FF3D3D, #FF3D3D 10px, #FF0000 10px, #FF0000 20px);
-text-align: center;
-color: white;
-padding: 8px;
-">
+			<div class="notification-banner content-container text-segment">
 						<h1 style="margin-top: 0px; color: white;">{{ $global.T "This user is silenced until %s!" (time .silence_info.end) | html }}</h1>
 						<div>
         					{{ $global.T "They were silenced for %s." (.silence_info.reason | htmlescaper) | html }}
@@ -39,24 +34,14 @@ padding: 8px;
 				{{ $pend  := has .privileges 1048576 }}
 				{{ if and $disab $restr }}
 					{{ if $pend }}
-						<div class="restricted" style="
-background: repeating-linear-gradient( -45deg, #FF3D3D, #FF3D3D 10px, #FF0000 10px, #FF0000 20px);
-text-align: center;
-color: white;
-padding: 8px;
-">
+					<div class="notification-banner content-container text-segment">
 						<h1 style="margin-top: 0px; color: white;">This user is pending!</h1>
 						<div>
         					(Only admins can see this!)
 						</div>
 					</div>
 					{{ else }}
-						<div class="restricted" style="
-background: repeating-linear-gradient( -45deg, #FF3D3D, #FF3D3D 10px, #FF0000 10px, #FF0000 20px);
-text-align: center;
-color: white;
-padding: 8px;
-">
+					<div class="notification-banner content-container text-segment">
 						<h1 style="margin-top: 0px; color: white;">This user is banned!</h1>
 						<div>
         					(Only admins can see this!)
@@ -64,12 +49,7 @@ padding: 8px;
 					</div>
 					{{ end }}
 				{{ else if $restr }}
-						<div class="restricted" style="
-background: repeating-linear-gradient( -45deg, #FF3D3D, #FF3D3D 10px, #FF0000 10px, #FF0000 20px);
-text-align: center;
-color: white;
-padding: 8px;
-">
+				<div class="notification-banner content-container text-segment">
 						<h1 style="margin-top: 0px; color: white;">This user is restricted!</h1>
 						<div>
         					(Only admins can see this!)
@@ -77,12 +57,7 @@ padding: 8px;
 					</div>
 										
 				{{ else if $disab }}
-					<div class="restricted" style="
-background: repeating-linear-gradient( -45deg, #FF3D3D, #FF3D3D 10px, #FF0000 10px, #FF0000 20px);
-text-align: center;
-color: white;
-padding: 8px;
-">
+				<div class="notification-banner content-container text-segment">
 						<h1 style="margin-top: 0px; color: white;">This user is locked!</h1>
 						<div>
         					(Only admins can see this!)

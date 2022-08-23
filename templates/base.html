@@ -2,19 +2,7 @@
 {{ $cf := .ClientFlags }}
 {{ $ds := band $cf 1 }}
 {{ $   := . }}
-{{ if and .Context.User.Username (not (has .Context.User.Privileges 1)) }}
-					<div class="restricted" style="
-background: repeating-linear-gradient( -45deg, #FF3D3D, #FF3D3D 10px, #FF0000 10px, #FF0000 20px);
-text-align: center;
-color: white;
-padding: 8px;
-">
-						<h1 style="margin-top: 0px; color: white;">Your account is currently <b>held for review</b>!</h1>
-						<div>
-        					You will temporarily not be able to interact with other users and your profile will only be visible to you. <strong>This is likely the result of an automated process and will resolve itself within 24 hours.</strong> If you wish to appeal your restriction, please <a href="https://discord.gg/pj8NH2Cjg6" style="color:white; font-weight: bold;">contact an admin in the discord</a>.
-						</div>
-					</div>
-					{{ end }}
+
 <!DOCTYPE html>
 <script>
 function recalcRestrictedBannerHeight() {
@@ -24,8 +12,7 @@ function recalcRestrictedBannerHeight() {
         body.setAttribute("style", "--restricted-header: " + navheight + "px;");
     }
 }
-//recalcRestrictedBannerHeight();
-//window.onresize = recalcRestrictedBannerHeight;
+
 </script>
 <html>
 	<head>
@@ -37,6 +24,13 @@ function recalcRestrictedBannerHeight() {
 		<link rel="stylesheet" type="text/css" href="/static/{{ if $ds }}dark/{{ end }}semantic.min.css?{{ unixNano }}">
 		<link rel="stylesheet" type="text/css" href="/static/ripple.css?{{ unixNano }}">
 		<link rel="stylesheet" type="text/css" href="/static/main.css">
+		{{ if and .Context.User.Username (not (has .Context.User.Privileges 1)) }}
+					<div class="notification-banner content-container text-segment">
+						<div>
+        					Your account is currently restricted. You will no longer be able to interact with other users and your profile will only be visible to you. <strong>This is likely the result of an automated process and will resolve itself within 24 hours.</strong> If you wish to appeal your restriction, please <a href="https://discord.gg/pj8NH2Cjg6" style="color:white; font-weight: bold;">contact an admin.</a>.
+						</div>
+					</div>
+					{{ end }}
 
 		<link rel="stylesheet" type="text/css" href="/static/snow/snow.css?{{ unixNano }}">
 		<link rel="stylesheet" href="/static/css/uniformityrightlads.css">

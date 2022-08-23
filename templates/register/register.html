@@ -1,42 +1,58 @@
 {{ define "tpl" }}
+<link rel="stylesheet" href="/static/css/pages/generic-form.css" />
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<div class="ui container">
+<div>
+	<div class="tiny-container">
+		<div class="form-topper blue-background tiny-container form-padding">
+			<div class="icon-container">
+				<i class="fa-solid fa-key"></i>
+			</div>
+			<div class="topper-text">
+				{{ .T "Create an account" }}
+			</div>
+		</div>
+
 	{{ $regEnabled := qb "SELECT value_int FROM system_settings WHERE name = 'registrations_enabled'" }}
 	{{ if .Context.User.ID }}
-		<div class="ui segment">
+	<div class="text-segment form-padding">
 			{{ .T "You're already logged in!" }}
 		</div>
+		<div class="content-segment round-bottom dark-background flexbox form-padding">
+			<button tabindex="4" class="hollow-button form-buttons" onclick="history.back()">{{ .T "go back" }}</button>
+		</div>
 	{{ else if not ($regEnabled.value_int.Bool) }}
-		<div class="ui error message">
+	<div class="text-segment form-padding">
 			{{ .T "Sorry, it's not possible to register at the moment. Please try again later." }}
+		</div>
+		<div class="content-segment round-bottom dark-background flexbox form-padding">
+			<button tabindex="4" class="hollow-button form-buttons" onclick="history.back()">{{ .T "go back" }}</button>
 		</div>
 	{{ else }}
 		{{ if eq (.Gin.Query "stopsign") "1" }}
-			<div class="ui warning message">
+		<div class="text-segment form-padding">
 				{{ .T "Remember: this seems like it's your second account! Do not multiaccount, or you're likely to get restricted!" }}
 			</div>
 		{{ end }}
-		<div class="ui error message">
+		<div class="text-segment form-padding">
 			if anyone needs a key to sign up please contact an administrator in the discord which you can find from "help" on the navbar, No, we're not pay to play, we just don't want random people registering because this server is mostly just for testing at the moment.
 		</div>
-		<div class="tiny container">
-			<div class="ui raised segments">
-				<div class="ui segment">
-					<form id="register-form" class="ui form" method="post" action="/register">
+		<div class="tiny-container">
+				<div class="content-segment form-padding">
+					<form id="register-form" class="textbox form-textbox" method="post" action="/register">
 						<div class="field">
-							<label>{{ .T "Username (2 to 15 characters, alphanumeric, spaces, <code>_[]-</code>)" | html }}</label>
+							<div class="form-label-text">{{ .T "Username (2 to 15 characters)" | html }}</div>
 							<input tabindex="1" type="text" name="username" placeholder="{{ .T "Username" }}" value="{{ .FormData.username }}" required pattern="^[A-Za-z0-9 _\[\]-]{2,15}$">
 						</div>
 						<div class="field">
-							<label>{{ .T "Password (at least 8 characters)" }}</label>
+							<div class="form-label-text">{{ .T "Password (at least 8 characters)" }}</div>
 							<input tabindex="2" type="password" name="password" placeholder="{{ .T "Password" }}" value="{{ .FormData.password }}" required pattern="^.{8,}$">
 						</div>
 						<div class="field">
-							<label>{{ .T "Email (feel free to just type garbage if you want)" }}</label>
+							<div class="form-label-text">{{ .T "Email (used for password reset)" }}</div>
 							<input tabindex="3" type="email" name="email" placeholder="{{ .T "Email" }}" value="{{ .FormData.email }}" required>
 						</div>
 						<div class="field">
-							<label>{{ .T "Key" }}</label>
+							<div class="form-label-text">{{ .T "Key" }}</div>
 							<input tabindex="3" type="text" name="key" placeholder="{{ .T "Key" }}" value="{{ .FormData.key }}" required>
 						</div>
 
@@ -48,11 +64,13 @@
 						{{ ieForm .Gin }}
 					</form>
 				</div>
-				<div class="ui right aligned segment">
-					<button tabindex="4" class="ui primary button" type="submit" form="register-form">{{ .T "Submit" }}</button>
+				<div class="content-segment round-bottom dark-background flexbox form-padding">
+					<button tabindex="4" class="hollow-button form-buttons" onclick="history.back()">{{ .T "go back" }}</button>
+					<div class="form-filler"></div>
+					<button tabindex="4" class="solid-button form-right-button form-buttons" form="register-form">{{ .T "Submit" }}</button>
 				</div>
-			</div>
 		</div>
 	{{ end }}
+</div>
 </div>
 {{ end }}

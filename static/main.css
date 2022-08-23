@@ -124,6 +124,7 @@
 	font-size: 16px;
 	line-height: 18px;
 	color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
 }
 .tiny-container {
 	margin: 0 auto;
@@ -147,6 +148,12 @@
 .red-background {
     background: #EB4B5E;
 }
+.blue-background {
+    background: #53A2FF;
+}
+.green-background {
+    background: #18FFB1;
+}
 .dark-background {
     background: #272D2B;
 }
@@ -158,4 +165,9 @@
 }
 .left-align {
     float: left;
+}
+.notification-banner {
+    background: #EB4B5E;
+    font-weight: 700;
+    text-align: center;
 }
