@@ -84,19 +84,38 @@
         margin-right: 3em;
 
 }
-.aboutbox-htext-sm {
-        font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif ;
-        font-size: 40px ;
-        font-weight: 500 ;
-        z-index: 900 ;
-        transform: skew(25deg);
-        font-weight: 700 ;
-        font-size: 25px ;
-        line-height: 28px ;
-        color: rgba(0, 0, 0, 0.8) ;
-        margin: 1px ;
-        margin-left: 38px ;
 
+@media only screen and (min-width: 992px){
+        .aboutbox-htext-sm {
+                font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif ;
+                font-size: 40px ;
+                font-weight: 500 ;
+                z-index: 900 ;
+                transform: skew(25deg);
+                font-weight: 700 ;
+                font-size: 25px ;
+                line-height: 28px ;
+                color: rgba(0, 0, 0, 0.8) ;
+                margin: 1px ;
+                margin-left: 38px ;
+                margin-right: 3em;
+        }
+}
+@media only screen and (max-width: 991px){
+        .aboutbox-htext-sm {
+                font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif ;
+                font-size: 40px ;
+                font-weight: 500 ;
+                z-index: 900 ;
+                transform: skew(25deg);
+                font-weight: 700 ;
+                font-size: 25px ;
+                line-height: 28px ;
+                color: rgba(0, 0, 0, 0.8) ;
+                margin: 1px ;
+                margin-left: 38px ;
+        
+        }
 }
 .aboutbox-text {
         font-family: 'Comfortaa';
