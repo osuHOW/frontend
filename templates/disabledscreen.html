@@ -8,8 +8,11 @@ KyutGrillHue=0deg
 {{/*todo: improve this page*/}}
 <link rel="stylesheet" href="/static/css/pages/generic-form.css" />
 <div class="tiny-container">
-	<div class="form-topper redder-background tiny-container form-padding">
-		<i class="fa-solid fa-ban icon-nocontainer"></i>
+	<div class="form-topper red-background tiny-container form-padding">
+		<div class="icon-container">
+			{{/* for some reason this icon is bigger than some other ones */}}
+			<i class="fa-solid fa-user-alt-slash form-icon" style="font-size: 36px;"></i>
+		</div>
 		<div class="topper-text">
 			{{ .T "Account Disabled" }}
 		</div>
@@ -17,11 +20,11 @@ KyutGrillHue=0deg
 	<div class="text-segment form-padding">
 		<div>Potential reasons your account could be disabled:</div>
 	</div>
-	<div class="text-segment form-padding">
+	<div class="light-black text-segment form-padding">
 			You have broken one or more of our rules or Terms of Service, or,
 			we may have determined your account was compromised, we may require you to confirm your identity.
 	</div>
-	<div class="text-segment form-padding">
+	<div class="light-black text-segment form-padding">
 		<div>If you broke any rules, there is a period of one month during which we will not consider any appeals or requests. When this period is over, you may contact us if need be.</div>
 		<br>
 		<div>Creating accounts after one has been disabled will result in an <strong>one month extension of this one month period for every account you make</strong>.</div>
