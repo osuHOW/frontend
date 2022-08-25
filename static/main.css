@@ -183,6 +183,7 @@
     background-color: #222222;
     border-color: #222222;
     text-align: center;
+    border-radius: 12px 12px 0px 0px;
 }
 .footer-container {
     display: flex;
