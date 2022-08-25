@@ -24,6 +24,13 @@
     padding: 18px;
     filter: drop-shadow(2px 4px 9px #0004);
 }
+.icon-nocontainer {
+    align-items: center;
+    text-align: center;
+    width: 96px;
+    height: 96px;
+    font-size: 96px;
+}
 /*todo: do this properly */
 .form-filler{
     /* i hate */
