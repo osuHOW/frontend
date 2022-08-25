@@ -7,7 +7,8 @@
 <div class="ui secondary fixed-height stackable white background main menu" id="navbar">
 	<div class="navbar container">
 		<div class="item">
-			<b><a href="/" title="{{ .T "Home page" }}"><img src="/static/logos/logo.svg" style="width: 34px;height: 34px;/*! margin-left: auto; *//*! margin-top: auto; *//*! margin-bottom: auto; *//*! margin-right: auto; *//*! display: flex; */"></a></b>
+			{{/* using the same medium size icon as the footer to save bandwidth */}}
+			<b><a href="/" title="{{ .T "Home page" }}"><img src="/static/logos/logo-med.png" style="width: 34px;height: 34px;/*! margin-left: auto; *//*! margin-top: auto; *//*! margin-bottom: auto; *//*! margin-right: auto; *//*! display: flex; */"></a></b>
 		</div>
 		{{ if $isRAP }}
 		{{ else }}

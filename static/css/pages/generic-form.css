@@ -24,6 +24,7 @@
     padding: 18px;
     filter: drop-shadow(2px 4px 9px #0004);
 }
+/*todo: do this properly */
 .form-filler{
     /* i hate */
     flex-grow: 1;

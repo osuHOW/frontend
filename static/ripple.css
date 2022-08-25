@@ -992,49 +992,14 @@ img.locked-achievement:hover {
 	filter: brightness(0.5) drop-shadow(0 5px 5px #777);
 }
 /*  */
-.footer-title {
-	font-size: 25px; color: white;
-}
-.footer-bg {
-    text-shadow: -1px 2px 2px rgba(0,0,0,.33);
-    background: linear-gradient( rgba(255,255,255,0.03),rgba(255,255,255,0.03) ),url("image/background-footer.png");
-    height: 180px;
-    margin: 10px 0 -30px!important;
-    padding: 25px 0 0;
-    text-align: center;
-    flex: 0 0 auto;
-    left: 0;
-    bottom: 0;
-}
 
-
-
-.footer-logo {
-    padding: 1em;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-}
 
 .ui.stackable.four.grid{
   border-radius: 8px!important;
 	margin-top: 3px;
 }
 
-.footer-info-block>.footer-title {
-    color: #fff!important;
-    font-size: 20px;
-    font-weight: 600;
-}
 
-.footer-info-block {
-    color: #384c98;
-    padding-top: 24px;
-    float: left;
-    font-size: 14px;
-    padding-right: 24px;
-    text-align: left;
-}
 
 .blobcat {
     background-image: url("images/BlobcatLove.png");
