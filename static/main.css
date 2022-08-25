@@ -183,10 +183,11 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #222222;
-    border-color: #222222;
+    background-color: #242928;
     text-align: center;
     border-radius: 12px 12px 0px 0px;
+    border-top: 0px;
+    padding: 30px 0px;
 }
 .footer-container {
     display: flex;
@@ -195,6 +196,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+}
+
+.footer-items{ 
+    margin-left: auto;
 }
 
 @media screen and (max-width: 767px) {
@@ -222,36 +228,38 @@
     font-size: 22px;
     line-height: 24px;
     color: white;
+    margin-left: 17px;
 }
-/* todo: text isn't quite the right size*/
+
 .footer-title {
-	font-size: 25px; 
     color: #18FFB1;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 21px;
+    font-weight: 900;
     text-align: right;
+    margin-bottom: 4px; 
 }
 .footer-link {
-    color: white;
     text-align: right;
+}
+.footer-link a {
+    color: white;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 800;
 }
 
 .footer-logo {
-    padding: 1em;
-    margin-right: auto;
     display: flex;
     flex-direction: column;
 }
 
+.footer-logo img {
+    height: 100px;
+}
+
 .footer-info-block {
-    color: #384c98;
-    padding-top: 24px;
     float: left;
     font-size: 14px;
-    padding-right: 24px;
-    text-align: left;
+    margin-left:37px;
 }
 
 /* replacement for semantic ui's .ui.container */
