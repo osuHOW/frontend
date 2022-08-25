@@ -21,37 +21,7 @@
 	border-bottom-right-radius: 12px;
     box-sizing: border-box;
 }
-.main-container-topper {
-	height: 55px;
-	background: #1F2D28;
-	border-radius: 12px 12px 0px 0px;
-	margin-left: auto;
-	margin-right: auto;
-	align-items: center;
-	display: flex;
-}
-@media only screen and (min-width: 1200px) {
-	.main-container-topper {
-		width: 1127px;
-	}
-}
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.main-container-topper {
-		width: 933px;
-	}
-}
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-	.main-container-topper {
-		width: 723px;
-	}
-}
-@media only screen and (max-width: 767px){
-	.main-container-topper {
-		width: auto;
-		margin-left: 1em !important;
-		margin-right: 1em !important;
-	}
-}
+
 
 @media screen and (min-width: 768px) {
 	.navbaruserdropdown {

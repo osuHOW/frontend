@@ -113,7 +113,7 @@ function recalcRestrictedBannerHeight() {
 							<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ if .TitleBar }}{{ .T .TitleBar }}{{ end }}</span>
 						</div>
 					</div>
-					<div class="ui container main-container" {{ if .DisableMainContainerPadding }}style="padding: 0px;"{{ end }}>
+					<div class="main-container" {{ if .DisableMainContainerPadding }}style="padding: 0px;"{{ end }}>
 						{{ template "tpl" . }}
 					</div>
 				{{ end }}
@@ -121,7 +121,7 @@ function recalcRestrictedBannerHeight() {
 
 		</div>
 		<div class="footer">
-			<div class="ui-container">
+			<div class="page-container">
 				<div class="footer-container">
 					<div class="footer-row">
 						{{/* rosu stop copying gatari */}}
