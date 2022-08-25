@@ -13,6 +13,11 @@
     margin-left: 25px;  
     text-align: center;
 }
+.form-icon {
+    display:flex;
+    margin-left: auto;
+    margin-right:auto;
+}
 .icon-container {
     align-items: center;
     text-align: center;
@@ -23,7 +28,16 @@
     border: 5px solid;
     padding: 18px;
     filter: drop-shadow(2px 4px 9px #0004);
+    display: flex;
 }
+.icon-nocontainer {
+    align-items: center;
+    text-align: center;
+    width: 96px;
+    height: 96px;
+    font-size: 96px;
+}
+/*todo: do this properly */
 .form-filler{
     /* i hate */
     flex-grow: 1;
