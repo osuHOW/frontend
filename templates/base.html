@@ -25,12 +25,16 @@ function recalcRestrictedBannerHeight() {
 		<link rel="stylesheet" type="text/css" href="/static/ripple.css?{{ unixNano }}">
 		<link rel="stylesheet" type="text/css" href="/static/main.css">
 		{{ if and .Context.User.Username (not (has .Context.User.Privileges 1)) }}
-					<div class="notification-banner content-container text-segment">
-						<div>
-        					Your account is currently restricted. You will no longer be able to interact with other users and your profile will only be visible to you. <strong>This is likely the result of an automated process and will resolve itself within 24 hours.</strong> If you wish to appeal your restriction, please <a href="https://discord.gg/pj8NH2Cjg6" style="color:white; font-weight: bold;">contact an admin.</a>.
+					<div class="restricted-banner dark-red-background">
+						<div class="restricted-banner-title redder-background">
+							<i class="fa-solid fa-user-alt-slash restricted-icon"></i>
+							Your account is currently restricted.
+						</div>
+						<div class="restricted-banner-text">
+        					Your account is currently restricted. You will no longer be able to interact with other users and your profile will only be visible to you. <strong>This is likely the result of an automated process and will resolve itself within 24 hours.</strong> If you wish to appeal your restriction, please <a href="https://discord.gg/pj8NH2Cjg6" style="color:white; font-weight: bold;">contact an admin.</a>
 						</div>
 					</div>
-					{{ end }}
+		{{ end }}
 
 		<link rel="stylesheet" type="text/css" href="/static/snow/snow.css?{{ unixNano }}">
 		<link rel="stylesheet" href="/static/css/uniformityrightlads.css">

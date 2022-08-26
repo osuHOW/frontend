@@ -179,10 +179,46 @@
 .left-align {
     float: left;
 }
-.notification-banner {
-    background: #EB4B5E;
+.restricted-banner {
     font-weight: 700;
+    font-size: 15px;
+    color: white;
+    display: flex;
+}
+
+.restricted-icon {
+    padding: 8px;
+    font-size: 28px;
     text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.restricted-banner-title {
+    border-radius: 0px 11px 11px 0px;
+    display:flex;
+    color: white;
+    padding: 14px;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .restricted-banner-title{
+        border-radius: 0px 0px 11px 11px;
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .restricted-banner{
+        flex-direction: column;
+    }
+}
+
+.restricted-banner-text{
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 10px;
 }
 
 .footer {
