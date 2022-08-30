@@ -371,3 +371,50 @@
 		margin-right: 1em;
 	}
 }
+/* begin navbar */
+@media screen and (min-width: 768px) {
+	.navbar-user-dropdown {
+		width: 76px !important;
+		height: 71px !important;
+		background: #3D4C47 !important;
+		border-radius: 0px 0px 8px 8px !important;
+	}
+}
+
+@media only screen and (min-width: 768px){
+    .navbar.container {
+        display:flex;
+        flex-direction:inherit;
+        width: 100%;
+        display: flex;
+        background: #293430;
+        height: 64px;
+        z-index: 90;
+    }
+}
+@media only screen and (max-width: 767px){
+    .navbar.container {
+        display:flex;
+        flex-direction:inherit;
+        width: 100%;
+        display: flex;
+        background: #293430;
+        height: auto;
+        z-index: 90;
+    }
+}
+/* TODO: do we need this */
+/* quick dirty partially-working menu fixes for mobile */
+@media (max-width: 911px) {
+	#navbar .item {
+		margin: 0 !important;
+	}
+	#navbar {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+
+
+/* end navbar */

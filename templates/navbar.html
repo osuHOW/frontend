@@ -60,7 +60,7 @@
 		</div>
 			{{ if .Context.User.Username }}
 				<div class="item">
-					<div class="navbaruserdropdown ui dropdown item" tabindex="0">
+					<div class="navbar-user-dropdown ui dropdown item" tabindex="0">
 							<img id="avatar" class="fuckshitavatar ui avatar image " src="{{ config "AvatarURL" }}/{{ .Context.User.ID }}" style="/*! position: absolute; *//*! left: 93.49%; *//*! right: 4.11%; *//*! top: 14.06%; *//*! bottom: 14.06%; *//*! background: url(9fy8ajty.png); */border-radius: 5.24578px;width: 46px !important;height: 46px !important;margin-left: auto;margin-right: auto;"><div class="menu transition hidden" tabindex="-1">
 								{{ navbarItem .Path (.T "Profile") (printf "/u/%d" .Context.User.ID) }}
 								{{ navbarItem .Path (.T "Friends") "/friends" }}

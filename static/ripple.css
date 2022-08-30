@@ -22,16 +22,6 @@
     box-sizing: border-box;
 }
 
-
-@media screen and (min-width: 768px) {
-	.navbaruserdropdown {
-		width: 76px !important;
-		height: 71px !important;
-		background: #3D4C47 !important;
-		border-radius: 0px 0px 8px 8px !important;
-	}
-}
-
 language-selector{
 margin-left: 0px!important;
 text-align: center!important;
@@ -43,9 +33,7 @@ text-align: center!important;
 .footercontainer{
   display: flex;
 }
-.navbarcolumn{
-  width: auto!important;
-}
+
 .language {
   font-size: 14px;
   background-color: #0f0f0f;
@@ -238,28 +226,7 @@ li.language-select:hover:before, li.language-select.selected:before {
   border-radius: 8px!important;
     border-top: 2px solid #DB2828;
 }
-@media only screen and (min-width: 768px){
-    .navbar.container {
-        display:flex;
-        flex-direction:inherit;
-        width: 100%;
-        display: flex;
-        background: #293430;
-        height: 64px;
-        z-index: 90;
-    }
-}
-@media only screen and (max-width: 767px){
-    .navbar.container {
-        display:flex;
-        flex-direction:inherit;
-        width: 100%;
-        display: flex;
-        background: #293430;
-        height: auto;
-        z-index: 90;
-    }
-}
+
 @media only screen and (max-width: 767px){
   border-radius: 8px!important;
 .ui.stackable.grid > .row > .wide.column, .ui.stackable.grid > .wide.column, .ui.stackable.grid > .column.grid > .column, .ui.stackable.grid > .column.row > .column, .ui.stackable.grid > .row > .column, .ui.stackable.grid > .column:not(.row), .ui.grid > .stackable.stackable.row > .column {
@@ -881,16 +848,7 @@ code {
 	height: 1.2rem;
 }
 
-/* quick dirty partially-working menu fixes for mobile */
-@media (max-width: 911px) {
-	#navbar .item {
-		margin: 0 !important;
-	}
-	#navbar {
-		margin-left: 0;
-		margin-right: 0;
-	}
-}
+
 
 .tiny.container {
 	margin: 0 auto;
