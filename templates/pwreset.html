@@ -11,7 +11,7 @@ KyutGrillHue=0deg
 		<div class="tiny-container">
 			<div class="form-topper red-background tiny-container form-padding">
 				<div class="icon-container">
-					<i class="fa-solid fa-user-alt-slash"></i>
+					<i class="fa-solid fa-key"></i>
 				</div>
 				<div class="topper-text">
 					{{ .T "Reset Password" }}
@@ -20,7 +20,7 @@ KyutGrillHue=0deg
 			{{ if .Context.User.ID }}
 			<div class="text-segment form-padding">
 				{{ .T "You're already logged in!" }}
-			</div>aaaa
+			</div>
 			<div class="content-segment round-bottom dark-background flexbox form-padding">
 				<button tabindex="2" class="solid-button left-align form-buttons" onclick="history.back()">{{ .T "go back" }}</button>
 			</div>
