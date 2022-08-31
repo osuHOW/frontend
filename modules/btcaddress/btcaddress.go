@@ -1,8 +1,8 @@
-// Package btcaddress makes sure the Bitcoin address for the osuHOW! donations
+// Package btcaddress makes sure the Bitcoin address for the osuHOW donations
 // account on Keybase is up-to-date.
 // This shows a default key if the system is not set up, or otherwise refreshes
 // the address every 30 minutes (using redis to hold the cache).
-// The wallet with the name "osuHOW!" will be used for getting the address.
+// The wallet with the name "osuHOW" will be used for getting the address.
 package btcaddress
 
 import (
@@ -24,7 +24,7 @@ const DefaultAddress = "1CKGzZqrVwKoXwHEWpTobWqqtkYuqoFNro"
 
 // AccountName is the name the account on coinbase must have to be considered as
 // the actual account.
-const AccountName = "osuHOW!"
+const AccountName = "osuHOW"
 
 // Configuration variables.
 var (

@@ -16,10 +16,10 @@ msgstr ""
 
 # JavaScript
 msgid ""
-"An error occurred while contacting the osuHOW! API. Please report this to a "
-"osuHOW! developer."
+"An error occurred while contacting the API. Please report this to a "
+"Developer."
 msgstr ""
-"Ett fel uppstod när du kontaktade osuHOW! API. Var vänlig rapportera detta "
+"Ett fel uppstod när du kontaktade API. Var vänlig rapportera detta "
 "till en Ripple-uvecklare."
 
 msgid "Why, LOVE, of course!"

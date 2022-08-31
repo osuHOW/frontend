@@ -16,8 +16,8 @@ msgstr ""
 
 # JavaScript
 msgid ""
-"An error occurred while contacting the osuHOW! API. Please report this to a "
-"osuHOW! developer."
+"An error occurred while contacting the API. Please report this to a "
+"Developer."
 msgstr ""
 "A apărut o eroare în timpul contactului cu API-ul Ripple. Te rugăm sa "
 "raportezi această eroare la un developer Ripple."

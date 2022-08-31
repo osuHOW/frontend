@@ -185,7 +185,7 @@ var blogRedirectMap = map[string]string{
 	"/posts/ripple-qa-1":                                                         "https://blog.ripple.moe/ripple-q-a-1-51181dd8df65",
 	"/posts/why-am-i-randomly-gaining-losing-pp":                                 "https://blog.ripple.moe/why-am-i-randomly-gaining-losing-pp-595aedfdc5db",
 	"/posts/more-love-for-donors":                                                "https://blog.ripple.moe/more-love-for-donors-96c889a9d95f",
-	"/posts/happy-birthday-osuHOW!":                                               "https://blog.ripple.moe/happy-birthday-ripple-fbc4bbc47936",
+	"/posts/happy-birthday-osuHOW":                                               "https://blog.ripple.moe/happy-birthday-ripple-fbc4bbc47936",
 	"/posts/going-back-open-source":                                              "https://blog.ripple.moe/going-back-open-source-a53469e15658",
 	"/posts/the-useless-things-we-make-during-weekends-series-continues":         "https://blog.ripple.moe/the-useless-things-we-make-during-weekends-series-continues-1a06671ff5c2",
 	"/posts/performance-points-pp":                                               "https://blog.ripple.moe/performance-points-pp-d02e0353ad81",

@@ -1,4 +1,4 @@
-// frontend is the osuHOW! front-end web server.
+// frontend is the osuHOW front-end web server.
 package main
 
 // version is the current version of frontend

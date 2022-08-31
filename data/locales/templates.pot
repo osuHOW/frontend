@@ -125,10 +125,10 @@ msgstr ""
 msgid "Verify account"
 msgstr ""
 
-msgid "Your account has been created, however it still <b>needs to be verified!</b> Please log in into <b><u>osu! (the game)</u></b> using your account. <b>There is <u>no email confirmation</u> at the moment. All you need to do is connect to osuHOW! from the osu! client!</b> If you're having trouble, <a href='/doc/1'>follow this guide</a>."
+msgid "Your account has been created, however it still <b>needs to be verified!</b> Please log in into <b><u>osu! (the game)</u></b> using your account. <b>There is <u>no email confirmation</u> at the moment. All you need to do is connect to osuHOW from the osu! client!</b> If you're having trouble, <a href='/doc/1'>follow this guide</a>."
 msgstr ""
 
-msgid "<b class='big text'>Do not let anyone except yourself log into your osuHOW! account!</b><br> Get on our <a href='%s'>Discord server's</a> #help channel instead (after following the steps on this page) so that we can help you out if you have trouble connecting."
+msgid "<b class='big text'>Do not let anyone except yourself log into your osuHOW account!</b><br> Get on our <a href='%s'>Discord server's</a> #help channel instead (after following the steps on this page) so that we can help you out if you have trouble connecting."
 msgstr ""
 
 msgid "The Guide (<a href='/doc/connection_guide' target='_blank'>Windows</a>, <a href='/doc/linux' target='_blank'>Linux</a>). TL;DR version below."
@@ -165,16 +165,16 @@ msgstr ""
 msgid "Congratulations for not reading things!"
 msgstr ""
 
-msgid "Multiaccounts are not allowed on osuHOW!"
+msgid "Multiaccounts are not allowed on osuHOW"
 msgstr ""
 
 msgid "Your new account has been <b>banned</b> and your main account has been <b>restricted</b>. You can appeal in a month by sending an email to <b><a href='https://support.ripple.moe'>support.ripple.moe</a></b>. You better read the rules next time."
 msgstr ""
 
-msgid "Welcome to osuHOW!"
+msgid "Welcome to osuHOW"
 msgstr ""
 
-msgid "We're glad to have you here. <b>Your account is now active.</b> You can now play on osuHOW! and <a href='/login'>log in</a> on the website!"
+msgid "We're glad to have you here. <b>Your account is now active.</b> You can now play on osuHOW and <a href='/login'>log in</a> on the website!"
 msgstr ""
 
 msgid "Here's a few things you might want to check out:"
@@ -210,10 +210,10 @@ msgstr ""
 msgid " - in case, well, you need help doing stuff"
 msgstr ""
 
-msgid " - in case you believe osuHOW! is down"
+msgid " - in case you believe osuHOW is down"
 msgstr ""
 
-msgid " - in case you want to talk with people about osuHOW!"
+msgid " - in case you want to talk with people about osuHOW"
 msgstr ""
 
 msgid " - just in case"
@@ -223,7 +223,7 @@ msgstr ""
 msgid "Recover account"
 msgstr ""
 
-msgid "Can't find a way to get back access to your osuHOW! account? Fear not! If you have your recovery codes which we recommended you to print you can type one in here and we'll magically log you in this time. After you've managed to get in, please disable and then re-enable 2FA, so you won't risk losing your account again."
+msgid "Can't find a way to get back access to your osuHOW account? Fear not! If you have your recovery codes which we recommended you to print you can type one in here and we'll magically log you in this time. After you've managed to get in, please disable and then re-enable 2FA, so you won't risk losing your account again."
 msgstr ""
 
 msgid "Oh no you don't."
@@ -248,7 +248,7 @@ msgstr ""
 msgid "If you're %s, keep in mind that multiaccounting = ban."
 msgstr ""
 
-msgid "If you're not %s, but you're using %s's computer, please sign up on osuHOW! from your own computer."
+msgid "If you're not %s, but you're using %s's computer, please sign up on osuHOW from your own computer."
 msgstr ""
 
 msgid "If you live with %s and you don't have your own computer from which to sign up on Ripple, then please contact rosusupport@protonmail.com, and we'll deal with your specific case."
@@ -311,7 +311,7 @@ msgstr ""
 msgid "Done! You should shortly receive an email from us at the email you used to sign up on Ripple."
 msgstr ""
 
-msgid "osuHOW! password recovery instructions"
+msgid "osuHOW password recovery instructions"
 msgstr ""
 
 msgid "Hey %s! Someone, which we really hope was you, requested a password reset for your account. In case it was you, please <a href='%s'>click here</a> to reset your password on Ripple. Otherwise, silently ignore this email."
@@ -374,7 +374,7 @@ msgstr ""
 msgid "Welcome to Ripple."
 msgstr ""
 
-msgid "osuHOW! is a private osu! server, featuring multiplayer, PP, a very active community and a development team going strong implementing new features and squashing bugs. <a href='/about'>You can check out even more features here.</a> It has also a very friendly community, and it's <a href='https://github.com/osuHOW/ripple'>open source!</a> Just so you know, <b>we currently have %s users online and %s registered users!</b>"
+msgid "osuHOW is a private osu! server, featuring multiplayer, PP, a very active community and a development team going strong implementing new features and squashing bugs. <a href='/about'>You can check out even more features here.</a> It has also a very friendly community, and it's <a href='https://github.com/osuHOW/ripple'>open source!</a> Just so you know, <b>we currently have %s users online and %s registered users!</b>"
 msgstr ""
 
 msgid "What are you waiting for? Join Ripple! It's risk-free: you won't get your account banned on the official server if you play on Ripple.<br>You can also switch anytime between the official osu! server and Ripple!"
@@ -390,13 +390,13 @@ msgid "Latest news from our <a href='https://blog.ripple.moe'>blog</a>"
 msgstr ""
 
 # base.html
-msgid "osuHOW!'s score submission is currently in maintenance mode. You will not be allowed to submit scores for the time being."
+msgid "osuHOW's score submission is currently in maintenance mode. You will not be allowed to submit scores for the time being."
 msgstr ""
 
-msgid "The osuHOW! website is currently in maintenance mode. Only certain users are allowed to access the full website."
+msgid "The osuHOW website is currently in maintenance mode. Only certain users are allowed to access the full website."
 msgstr ""
 
-msgid "Your account is currently in restricted mode. You will not be able to do certain actions, and your profile can only be seen by you and by osuHOW!'s staff. If you believe we have mistaken putting you in restricted mode, or a month has passed since you first saw this, then you can send an appeal at <a href='https://support.ripple.moe'>support.ripple.moe</a>."
+msgid "Your account is currently in restricted mode. You will not be able to do certain actions, and your profile can only be seen by you and by osuHOW's staff. If you believe we have mistaken putting you in restricted mode, or a month has passed since you first saw this, then you can send an appeal at <a href='https://support.ripple.moe'>support.ripple.moe</a>."
 msgstr ""
 
 msgid "&copy; 2015-%d Ripple, using frontend %s."
@@ -518,14 +518,14 @@ msgstr ""
 msgid "You've been successfully logged in."
 msgstr ""
 
-msgid "Ooops! Looks like something went really wrong while trying to process your request. Perhaps report this to a osuHOW! developer? Retrying doing what you were trying to do might work, too."
+msgid "Ooops! Looks like something went really wrong while trying to process your request. Perhaps report this to a Developer? Retrying doing what you were trying to do might work, too."
 msgstr ""
 
 # about.html
 msgid "Welcome to Ripple."
 msgstr ""
 
-msgid "osuHOW! is a private osu! server."
+msgid "osuHOW is a private osu! server."
 msgstr ""
 
 msgid "There are many like it, but this one is ours."
@@ -568,21 +568,21 @@ msgstr ""
 msgid "And a lot more to come!"
 msgstr ""
 
-msgid "osuHOW! is the result of the hard work of two Italian developers, who got tired about the whole osu! ecosystem, and also because they wanted to play with a few banned friends."
+msgid "osuHOW is the result of the hard work of two Italian developers, who got tired about the whole osu! ecosystem, and also because they wanted to play with a few banned friends."
 msgstr ""
 
 # %s is wink emoji
-msgid "It has now evolved into the largest available osu! private server, with more than 50,000 registered users. <a href=\"/register\">Signing up</a> on osuHOW! won't result in getting your account on osu! restricted, so what are you waiting for?! Come join us! %s"
+msgid "It has now evolved into the largest available osu! private server, with more than 50,000 registered users. <a href=\"/register\">Signing up</a> on osuHOW won't result in getting your account on osu! restricted, so what are you waiting for?! Come join us! %s"
 msgstr ""
 
-msgid "In case you want to make sure we're not doing shady stuff with your data, you can also check the <a href=\"https://github.com/osuHOW/ripple\">source code</a> osuHOW! is running on."
+msgid "In case you want to make sure we're not doing shady stuff with your data, you can also check the <a href=\"https://github.com/osuHOW/ripple\">source code</a> osuHOW is running on."
 msgstr ""
 
 # changelog.html
 msgid "This is the changelog. Changes are published here as soon as they hit the production status (as in, live on the website)."
 msgstr ""
 
-msgid "For various reasons, some software of osuHOW! does not contribute to the changelog, to which this website is a part of. In case you want to see the changelog of frontend, you can do so by <a href=\"https://github.com/osuHOW/frontend/commits/master\">clicking here</a>."
+msgid "For various reasons, some software of osuHOW does not contribute to the changelog, to which this website is a part of. In case you want to see the changelog of frontend, you can do so by <a href=\"https://github.com/osuHOW/frontend/commits/master\">clicking here</a>."
 msgstr ""
 
 msgid "Author"
@@ -608,7 +608,7 @@ msgstr ""
 msgid "Need some help getting around? Look no further! From here you will be able to view our documentation, which is basically a very simplistic wiki."
 msgstr ""
 
-msgid "Looks like there is no documentation on this osuHOW! instance!"
+msgid "Looks like there is no documentation on this osuHOW instance!"
 msgstr ""
 
 # friends.html
@@ -622,7 +622,7 @@ msgid "Remove"
 msgstr ""
 
 # irc.html
-msgid "Here you can generate a new IRC token. You can use it to connect to osuHOW!'s chat using IRC. Remember that your IRC token is like a password, anyone who knows it, has access to your account. If you're interested knowing how to connect to osuHOW!'s chat via IRC, you may want to check out <a href=\"/doc/11\">this</a>."
+msgid "Here you can generate a new IRC token. You can use it to connect to osuHOW's chat using IRC. Remember that your IRC token is like a password, anyone who knows it, has access to your account. If you're interested knowing how to connect to osuHOW's chat via IRC, you may want to check out <a href=\"/doc/11\">this</a>."
 msgstr ""
 
 msgid "Generate a new token!"
@@ -683,13 +683,13 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-msgid "<b>%s</b> is a osuHOW! player from <b>%s</b>."
+msgid "<b>%s</b> is a osuHOW player from <b>%s</b>."
 msgstr ""
 
 msgid "Last seen: %s."
 msgstr ""
 
-msgid "They signed up on osuHOW! %s."
+msgid "They signed up on osuHOW %s."
 msgstr ""
 
 msgid "They play with %s."
@@ -753,7 +753,7 @@ msgid "Achievements"
 msgstr ""
 
 # support.html
-msgid "Support osuHOW!"
+msgid "Support osuHOW"
 msgstr ""
 
 msgid "You are a donor!"
@@ -771,16 +771,16 @@ msgstr ""
 msgid "(Probably not.)"
 msgstr ""
 
-msgid "osuHOW! is not cheap to run."
+msgid "osuHOW is not cheap to run."
 msgstr ""
 
-msgid "While we provide this service for free, we still have to pay for it, and if we always took the money out of our own pockets, 1. we would be broke, 2. we wouldn't be able to upgrade our hardware to accomodate our users. While we do have loads of software optimisations that allow us to have osuHOW! run crazy fast while still being on not so high-end hardware, the more users we have, the higher-end our hardware needs to be. So we are asking you for help on this :)."
+msgid "While we provide this service for free, we still have to pay for it, and if we always took the money out of our own pockets, 1. we would be broke, 2. we wouldn't be able to upgrade our hardware to accomodate our users. While we do have loads of software optimisations that allow us to have osuHOW run crazy fast while still being on not so high-end hardware, the more users we have, the higher-end our hardware needs to be. So we are asking you for help on this :)."
 msgstr ""
 
 msgid "We are still students."
 msgstr ""
 
-msgid "osuHOW! developers, and most of the osuHOW! staff, do not have a day job. This means that we get most of our income as students from doing small jobs as \"freelancers\" every so often, or, you know, allowance."
+msgid "Developers, and most of the osuHOW staff, do not have a day job. This means that we get most of our income as students from doing small jobs as \"freelancers\" every so often, or, you know, allowance."
 msgstr ""
 
 msgid "We do not have ads. And never will."
@@ -922,7 +922,7 @@ msgstr ""
 msgid "Google Authenticator recovery keys"
 msgstr ""
 
-msgid "These are the only thing that will let you get back into your osuHOW! account if you lose your device. Our suggestion is to paste them inside a document in your word processor (Microsoft Word, LibreOffice Writer), print them and store them in a safe place."
+msgid "These are the only thing that will let you get back into your osuHOW account if you lose your device. Our suggestion is to paste them inside a document in your word processor (Microsoft Word, LibreOffice Writer), print them and store them in a safe place."
 msgstr ""
 
 msgid "Open File"
@@ -931,7 +931,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-msgid "Your discord account has been linked to this osuHOW! account. <b>Welcome to the donors club and thank you for supporting us!</b> You have now access to the #donators text and voice channels on our official Discord server! You can also set a custom role name and username colour and change your nickname on Discord. If you want to change your nickname, you can use the <code>/nick</code> command. To set or edit your <b>custom role</b> name and colour, use the command <code>!role HEX_COLOUR ROLE_NAME</code>. You can pick your HEX colour <a href=\"http://www.colorpicker.com/\" target=\"_blank\">here</a>, it's the one that starts with '#'. You can change your role name and colour <b>whenever you want!</b>"
+msgid "Your discord account has been linked to this osuHOW account. <b>Welcome to the donors club and thank you for supporting us!</b> You have now access to the #donators text and voice channels on our official Discord server! You can also set a custom role name and username colour and change your nickname on Discord. If you want to change your nickname, you can use the <code>/nick</code> command. To set or edit your <b>custom role</b> name and colour, use the command <code>!role HEX_COLOUR ROLE_NAME</code>. You can pick your HEX colour <a href=\"http://www.colorpicker.com/\" target=\"_blank\">here</a>, it's the one that starts with '#'. You can change your role name and colour <b>whenever you want!</b>"
 msgstr ""
 
 msgid "Thank you for supporting us and have fun on Ripple!"
@@ -1118,12 +1118,12 @@ msgstr ""
 msgid "If you truly have understood what's written above and you have understood that creating a multiaccount will lead to a restriction on your main account, you can click here and you'll be brought to the sign up page."
 msgstr ""
 
-msgid "You look new here. Allow us to introduce you to what osuHOW! is."
+msgid "You look new here. Allow us to introduce you to what osuHOW is."
 msgstr ""
 
 # PAY ATTENTION! This is Log in *with* Ripple, not *on* Ripple. This is for
 # oauth.
-msgid "Log in with osuHOW!"
+msgid "Log in with osuHOW"
 msgstr ""
 
 msgid "This application will be able to:"
@@ -1144,7 +1144,7 @@ msgstr ""
 msgid "Write"
 msgstr ""
 
-msgid "This application will be able to make modifications to your osuHOW! account. This is potentially really dangerous! Use this only with applications that you trust."
+msgid "This application will be able to make modifications to your osuHOW account. This is potentially really dangerous! Use this only with applications that you trust."
 msgstr ""
 
 msgid "Access to Bancho"
@@ -1161,7 +1161,7 @@ msgstr ""
 
 # Team page
 
-msgid "This is a list of the wonderful people who keep osuHOW! up and running and deal with its community."
+msgid "This is a list of the wonderful people who keep osuHOW up and running and deal with its community."
 msgstr ""
 
 msgid "Community Managers"
@@ -1209,13 +1209,13 @@ msgstr ""
 msgid "<b>jrosdahl</b>, for <a href='https://github.com/jrosdahl/miniircd'>miniircd</a>, used as a base for our IRC server."
 msgstr ""
 
-msgid "<b>Avail</b>, for having hosted osuHOW! on his server."
+msgid "<b>Avail</b>, for having hosted osuHOW on his server."
 msgstr ""
 
-msgid "<b>Angela Guerra</b>, for designing the osuHOW! logo."
+msgid "<b>Angela Guerra</b>, for designing the osuHOW logo."
 msgstr ""
 
-msgid "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the osuHOW! project by donating or inviting other people."
+msgid "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the osuHOW project by donating or inviting other people."
 msgstr ""
 
 msgid "They told me these are very cool people."
@@ -1236,7 +1236,7 @@ msgstr ""
 msgid "(You get other cool perks too)"
 msgstr ""
 
-msgid "The osuHOW! API is the system through which developers can create applications to interact with Ripple. <b>If you're asked to fill out an API token from this page, be wary and only actually create the token if you really trust the owner of the application.</b>"
+msgid "The API is the system through which developers can create applications to interact with Ripple. <b>If you're asked to fill out an API token from this page, be wary and only actually create the token if you really trust the owner of the application.</b>"
 msgstr ""
 
 msgid "The 'Ranking Criteria' are as follows:"

@@ -107,7 +107,7 @@ msgstr "รหัสผ่าน (อย่างน้อยต้องมี 
 msgid "Email"
 msgstr "อีเมลล์"
 
-msgid "You have been successfully registered on osuHOW! You now need to verify your account."
+msgid "You have been successfully registered on osuHOW You now need to verify your account."
 msgstr "คุณได้สมัครบัญชีแล้ว! ตอนนี้ก็เหลือแค่ยืนยันเท่านั้นแหละ"
 
 # Register checks
@@ -145,7 +145,7 @@ msgstr "อุย พอดีอยู่ดีๆระบบก็เจ๊�
 msgid "Verify account"
 msgstr "ยืนยันบัญชีของคุณ"
 
-msgid "Your account has been created, however it still <b>needs to be verified!</b> Please log in into <b><u>osu! (the game)</u></b> using your account. <b>There is <u>no email confirmation</u> at the moment. All you need to do is connect to osuHOW! from the osu! client!</b> If you're having trouble, <a href='/doc/1'>follow this guide</a>."
+msgid "Your account has been created, however it still <b>needs to be verified!</b> Please log in into <b><u>osu! (the game)</u></b> using your account. <b>There is <u>no email confirmation</u> at the moment. All you need to do is connect to osuHOW from the osu! client!</b> If you're having trouble, <a href='/doc/1'>follow this guide</a>."
 msgstr "บัญชีของคุณได้ถูกสร้างแว้วววว!! แต่ช้าก่อน! มันยังไงก็ต้องถูก<b>ยืนยันก่อน</b>! เพราะฉะนั้นเข้าสู่ระบบภายไปในเกมส์ <b><u>osu!</u></b> โดยใช้บัญชีของคุณ <b>ตอนนี้เรา<u>ยังไม่มีตัวยืนยันอีเมล</u>ตอนนี้ เพราะฉะนั้นก็แค่เปิดเกมส์มาแล้วเข้าสู่ระบบได้เลย!</b> หากเข้าไม่ได้ลองทำตาม <a href='/doc/1'>แบบนี้</a> ดูนะ"
 
 msgid "<b class='big text'>Do not let anyone except yourself log into your osu!thailand account!</b><br> Get on our <a href='%s'>Discord server's</a> #help channel instead (after following the steps on this page) so that we can help you out if you have trouble connecting."
@@ -166,7 +166,7 @@ msgstr "ปิดแอนตี้ไวรัสถ้ามันเตือ
 msgid "Click on <b>install certificate</b>, then <b>Yes</b>"
 msgstr "กดไปที่ปุ่ม <b>ติดตั้งใบรับรอง</b> จากนั้นก็กด <b>Yes</b> ไป"
 
-msgid "Make sure the switcher says you're playing on <b>osuHOW!</b> server, if not click <b>On/Off</b>"
+msgid "Make sure the switcher says you're playing on <b>osuHOW</b> server, if not click <b>On/Off</b>"
 msgstr "เพื่อจะให้แน่ใจว่าคุณกำลังเล่นเซิร์ฟพวกเราอยู่ มันจะต้องขึ้นว่า <b>คุณกำลังเล่นเซิร์ฟ osu!thailand</b> แต่ถ้ามันไม่ขึ้นละก็กดที่ปุ่ม <b>เปิด/ปิด</b>"
 
 msgid "If it says something about read-only mode, go to <code>C:\\Windows\\System32\\Drivers\\etc</code>, open the hosts' file Properties and make sure it's not set to \"Read only\"."
@@ -188,16 +188,16 @@ msgstr "ยินดีต้อนรับกลับมาน้อ!"
 msgid "Congratulations for not reading things!"
 msgstr "ยินดีด้วยที่ไม่อ่านอะไรเลย -_____-"
 
-msgid "Multiaccounts are not allowed on osuHOW!"
+msgid "Multiaccounts are not allowed on osuHOW"
 msgstr "รู้อะไรไหมว่าการสร้างบัญชีหลายๆบัญชีในเว๊ปอะไม่ดีนะ"
 
 msgid "Your new account has been <b>banned</b> and your main account has been <b>restricted</b>. You can appeal in a month by sending an email to <b><a href='https://support.ainu.pw'>support.ainu.pw</a></b>. You better read the rules next time."
 msgstr ""
 
-msgid "Welcome to osuHOW!"
+msgid "Welcome to osuHOW"
 msgstr "ยินดีต้อนรับสู่เซิร์ฟเวอร์ osu!thailand"
 
-msgid "We're glad to have you here. <b>Your account is now active.</b> You can now play on osuHOW! and <a href='/login'>log in</a> on the website!"
+msgid "We're glad to have you here. <b>Your account is now active.</b> You can now play on osuHOW and <a href='/login'>log in</a> on the website!"
 msgstr "รู้สึกดีจังที่คุณมาอยู่ที่นี้ <b>ตอนนี้คุณสามารถมาเล่นเซิร์ฟเวอร์ได้เลยนะ</b> และก็อย่าลืม <a href='/login'>เข้าสู่ระบบ</a>ในเว๊ปด้วยละ!"
 
 msgid "Here's a few things you might want to check out:"
@@ -233,10 +233,10 @@ msgstr " - ถ้าคุณยังไม่ได้อ่านมัน"
 msgid " - in case, well, you need help doing stuff"
 msgstr " - ถ้า... เอิ่ม... ต้องการความช่วยเหลืออะนะ"
 
-msgid " - in case you believe osuHOW! is down"
+msgid " - in case you believe osuHOW is down"
 msgstr " - ถ้าคุณคิดว่าเซิร์ฟกำลังดับอยู่"
 
-msgid " - in case you want to talk with people about osuHOW!"
+msgid " - in case you want to talk with people about osuHOW"
 msgstr " - ถ้าคุณอยากคุยกับคนอื่นๆที่เล่นเซิร์ฟ osu!thailand อยู่"
 
 msgid " - just in case"
@@ -246,7 +246,7 @@ msgstr " - เอาไว้เฉยๆอะแหละ แฮะๆ"
 msgid "Recover account"
 msgstr "กู้คืนบัญชี"
 
-msgid "Can't find a way to get back access to your osuHOW! account? Fear not! If you have your recovery codes which we recommended you to print you can type one in here and we'll magically log you in this time. After you've managed to get in, please disable and then re-enable 2FA, so you won't risk losing your account again."
+msgid "Can't find a way to get back access to your osuHOW account? Fear not! If you have your recovery codes which we recommended you to print you can type one in here and we'll magically log you in this time. After you've managed to get in, please disable and then re-enable 2FA, so you won't risk losing your account again."
 msgstr ""
 
 msgid "Oh no you don't."
@@ -271,10 +271,10 @@ msgstr "เรารู้นะว่านายจะทำอะไรน่
 msgid "If you're %s, keep in mind that multiaccounting = ban."
 msgstr "ถ้าคุณคือ %s บอกเลยว่าสร้างหลายบัญชีนั้น แบนสถานเดียว"
 
-msgid "If you're not %s, but you're using %s's computer, please sign up on osuHOW! from your own computer."
+msgid "If you're not %s, but you're using %s's computer, please sign up on osuHOW from your own computer."
 msgstr "ถ้าคุณไม่ใช่ %s ละก็ แต่คุณกำลังใช้คอม %s อยู่ ไปสมัครที่คอมคุณเถอะนะ"
 
-msgid "If you live with %s and you don't have your own computer from which to sign up on osuHOW!, then please contact support@ainu.pw, and we'll deal with your specific case."
+msgid "If you live with %s and you don't have your own computer from which to sign up on osuHOW, then please contact support@ainu.pw, and we'll deal with your specific case."
 msgstr "ถ้าคุณอยู่กับ %s แต่คุณไม่มีคอมเล่นแต่อยากจะเล่นกับเซิร์ฟเวอร์เรา กรุณาติดต่อเราที่ดิสคอร์ดเดี๋ยวเราไปคุยเอง"
 
 msgid "This warning may pop up also if you're using another computer on the same network of %s. As long as you're not using the same computer, you should be all good."
@@ -325,19 +325,19 @@ msgid "Successfully logged out."
 msgstr "ออกจากระบบแล้ว ไว้เจอกันนะ :("
 
 # pwreset.html
-msgid "Forgot your password? Worry not! Here you can reset it. Just tell us your username or email address, and we'll take care of it. You will receive an email at the email address you used to sign up on osuHOW! To continue the password reset procedure, click the link on that email."
+msgid "Forgot your password? Worry not! Here you can reset it. Just tell us your username or email address, and we'll take care of it. You will receive an email at the email address you used to sign up on osuHOW To continue the password reset procedure, click the link on that email."
 msgstr ""
 
 msgid "You look pretty banned/locked here."
 msgstr ""
 
-msgid "Done! You should shortly receive an email from us at the email you used to sign up on osuHOW!"
+msgid "Done! You should shortly receive an email from us at the email you used to sign up on osuHOW"
 msgstr ""
 
-msgid "osuHOW! password recovery instructions"
+msgid "osuHOW password recovery instructions"
 msgstr ""
 
-msgid "Hey %s! Someone, which we really hope was you, requested a password reset for your account. In case it was you, please <a href='%s'>click here</a> to reset your password on osuHOW! Otherwise, silently ignore this email."
+msgid "Hey %s! Someone, which we really hope was you, requested a password reset for your account. In case it was you, please <a href='%s'>click here</a> to reset your password on osuHOW Otherwise, silently ignore this email."
 msgstr ""
 
 # not_found.html
@@ -412,32 +412,32 @@ msgstr "กำลังหาใครอยู่อะป่าว"
 msgid "Home Page"
 msgstr "หน้าหลัก"
 
-msgid "Welcome to osuHOW!"
+msgid "Welcome to osuHOW"
 msgstr "ยินดีต้อนรับเข้าสู่ osu!thailand"
 
-msgid "osuHOW! is a private osu! server, featuring multiplayer, PP, a very active community and a development team going strong implementing new features and squashing bugs. <a href='/about'>You can check out even more features here.</a> It has also a very friendly community, and it's <a href='https://github.com/osuHOW'>open source!</a> Just so you know, <b>we currently have %s users online and %s registered users!</b>"
+msgid "osuHOW is a private osu! server, featuring multiplayer, PP, a very active community and a development team going strong implementing new features and squashing bugs. <a href='/about'>You can check out even more features here.</a> It has also a very friendly community, and it's <a href='https://github.com/osuHOW'>open source!</a> Just so you know, <b>we currently have %s users online and %s registered users!</b>"
 msgstr "osu!thailand คือเซิร์ฟเวอร์ osu! เถื่อน (ไม่ได้ป่าเถื่อนนะ แต่ไม่รู้ว่าจะใช้คำว่าอะไรละ) ซึ่งมีระบบเล่นหลายคน, PP, และชุมชนที่โคตรจะมีชีวิต (ประมาณว่ามีคนคุย/เล่นกันเยอะอะนะ) และทีมงานสรรหาระบบใหม่ๆเข้าเซิร์ฟเวอร์! <a href='/about'>ลองไปดูว่าอะไรคือเซิร์ฟนี้ก็ได้</a> และคนในเซิร์ฟเวอร์ใจดีด้วยนะ! เรายังเปิด <a href='https://github.com/osuHOW'>src</a> ให้ได้ใช้ด้วย! จะได้รู้ว่าเราไม่ได้ทำอะไรแย่ๆ <b>ซึ่งตอนนี้เรามี คนทั้งหมด %s คนที่กำลังออนไลน์อยู่ และ คนที่สมัครเข้าเซิร์ฟแล้ว %s คน!</b>"
 
-msgid "What are you waiting for? Join osuHOW!! It's risk-free: you won't get your account banned on the official server if you play on osuHOW!<br>You can also switch anytime between the official osu! server and osuHOW!!"
+msgid "What are you waiting for? Join osuHOW! It's risk-free: you won't get your account banned on the official server if you play on osuHOW<br>You can also switch anytime between the official osu! server and osuHOW!"
 msgstr "แล้วจะรออะไรอยู่ล่ะ? มาเล่นกัน!! ไม่ต้องกลัวเรื่องการโดนแบน: เพราะคุณจะไม่โดนแบนในเซิร์ฟหลักหรอกถ้าคุณเล่นเซิร์ฟเวอร์เรา!<br>คุณยังสามารถสลับเซิร์ฟเวอร์ระหว่างเซิร์ฟเวอร์แท้และเซิร์ฟเวอร์ osu!thailand ได้ด้วยหละ!"
 
 msgid "Howdy, %s!"
 msgstr "ว่าไง %s!"
 
-msgid "Welcome back to osuHOW! We currently have <b>%s online users and %s total registered users.</b> Nice day to farm a few maps, isn't it?"
+msgid "Welcome back to osuHOW We currently have <b>%s online users and %s total registered users.</b> Nice day to farm a few maps, isn't it?"
 msgstr "ยินดีต้อนรับสู่เซิร์ฟเวอร์ osu!thailand ตอนนี้เรามี <b>คนทั้งหมด %s คนที่กำลังออนไลน์อยู่ และ คนที่สมัครเข้าเซิร์ฟแล้ว %s คน</b> เป็นวันที่ดีสำหรับการฟาร์มแมพเลยว่ามั้ย?"
 
 msgid "Latest news from our <a href='https://blog.ainu.pw'>blog</a>"
 msgstr "ข่าวสารล่าสุดจากพวกเรา"
 
 # base.html
-msgid "osuHOW!'s score submission is currently in maintenance mode. You will not be allowed to submit scores for the time being."
+msgid "osuHOW's score submission is currently in maintenance mode. You will not be allowed to submit scores for the time being."
 msgstr "ระบบคะแนนในเซิร์ฟเวอร์กำลังปิดตอนนี้ คุณจะไม่สามารถลงคะแนนอะไรใดๆไม่ได้เลย! ขออภัยในความไม่สะดวก!"
 
-msgid "The osuHOW! website is currently in maintenance mode. Only certain users are allowed to access the full website."
+msgid "The osuHOW website is currently in maintenance mode. Only certain users are allowed to access the full website."
 msgstr "เว๊ปไซต์อยู่ในช่วงปิดปรับปรุง เฉพาะผู้ใช้ที่อนุญาตเท่านั้นที่สามารถใช้เว๊ปไซต์อย่างเต็มรูปแบบได้!"
 
-msgid "Your account is currently in restricted mode. You will not be able to do certain actions, and your profile can only be seen by you and by osuHOW!'s staff. If you believe we have mistaken putting you in restricted mode, or a month has passed since you first saw this, then you can send an appeal at <a href='https://discord.gg/CEjWW4K'>our Discord</a>."
+msgid "Your account is currently in restricted mode. You will not be able to do certain actions, and your profile can only be seen by you and by osuHOW's staff. If you believe we have mistaken putting you in restricted mode, or a month has passed since you first saw this, then you can send an appeal at <a href='https://discord.gg/CEjWW4K'>our Discord</a>."
 msgstr "บัญชีคุณตอนนี้กำลังถูกระงับ! คุณจะไม่สามารถทำอะไรได้และคุณจะถูกเห็นโดยคุณเองและทีมงาน osu!thailand เท่านั้น! ถ้าคุณรู้สึกว่าเราทำอะไรผิดพลาดไป คุณสามารถลองขอปลดได้ที่ <a href='https://discord.gg/CEjWW4K'>ดิสคอร์ดของพวกเราได้เลย!</a>."
 
 msgid "&copy; 2018-%d Ripple, osu!Ainu, Made with love by Aoba ❤ using frontend %s"
@@ -526,10 +526,10 @@ msgstr "เปิดให้แมพ Ranked"
 msgid "Two Factor Authentication"
 msgstr ""
 
-msgid "Before proceding further on osuHOW!, we require you to use your Google Authenticator App to use the code for osu!thailand, so that we can log you in."
+msgid "Before proceding further on osuHOW, we require you to use your Google Authenticator App to use the code for osu!thailand, so that we can log you in."
 msgstr ""
 
-msgid "Before proceding any further on osuHOW!, we require you to use the message you just received on telegram to log in to your account."
+msgid "Before proceding any further on osuHOW, we require you to use the message you just received on telegram to log in to your account."
 msgstr ""
 
 msgid "Lost your phone, or can't access Google Authenticator?"
@@ -563,10 +563,10 @@ msgid "Ooops! Looks like something went really wrong while trying to process you
 msgstr ""
 
 # about.html
-msgid "Welcome to osuHOW!"
+msgid "Welcome to osuHOW"
 msgstr "ยินดีต้อนรับสู่เซิร์ฟเวอร์ osu!thailand"
 
-msgid "osuHOW! is a private osu! server."
+msgid "osuHOW is a private osu! server."
 msgstr "osu!thailand คือเซิร์ฟ osu!"
 
 msgid "There are many like it, but this one is ours."
@@ -609,21 +609,21 @@ msgstr "พร้อมกับระบบสุดเจ๋งหลายอ
 msgid "And a lot more to come!"
 msgstr "และอื่นๆอีกมากมายที่จะมาเร็วๆนี้"
 
-msgid "osuHOW! is the result of the hard work of developers, who got tired about the whole osu! server"
+msgid "osuHOW is the result of the hard work of developers, who got tired about the whole osu! server"
 msgstr "osu!thailand คือเซิร์ฟที่ทำมาจากทีมงานผู้พัฒนาที่ทำมาอย่างยากลำบาก ที่ลองผิดลองถูกกับเซิร์ฟเวอร์ osu!"
 
 # %s is wink emoji
-msgid "Thanks to developers who has help me and make server for us <a href=\"/register\">Signing up</a> on osuHOW! won't result in getting your account on osu! restricted, so what are you waiting for?! Come join us! %s"
+msgid "Thanks to developers who has help me and make server for us <a href=\"/register\">Signing up</a> on osuHOW won't result in getting your account on osu! restricted, so what are you waiting for?! Come join us! %s"
 msgstr "ต้องขอบคุณทีมงานทุกๆท่านที่มาช่วยเหลือพวกเราและได้สร้างเซิร์ฟเวอร์นี้ขึ้นมา <a href=\"/register\">สมัครตอนนี้</a>เลย! และไม่ต้องกลัวว่าบัญชีคุณนั้นจะถูกแบน แล้วจะรออะไรอยู่ละ!? มาเล่นกันเถอะ %s!"
 
-msgid "In case you want to make sure we're not doing shady stuff with your data, you can also check the <a href=\"https://github.com/osuHOW\">source code</a> osuHOW! is running on."
+msgid "In case you want to make sure we're not doing shady stuff with your data, you can also check the <a href=\"https://github.com/osuHOW\">source code</a> osuHOW is running on."
 msgstr "ถ้ารู้สึกว่ากลัวว่าเราจะทำอะไรแปลกๆ เราสามารถให้คุณดู <a href=\"https://github.com/osuHOW\">src</a> ของพวกเราเพื่อให้รู้ว่าเราไม่ได้ทำอะไรแย่ๆได้เลย!"
 
 # changelog.html
 msgid "This is the changelog. Changes are published here as soon as they hit the production status (as in, live on the website)."
 msgstr ""
 
-msgid "For various reasons, some software of osuHOW! does not contribute to the changelog, to which this website is a part of. In case you want to see the changelog of frontend, you can do so by <a href=\"https://github.comewfweefwefwefrontend/commits/master\">clicking here</a>."
+msgid "For various reasons, some software of osuHOW does not contribute to the changelog, to which this website is a part of. In case you want to see the changelog of frontend, you can do so by <a href=\"https://github.comewfweefwefwefrontend/commits/master\">clicking here</a>."
 msgstr ""
 
 msgid "Author"
@@ -649,7 +649,7 @@ msgstr ""
 msgid "Need some help getting around? Look no further! From here you will be able to view our documentation, which is basically a very simplistic wiki."
 msgstr ""
 
-msgid "Looks like there is no documentation on this osuHOW! instance!"
+msgid "Looks like there is no documentation on this osuHOW instance!"
 msgstr ""
 
 # friends.html
@@ -663,7 +663,7 @@ msgid "Remove"
 msgstr ""
 
 # irc.html
-msgid "Here you can generate a new IRC token. You can use it to connect to osuHOW!'s chat using IRC. Remember that your IRC token is like a password, anyone who knows it, has access to your account. If you're interested knowing how to connect to osuHOW!'s chat via IRC, you may want to check out <a href=\"/doc/11\">this</a>."
+msgid "Here you can generate a new IRC token. You can use it to connect to osuHOW's chat using IRC. Remember that your IRC token is like a password, anyone who knows it, has access to your account. If you're interested knowing how to connect to osuHOW's chat via IRC, you may want to check out <a href=\"/doc/11\">this</a>."
 msgstr ""
 
 msgid "Generate a new token!"
@@ -797,7 +797,7 @@ msgid "Achievements"
 msgstr ""
 
 # support.html
-msgid "Support osuHOW!"
+msgid "Support osuHOW"
 msgstr "สนับสนุนเซิร์ฟ osu!thailand"
 
 msgid "You are a donor!"
@@ -815,16 +815,16 @@ msgstr ""
 msgid "(Probably not.)"
 msgstr ""
 
-msgid "osuHOW! is not cheap to run."
+msgid "osuHOW is not cheap to run."
 msgstr ""
 
-msgid "While we provide this service for free, we still have to pay for it, and if we always took the money out of our own pockets, 1. we would be broke, 2. we wouldn't be able to upgrade our hardware to accomodate our users. While we do have loads of software optimisations that allow us to have osuHOW! run crazy fast while still being on not so high-end hardware, the more users we have, the higher-end our hardware needs to be. So we are asking you for help on this :)."
+msgid "While we provide this service for free, we still have to pay for it, and if we always took the money out of our own pockets, 1. we would be broke, 2. we wouldn't be able to upgrade our hardware to accomodate our users. While we do have loads of software optimisations that allow us to have osuHOW run crazy fast while still being on not so high-end hardware, the more users we have, the higher-end our hardware needs to be. So we are asking you for help on this :)."
 msgstr ""
 
 msgid "We are still students."
 msgstr ""
 
-msgid "osuHOW! developers, and most of the osuHOW! staff, do not have a day job. This means that we get most of our income as students from doing small jobs as \"freelancers\" every so often, or, you know, allowance."
+msgid "Developers, and most of the osuHOW staff, do not have a day job. This means that we get most of our income as students from doing small jobs as \"freelancers\" every so often, or, you know, allowance."
 msgstr ""
 
 msgid "We do not have ads. And never will."
@@ -966,7 +966,7 @@ msgstr ""
 msgid "Google Authenticator recovery keys"
 msgstr ""
 
-msgid "These are the only thing that will let you get back into your osuHOW! account if you lose your device. Our suggestion is to paste them inside a document in your word processor (Microsoft Word, LibreOffice Writer), print them and store them in a safe place."
+msgid "These are the only thing that will let you get back into your osuHOW account if you lose your device. Our suggestion is to paste them inside a document in your word processor (Microsoft Word, LibreOffice Writer), print them and store them in a safe place."
 msgstr ""
 
 msgid "Open File"
@@ -975,10 +975,10 @@ msgstr "เปิดไฟล์"
 msgid "Save"
 msgstr "บันทึก"
 
-msgid "Your discord account has been linked to this osuHOW! account. <b>Welcome to the donors club and thank you for supporting us!</b> You have now access to the #donators text and voice channels on our official Discord server! You can also set a custom role name and username colour and change your nickname on Discord. If you want to change your nickname, you can use the <code>/nick</code> command. To set or edit your <b>custom role</b> name and colour, use the command <code>!role HEX_COLOUR ROLE_NAME</code>. You can pick your HEX colour <a href=\"http://www.colorpicker.com/\" target=\"_blank\">here</a>, it's the one that starts with '#'. You can change your role name and colour <b>whenever you want!</b>"
+msgid "Your discord account has been linked to this osuHOW account. <b>Welcome to the donors club and thank you for supporting us!</b> You have now access to the #donators text and voice channels on our official Discord server! You can also set a custom role name and username colour and change your nickname on Discord. If you want to change your nickname, you can use the <code>/nick</code> command. To set or edit your <b>custom role</b> name and colour, use the command <code>!role HEX_COLOUR ROLE_NAME</code>. You can pick your HEX colour <a href=\"http://www.colorpicker.com/\" target=\"_blank\">here</a>, it's the one that starts with '#'. You can change your role name and colour <b>whenever you want!</b>"
 msgstr ""
 
-msgid "Thank you for supporting us and have fun on osuHOW!!"
+msgid "Thank you for supporting us and have fun on osuHOW!"
 msgstr ""
 
 msgid "Donors get special privileges on our Discord server too!"
@@ -1165,12 +1165,12 @@ msgstr ""
 msgid "If you truly have understood what's written above and you have understood that creating a multiaccount will lead to a restriction on your main account, you can click here and you'll be brought to the sign up page."
 msgstr "ถ้าคุณเข้าใจว่าเราอธิบายให้คุณฟังแล้ว และคุณเข้าใจว่าการสร้างหลายๆบัญชีทำให้ถูกแบนได้ คุณสามารถกดข้อความนี้เพื่อไปสมัครได้เลย"
 
-msgid "You look new here. Allow us to introduce you to what osuHOW! is."
+msgid "You look new here. Allow us to introduce you to what osuHOW is."
 msgstr "เหมือนคุณพึ่งมาใหม่นะ เรามาแนะนำกันดีกว่าว่า osu!thailand คืออะไร"
 
-# PAY ATTENTION! This is Log in *with* osuHOW!, not *on* osuHOW! This is for
+# PAY ATTENTION! This is Log in *with* osuHOW, not *on* osuHOW This is for
 # oauth.
-msgid "Log in with osuHOW!"
+msgid "Log in with osuHOW"
 msgstr ""
 
 msgid "This application will be able to:"
@@ -1191,7 +1191,7 @@ msgstr ""
 msgid "Write"
 msgstr ""
 
-msgid "This application will be able to make modifications to your osuHOW! account. This is potentially really dangerous! Use this only with applications that you trust."
+msgid "This application will be able to make modifications to your osuHOW account. This is potentially really dangerous! Use this only with applications that you trust."
 msgstr ""
 
 msgid "Approve"
@@ -1202,7 +1202,7 @@ msgstr ""
 
 # Team page
 
-msgid "This is a list of the wonderful people who keep osuHOW! up and running and deal with its community."
+msgid "This is a list of the wonderful people who keep osuHOW up and running and deal with its community."
 msgstr ""
 
 msgid "Community Managers"
@@ -1235,7 +1235,7 @@ msgstr ""
 msgid "Special thanks"
 msgstr ""
 
-msgid "Here's a list of people who helped with osuHOW!"
+msgid "Here's a list of people who helped with osuHOW"
 msgstr ""
 
 msgid "<b>Franc[e]sco/lolisamurai</b>, for <a href='https://github.com/Francesco149/oppai'>oppai</a>, used as standard pp calculator."
@@ -1250,13 +1250,13 @@ msgstr ""
 msgid "<b>jrosdahl</b>, for <a href='https://github.com/jrosdahl/miniircd'>miniircd</a>, used as a base for our IRC server."
 msgstr ""
 
-msgid "<b>Avail</b>, for having hosted osuHOW! on his server."
+msgid "<b>Avail</b>, for having hosted osuHOW on his server."
 msgstr ""
 
-msgid "<b>Angela Guerra</b>, for designing the osuHOW! logo."
+msgid "<b>Angela Guerra</b>, for designing the osuHOW logo."
 msgstr ""
 
-msgid "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the osuHOW! project by donating or inviting other people."
+msgid "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the osuHOW project by donating or inviting other people."
 msgstr ""
 
 msgid "They told me these are very cool people."
@@ -1277,5 +1277,5 @@ msgstr ""
 msgid "(You get other cool perks too)"
 msgstr ""
 
-msgid "The osuHOW! API is the system through which developers can create applications to interact with osu!thailand <b>If you're asked to fill out an API token from this page, be wary and only actually create the token if you really trust the owner of the application.</b>"
+msgid "The API is the system through which developers can create applications to interact with osu!thailand <b>If you're asked to fill out an API token from this page, be wary and only actually create the token if you really trust the owner of the application.</b>"
 msgstr ""
