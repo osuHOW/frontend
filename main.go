@@ -289,8 +289,6 @@ func generateEngine() *gin.Engine {
 	r.POST("/clans/create", ccreateSubmit)
 
 	r.GET("/u/:user", userProfile)
-	r.GET("/rx/u/:user", relaxProfile)
-	r.GET("/ap/u/:user", autoProfile)
 	r.GET("/c/:cid", clanPage)
 	r.GET("/b/:bid", beatmapInfo)
 
