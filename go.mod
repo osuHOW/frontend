@@ -1,4 +1,5 @@
-module frontend
+module github.com/osuHOW/frontend
+
 
 go 1.18
 
