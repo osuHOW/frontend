@@ -1,8 +1,8 @@
-// Package btcaddress makes sure the Bitcoin address for the RealistikOsu! donations
+// Package btcaddress makes sure the Bitcoin address for the osuHOW! donations
 // account on Keybase is up-to-date.
 // This shows a default key if the system is not set up, or otherwise refreshes
 // the address every 30 minutes (using redis to hold the cache).
-// The wallet with the name "RealistikOsu!" will be used for getting the address.
+// The wallet with the name "osuHOW!" will be used for getting the address.
 package btcaddress
 
 import (
@@ -24,7 +24,7 @@ const DefaultAddress = "1CKGzZqrVwKoXwHEWpTobWqqtkYuqoFNro"
 
 // AccountName is the name the account on coinbase must have to be considered as
 // the actual account.
-const AccountName = "RealistikOsu!"
+const AccountName = "osuHOW!"
 
 // Configuration variables.
 var (
@@ -41,7 +41,7 @@ var (
 // After that, the key is requested from coinbase, and the account ID is found
 // if not already saved in Redis.
 func Get() string {
-	v := Redis.Get("hanayo:btcaddress").Val()
+	v := Redis.Get("frontend:btcaddress").Val()
 	if v != "" {
 		return v
 	}
@@ -55,7 +55,7 @@ func Get() string {
 		return DefaultAddress
 	}
 
-	Redis.Set("hanayo:btcaddress", a, time.Minute*30)
+	Redis.Set("frontend:btcaddress", a, time.Minute*30)
 
 	return a
 }

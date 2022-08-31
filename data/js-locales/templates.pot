@@ -1,5 +1,5 @@
 # JavaScript
-msgid "An error occurred while contacting the RealistikOsu! API. Please report this to a RealistikOsu! developer."
+msgid "An error occurred while contacting the osuHOW! API. Please report this to a osuHOW! developer."
 msgstr ""
 
 # This is a quote of UNDERTALE if you didn't know.

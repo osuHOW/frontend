@@ -11,15 +11,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.0.0\n"
-"X-Pootle-Path: /vi/HanayoJS/templates-vi.po\n"
+"X-Pootle-Path: /vi/frontendJS/templates-vi.po\n"
 "X-Pootle-Revision: 5045\n"
 
 msgid ""
-"An error occurred while contacting the RealistikOsu! API. Please report this to a "
-"RealistikOsu! developer."
+"An error occurred while contacting the osuHOW! API. Please report this to a "
+"osuHOW! developer."
 msgstr ""
 "Một lỗi đã phát hiện trong khi đang kết nối tới Server API của Ripple. Hãy "
-"nói điều này tới một người trong đội thành lập RealistikOsu! "
+"nói điều này tới một người trong đội thành lập osuHOW! "
 
 # This is a quote of UNDERTALE if you didn't know.
 # It is shown regarding the level of an user, but it is shortened to "Lv.".

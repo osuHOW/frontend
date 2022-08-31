@@ -22,12 +22,12 @@ import (
 	"gopkg.in/mailgun/mailgun-go.v1"
 	"gopkg.in/redis.v5"
 	"zxq.co/ripple/agplwarning"
-	"github.com/RealistikOsu/hanayo/modules/btcaddress"
-	"github.com/RealistikOsu/hanayo/modules/btcconversions"
-	"github.com/RealistikOsu/hanayo/routers/oauth"
-	"github.com/RealistikOsu/hanayo/routers/pagemappings"
-	"github.com/RealistikOsu/hanayo/services"
-	"github.com/RealistikOsu/hanayo/services/cieca"
+	"github.com/osuHOW/frontend/modules/btcaddress"
+	"github.com/osuHOW/frontend/modules/btcconversions"
+	"github.com/osuHOW/frontend/routers/oauth"
+	"github.com/osuHOW/frontend/routers/pagemappings"
+	"github.com/osuHOW/frontend/services"
+	"github.com/osuHOW/frontend/services/cieca"
 	"zxq.co/ripple/schiavolib"
 	"zxq.co/x/rs"
 )
@@ -44,7 +44,7 @@ var (
 		AvatarURL       string
 		BaseURL         string
 		API             string
-		BanchoAPI       string `description:"Bancho base url (without /api) that hanayo will use to contact bancho"`
+		BanchoAPI       string `description:"Bancho base url (without /api) that frontend will use to contact bancho"`
 		BanchoAPIPublic string `description:"same as above but this will be put in js files and used by clients. Must be publicly accessible. Leave empty to set to BanchoAPI"`
 		CheesegullAPI   string
 		APISecret       string
@@ -100,19 +100,19 @@ var (
 
 func main() {
 	// follow the agpl or i will eat your cat
-	err := agplwarning.Warn("osuHOW", "Hanayo")
+	err := agplwarning.Warn("osuHOW", "frontend")
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println("hanayo " + version)
+	fmt.Println("frontend " + version)
 
-	err = conf.Load(&config, "hanayo.conf")
+	err = conf.Load(&config, "frontend.conf")
 	switch err {
 	case nil:
 		// carry on
 	case conf.ErrNoFile:
-		conf.Export(config, "hanayo.conf")
+		conf.Export(config, "frontend.conf")
 		fmt.Println("The configuration file was not found. We created one for you.")
 		return
 	default:
@@ -182,7 +182,7 @@ func main() {
 	btcaddress.APISecret = config.CoinbaseAPISecret
 
 	// initialise schiavo
-	schiavo.Prefix = "hanayo"
+	schiavo.Prefix = "frontend"
 	schiavo.Bunker.Send(fmt.Sprintf("STARTUATO, mode: %s", gin.Mode()))
 
 	// even if it's not release, we say that it's release
@@ -209,7 +209,7 @@ func main() {
 
 	fmt.Println("Exporting configuration...")
 
-	conf.Export(config, "hanayo.conf")
+	conf.Export(config, "frontend.conf")
 
 	// default BanchoAPIPublic to BanchoAPI if not set
 	// we must do this after exporting the config

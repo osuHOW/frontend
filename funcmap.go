@@ -21,12 +21,12 @@ import (
 	"github.com/thehowl/qsql"
 	"golang.org/x/oauth2"
 	"zxq.co/ripple/go-discord-oauth"
-	"github.com/RealistikOsu/hanayo/modules/bbcode"
-	"github.com/RealistikOsu/hanayo/modules/btcaddress"
-	"github.com/RealistikOsu/hanayo/modules/doc"
-	"github.com/RealistikOsu/hanayo/modules/fa-semantic-mappings"
+	"github.com/osuHOW/frontend/modules/bbcode"
+	"github.com/osuHOW/frontend/modules/btcaddress"
+	"github.com/osuHOW/frontend/modules/doc"
+	"github.com/osuHOW/frontend/modules/fa-semantic-mappings"
 	"zxq.co/ripple/playstyle"
-	"github.com/RealistikOsu/api/common"
+	"github.com/osuHOW/api/common"
 )
 
 // funcMap contains useful functions for the various templates.
@@ -280,9 +280,9 @@ var funcMap = template.FuncMap{
 		}
 		return nil
 	},
-	// unixNano returns the UNIX timestamp of when hanayo was started in nanoseconds.
+	// unixNano returns the UNIX timestamp of when frontend was started in nanoseconds.
 	"unixNano": func() string {
-		return strconv.FormatInt(hanayoStarted, 10)
+		return strconv.FormatInt(frontendStarted, 10)
 	},
 	// playstyle returns the string representation of a playstyle.
 	"playstyle": func(i float64, f *profileData) string {
@@ -465,7 +465,7 @@ var funcMap = template.FuncMap{
 		}
 		return ieUnfucker
 	},
-	// version gets what's the current Hanayo version.
+	// version gets what's the current frontend version.
 	"version": func() string {
 		return version
 	},
@@ -502,7 +502,7 @@ var funcMap = template.FuncMap{
 		return langInfo{}
 	},
 	"countryList": func(n int64) []string {
-		return rd.ZRevRange("hanayo:country_list", 0, n-1).Val()
+		return rd.ZRevRange("frontend:country_list", 0, n-1).Val()
 	},
 	"documentationFiles": doc.GetDocs,
 	"documentationData": func(slug string, language string) doc.File {
@@ -522,7 +522,7 @@ var funcMap = template.FuncMap{
 
 var localeLanguages = []string{"de", "pl", "it", "es", "ru", "fr", "nl", "ro", "fi", "sv", "vi", "th", "ko"}
 
-var hanayoStarted = time.Now().UnixNano()
+var frontendStarted = time.Now().UnixNano()
 
 var servicePrefixes = map[string]string{
 	"github":  "https://github.com/",

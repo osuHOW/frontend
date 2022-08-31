@@ -1,5 +1,6 @@
 node_modules
-hanayo
+frontend
+frontend.conf
 hanayo.conf
 team.json
 static/profbackgrounds/*

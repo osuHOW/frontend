@@ -1,12 +1,12 @@
-module hanayo
+module frontend
 
 go 1.18
+
+replace github.com/osuHOW/hanayo v1.8.6 => github.com/osuHOW/frontend v1.8.7
 
 require (
 	github.com/DataDog/datadog-go v0.0.0-20170427165718-0ddda6bee211
 	github.com/RangelReale/osin v1.0.0
-	github.com/RealistikOsu/api v0.0.0-20191226051108-58aa42d8e497
-	github.com/RealistikOsu/hanayo v1.8.6
 	github.com/ansel1/merry v1.0.2
 	github.com/asaskevich/govalidator v0.0.0-20171111151018-521b25f4b05f
 	github.com/boj/redistore v0.0.0-20160128113310-fc113767cd6b
@@ -35,6 +35,8 @@ require (
 	github.com/mattn/go-isatty v0.0.3
 	github.com/microcosm-cc/bluemonday v0.0.0-20171222152607-542fd4642604
 	github.com/nfnt/resize v0.0.0-20160724205520-891127d8d1b5
+	github.com/osuHOW/api v0.0.0-20191226051108-58aa42d8e497
+	github.com/osuHOW/frontend v1.8.9
 	github.com/osuripple/cheesegull v2.0.5-0.20171027211637-3f168dff833b+incompatible
 	github.com/pariz/gountries v0.0.0-20171019111738-adb00f6513a3
 	github.com/pborman/uuid v0.0.0-20170612153648-e790cca94e6c
@@ -64,5 +66,3 @@ require (
 	zxq.co/ripple/schiavolib v0.0.0-20161109210250-9cdc674dad07
 	zxq.co/x/rs v0.0.0-20160912144010-8b39b068a155
 )
-
-require zxq.co/ripple/hanayo v1.9.0 // indirect

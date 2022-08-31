@@ -4,7 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/gin-gonic/gin"
-	"github.com/RealistikOsu/hanayo/routers/oauth"
+	"github.com/osuHOW/frontend/routers/oauth"
 )
 
 type oauthRequestHandler struct{}

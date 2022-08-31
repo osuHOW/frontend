@@ -1,5 +1,5 @@
 {
-  "name": "hanayo",
+  "name": "frontend",
   "version": "1.0.0",
   "dependencies": {
     "i18next": "^7.1.2",

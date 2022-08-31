@@ -160,7 +160,7 @@ var singlePageSnippets = {
   "/register/verify" : function() {
     var qu = query("u");
     setInterval(function() {
-      $.getJSON(hanayoConf.banchoAPI + "/api/v1/verifiedStatus?u=" + qu,
+      $.getJSON(frontendConf.banchoAPI + "/api/v1/verifiedStatus?u=" + qu,
         function(data) {
           if (data.result >= 0) {
             window.location.href = "/register/welcome?u=" + qu;
@@ -433,7 +433,7 @@ $(document)
       $(".twemoji").each(function(k, v) { twemoji.parse(v); });
     }
 
-    // RealistikOsu! stuff
+    // osuHOW! stuff
     var f = singlePageSnippets[window.location.pathname];
     if (typeof f === 'function')
       f();
@@ -457,7 +457,7 @@ $(document)
               r.results.push({
                 title : item.username,
                 url : "/u/" + item.id,
-                image : hanayoConf.avatars + "/" + item.id,
+                image : frontendConf.avatars + "/" + item.id,
               });
             });
             return r;
@@ -538,7 +538,7 @@ function _api(base, endpoint, data, success, failure, post, handleAllFailures) {
   handleAllFailures = (typeof handleAllFailures !== undefined) ? handleAllFailures : false;
 
   var errorMessage =
-      "An error occurred while contacting the RealistikOsu! API. Please report this to a RealistikOsu! developer.";
+      "An error occurred while contacting the osuHOW! API. Please report this to a osuHOW! developer.";
 
   $.ajax({
     method : (post ? "POST" : "GET"),
@@ -573,7 +573,7 @@ function _api(base, endpoint, data, success, failure, post, handleAllFailures) {
 };
 
 function api(endpoint, data, success, failure, post, handleAllFailures) {
-  return _api(hanayoConf.baseAPI + "/api/v1/", endpoint, data, success, failure, post, handleAllFailures);
+  return _api(frontendConf.baseAPI + "/api/v1/", endpoint, data, success, failure, post, handleAllFailures);
 }
 
 function banchoAPI(endpoint, data, success, failure, post, handleAllFailures) {
@@ -585,7 +585,7 @@ function banchoAPI(endpoint, data, success, failure, post, handleAllFailures) {
       console.warn(data);
     };
   }
-  return _api(hanayoConf.banchoAPI + "/api/v2/", endpoint, data, success, failure, post, handleAllFailures);
+  return _api(frontendConf.banchoAPI + "/api/v2/", endpoint, data, success, failure, post, handleAllFailures);
 }
 
 var modes = {
@@ -750,7 +750,7 @@ function query(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// Useful for forms contacting the RealistikOsu! API
+// Useful for forms contacting the osuHOW! API
 function formToObject(form) {
   var inputs = form.find("input, textarea, select");
   var obj = {};
@@ -801,19 +801,19 @@ i18next.use(i18nextXHRBackend).init({
   nsSeparator : false,
   keySeparator : false,
   fallbackLng : false,
-  lng : hanayoConf.language,
+  lng : frontendConf.language,
   whitelist : langWhitelist,
   load : "currentOnly",
   backend : {loadPath : "/static/locale/{{lng}}.json"}
 });
 
-var i18nLoaded = $.inArray(hanayoConf.language, langWhitelist) === -1;
+var i18nLoaded = $.inArray(frontendConf.language, langWhitelist) === -1;
 i18next.on("loaded", function() { i18nLoaded = true });
 
 function T(s, settings) {
   if (typeof settings !== "undefined" &&
       typeof settings.count !== "undefined" &&
-      $.inArray(hanayoConf.language, langWhitelist) === -1 &&
+      $.inArray(frontendConf.language, langWhitelist) === -1 &&
       settings.count !== 1)
     s = keyPlurals[s];
   return i18next.t(s, settings);

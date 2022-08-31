@@ -18,7 +18,7 @@ import (
 	"github.com/pariz/gountries"
 	"github.com/rjeczalik/notify"
 	"github.com/thehowl/conf"
-	"github.com/RealistikOsu/api/common"
+	"github.com/osuHOW/api/common"
 )
 
 var templates = make(map[string]*template.Template)
@@ -184,7 +184,7 @@ func (b baseTemplateData) Get(s string, params ...interface{}) map[string]interf
 		b.Gin.Error(err)
 		return nil
 	}
-	req.Header.Set("User-Agent", "hanayo")
+	req.Header.Set("User-Agent", "frontend")
 	req.Header.Set("H-Key", config.APISecret)
 	req.Header.Set("X-Ripple-Token", b.Context.Token)
 	resp, err := http.DefaultClient.Do(req)

@@ -1,5 +1,5 @@
-// Hanayo is the RealistikOsu! front-end web server.
+// frontend is the osuHOW! front-end web server.
 package main
 
-// version is the current version of hanayo
+// version is the current version of frontend
 const version = "v1.9.0"

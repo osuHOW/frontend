@@ -11,16 +11,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.0.0\n"
-"X-Pootle-Path: /nl/HanayoJS/templates-nl.po\n"
+"X-Pootle-Path: /nl/frontendJS/templates-nl.po\n"
 "X-Pootle-Revision: 6589\n"
 
 # JavaScript
 msgid ""
-"An error occurred while contacting the RealistikOsu! API. Please report this to a "
-"RealistikOsu! developer."
+"An error occurred while contacting the osuHOW! API. Please report this to a "
+"osuHOW! developer."
 msgstr ""
-"Een fout is opgetreden tijdens het contacteren van de RealistikOsu! API. Gelieve "
-"dit te rapporteren bij een RealistikOsu! ontwikkelaar."
+"Een fout is opgetreden tijdens het contacteren van de osuHOW! API. Gelieve "
+"dit te rapporteren bij een osuHOW! ontwikkelaar."
 
 # This is a quote of UNDERTALE if you didn't know.
 # It is shown regarding the level of an user, but it is shortened to "Lv.".

@@ -101,7 +101,7 @@ function joinClan(obj, btn) {
 		btn.unbind();
 		showMessage("success", "Successfully joined " + t.clan.name);
 		api("users", { id: "self" }, function(r) {
-			document.getElementById("members").innerHTML += `<div class="column"> <div class="ui left aligned fluid card"> <div class="image"> <img src="${hanayoConf.avatars}/${r.id}" alt="Avatar"> </div> <div class="content"> <a class="header" href="/u/"><i class="${r.country.toLowerCase()} flag"></i>${r.username}</a> </div> </div> </div>`
+			document.getElementById("members").innerHTML += `<div class="column"> <div class="ui left aligned fluid card"> <div class="image"> <img src="${frontendConf.avatars}/${r.id}" alt="Avatar"> </div> <div class="content"> <a class="header" href="/u/"><i class="${r.country.toLowerCase()} flag"></i>${r.username}</a> </div> </div> </div>`
 		});
 		setMode(favouriteMode, rx);
 	}, !0)
