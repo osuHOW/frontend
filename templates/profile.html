@@ -3,6 +3,30 @@
 	TitleBar=User Profile
 	DisableMainContainer=True
 */}}
+{{/* TODO: show a banner if the user is silenced */}}
 {{ define "tpl" }}
-	{{/* TODO! */}}
+{{/* get some data we need */}}
+{{ $gqm := atoi (.Gin.Query "mode") }}
+{{ with (.Get "users/full?id=%d" .UserID) }}
+{{ $global := . }}
+{{ $favouritemode := _or $gqm .favourite_mode }}
+{{ $user := . }}
+			{{/* TODO: what's this for? */}}
+			<script>
+				window.favouriteMode = {{ $favouritemode }};
+				window.userID = {{ .id }};
+			</script>
+	<div class="main-container-topper">
+		{{/* TODO: Icons */}}
+		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
+			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
+		</div>
+		<div class="game-mode-selector" id="mode-menu">
+			{{ range $k, $v := modes }}
+				<span class="{{ favMode $favouritemode $k }}item game-mode-selector-item" data-mode="{{ $k }}" href="/u/{{ $user.id }}?mode={{ $k }}">{{ $v }}</span>
+			{{ end }}
+		</div>
+	</div>
+
+{{ end }}
 {{ end }}
