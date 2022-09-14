@@ -283,9 +283,9 @@ var funcMap = template.FuncMap{
 	// modes returns an array containing all the modes (in their string representation).
 	"modes": func() []string {
 		return []string{
-			"osu! standard",
-			"Taiko",
-			"Catch the Beat",
+			"osu!",
+			"osu!taiko",
+			"osu!catch",
 			"osu!mania",
 		}
 	},
