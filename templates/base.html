@@ -47,13 +47,14 @@ function recalcRestrictedBannerHeight() {
 		<meta name="msapplication-navbutton-color" content="#eb4034">
 		<meta name="apple-mobile-web-app-status-bar-style" content="#eb4034">
 	</head>
-	{{/*<div class="background-image" style="--bg: url(/static/backgrounds/default.png);"></div>*/}}
 	{{ if .KyutGrillHue }}
-		<div class="background-image" style="--bg: url('/static/backgrounds/main.png'); --hue: {{ .KyutGrillHue }};"></div>
+		{{/* we need to assign blur to zero if we are going to use hue as the variable not being assigned breaks the whole filter property */}}
+		<div class="background-image" style="--bg: url('/static/backgrounds/main.png'); --hue: {{ .KyutGrillHue }}; --blur: 0px;"></div>
 	{{ else if .KyutGrillBlur }}
-	<div class="background-image" style="--bg: url('/static/backgrounds/main.png'); --blur: {{ .KyutGrillBlur }};"></div>
+		{{/* used on profiles */}}	
+		<div class="background-image" style="--bg: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/backgrounds/{{ .KyutGrill }}{{ end }}'); --blur: {{ .KyutGrillBlur }}; --hue: 0deg;"></div>
 	{{ else if .KyutGrill }}
-	<div class="background-image" style="--bg: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/backgrounds/{{ .KyutGrill }}{{ end }}');"></div>
+		<div class="background-image" style="--bg: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/backgrounds/{{ .KyutGrill }}{{ end }}');"></div>
 	{{ else if .SolidColour }}
 		<div class="background-image" style="--bg: background-color: {{ .SolidColour }}"></div>
 	{{ end }}

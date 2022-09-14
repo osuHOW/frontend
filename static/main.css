@@ -333,6 +333,9 @@
     max-width: 1000px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .page-width{
+        width: 993px;
+    }
     .page-container{
         width: 933px;
     }
@@ -344,6 +347,9 @@
 	}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .page-width{
+        width: 723px;
+    }
     .page-container{
         width: 723px;
     }
@@ -355,6 +361,11 @@
 	}
 }
 @media only screen and (max-width: 767px){
+    .page-width{
+        width: auto;
+        margin-left: 1em;
+        margin-right: 1em; 
+    }
     .page-container{
         width: auto;
         margin-left: 1em;

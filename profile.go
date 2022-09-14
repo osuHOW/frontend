@@ -64,6 +64,7 @@ func userProfile(c *gin.Context) {
 		case 1:
 			data.KyutGrill = "/static/profbackgrounds/" + profileBackground.Value
 			data.KyutGrillAbsolute = true
+			data.KyutGrillBlur = "16.5px"
 		case 2:
 			data.SolidColour = profileBackground.Value
 		}
