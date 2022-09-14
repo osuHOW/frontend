@@ -37,7 +37,7 @@
     -webkit-mask-image: radial-gradient(100% 100% at 50% 0%, #D9D9D9 42.61%, rgba(217, 217, 217, 0) 100%);
     mask-image: radial-gradient(100% 100% at 50% 0%, #D9D9D9 42.61%, rgba(217, 217, 217, 0) 100%);
     background-image: var(--bg);
-    filter: hue-rotate(var(--hue));
+    filter: hue-rotate(var(--hue)) blur(var(--blur));
     background-position: center;
     background-size: cover;
 }
