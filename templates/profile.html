@@ -3,6 +3,7 @@
 	TitleBar=User Profile
 	DisableMainContainer=True
 */}}
+
 {{/* TODO: show a banner if the user is silenced */}}
 {{ define "tpl" }}
 {{/* get some data we need */}}
@@ -11,6 +12,7 @@
 {{ $global := . }}
 {{ $favouritemode := _or $gqm .favourite_mode }}
 {{ $user := . }}
+<link rel="stylesheet" href="/static/css/pages/profile.css" />
 			{{/* TODO: what's this for? */}}
 			<script>
 				window.favouriteMode = {{ $favouritemode }};
@@ -21,9 +23,20 @@
 		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
 		</div>
+		{{ $modString := gameMods }}
+		{{ $modInt := gameMods }}
+		{{ $modeString := modes }}
+		{{ $modeInt := modes }}
 		<div class="game-mode-selector" id="mode-menu">
-			{{ range $k, $v := modes }}
-				<span class="{{ favMode $favouritemode $k }}item game-mode-selector-item" data-mode="{{ $k }}" href="/u/{{ $user.id }}?mode={{ $k }}">{{ $v }}</span>
+			{{ range $modeInt, $modeString := modes }}
+				<span class="{{ favMode $favouritemode $modeInt }}item game-mode-selector-item" data-mode="{{ $modeInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modeString }}</span>
+			{{ end }}
+		</div>
+	</div>
+	<div class="profile-game-mods-segment">
+		<div class="game-mod-selector" id="mod-menu">
+			{{ range $modInt, $modString := gameMods }}
+			<span class="{{ $modInt }}item game-mode-selector-item" data-mode="{{ $modInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modString }}</span>
 			{{ end }}
 		</div>
 	</div>

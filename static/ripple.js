@@ -594,12 +594,22 @@ var modes = {
   2 : "osu!catch",
   3 : "osu!mania",
 };
+var gameMods = {
+  0 : "Regular",
+  1 : "Relax",
+  2 : "Autopilot",
+};
 var modesShort = {
   0 : "std",
   1 : "taiko",
   2 : "ctb",
   3 : "mania",
 };
+var gameModsShort = {
+  0 : "nm",
+  1 : "relax",
+  2 : "ap",
+}
 
 var entityMap = {
   "&" : "&amp;",

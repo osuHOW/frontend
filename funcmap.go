@@ -289,6 +289,14 @@ var funcMap = template.FuncMap{
 			"osu!mania",
 		}
 	},
+
+	"gameMods": func() []string {
+		return []string{
+			"Regular",
+			"Relax",
+			"Autopilot",
+		}
+	},
 	// _or is like or, but has only false and nil as its "falsey" values
 	"_or": func(args ...interface{}) interface{} {
 		for _, a := range args {
