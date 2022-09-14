@@ -336,29 +336,12 @@
     .page-width{
         width: 993px;
     }
-    .page-container{
-        width: 933px;
-    }
-    .main-container{
-        width: 933px;
-    }
-	.main-container-topper {
-		width: 933px;
-	}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .page-width{
         width: 723px;
     }
-    .page-container{
-        width: 723px;
-    }
-    .main-container{
-        width: 723px;
-    }
-	.main-container-topper {
-		width: 723px;
-	}
+
 }
 @media only screen and (max-width: 767px){
     .page-width{
@@ -366,21 +349,6 @@
         margin-left: 1em;
         margin-right: 1em; 
     }
-    .page-container{
-        width: auto;
-        margin-left: 1em;
-        margin-right: 1em;
-    }
-    .main-container{
-        width: auto;
-        margin-left: 1em;
-        margin-right: 1em;
-    }
-	.main-container-topper {
-		width: auto;
-		margin-left: 1em;
-		margin-right: 1em;
-	}
 }
 /* begin navbar */
 @media screen and (min-width: 768px) {

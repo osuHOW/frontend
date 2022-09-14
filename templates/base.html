@@ -115,13 +115,13 @@ function recalcRestrictedBannerHeight() {
 				{{ if .DisableMainContainer }}
 					{{ template "tpl" . }}
 				{{ else }}
-					<div class="main-container-topper">
+					<div class="main-container-topper page-width">
 						{{/* TODO: Icons */}}
 						<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 							<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ if .TitleBar }}{{ .T .TitleBar }}{{ end }}</span>
 						</div>
 					</div>
-					<div class="main-container" {{ if .DisableMainContainerPadding }}style="padding: 0px;"{{ end }}>
+					<div class="main-container page-width" {{ if .DisableMainContainerPadding }}style="padding: 0px;"{{ end }}>
 						{{ template "tpl" . }}
 					</div>
 				{{ end }}

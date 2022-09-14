@@ -7,20 +7,3 @@
 	display: flex;
     max-width: 1000px;
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.profile-game-mods-segment {
-		width: 933px;
-	}
-}
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .profile-game-mods-segment {
-		width: 723px;
-	}
-}
-@media only screen and (max-width: 767px){
-	.profile-game-mods-segment {
-		width: auto;
-		margin-left: 1em;
-		margin-right: 1em;
-	}
-}
