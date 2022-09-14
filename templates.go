@@ -146,6 +146,7 @@ type baseTemplateData struct {
 	Scripts           []string
 	KyutGrill         string
 	KyutGrillHue         string
+	KyutGrillBlur         string
 	KyutGrillAbsolute bool
 	DisableMainContainer bool
 	DisableMainContainerPadding bool
@@ -263,6 +264,7 @@ type templateConfig struct {
 	TitleBar         string
 	KyutGrill        string
 	KyutGrillHue        string
+	KyutGrillBlur        string
 	MinPrivileges    uint64
 	HugeHeadingRight bool
 	DisableMainContainer bool

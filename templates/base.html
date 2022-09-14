@@ -50,6 +50,8 @@ function recalcRestrictedBannerHeight() {
 	{{/*<div class="background-image" style="--bg: url(/static/backgrounds/default.png);"></div>*/}}
 	{{ if .KyutGrillHue }}
 		<div class="background-image" style="--bg: url('/static/backgrounds/main.png'); --hue: {{ .KyutGrillHue }};"></div>
+	{{ else if .KyutGrillBlur }}
+	<div class="background-image" style="--bg: url('/static/backgrounds/main.png'); --blur: {{ .KyutGrillBlur }};"></div>
 	{{ else if .KyutGrill }}
 	<div class="background-image" style="--bg: url('{{ if .KyutGrillAbsolute }}{{ .KyutGrill }}{{ else }}/static/backgrounds/{{ .KyutGrill }}{{ end }}');"></div>
 	{{ else if .SolidColour }}
