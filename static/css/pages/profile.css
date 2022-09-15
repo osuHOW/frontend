@@ -19,12 +19,14 @@
 	margin-top: -33px;
 	margin-left: 27px;
 	margin-right: 26px;
-	max-width: 140px;
-	max-height: 140px;
+	/* should we change this? 256x256 images dont seem to scale very well to 140x140 */
+	width: 140px;
+	height: 140px;
 }
 .profile-user-segment {
 	background: #2E3836;
 	padding-inline: 25px;
 	padding-bottom: 15px;
 	display: flex;
+	min-height: 122px;
 }
