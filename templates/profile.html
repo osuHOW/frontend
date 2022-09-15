@@ -14,12 +14,13 @@
 {{ $favouritemode := _or $gqm .favourite_mode }}
 {{ $user := . }}
 <link rel="stylesheet" href="/static/css/pages/profile.css" />
+<div class="page-width">
 			{{/* TODO: what's this for? */}}
 			<script>
 				window.favouriteMode = {{ $favouritemode }};
 				window.userID = {{ .id }};
 			</script>
-	<div class="main-container-topper page-width">
+	<div class="main-container-topper">
 		{{/* TODO: Icons */}}
 		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
@@ -34,13 +35,14 @@
 			{{ end }}
 		</div>
 	</div>
-	<div class="profile-game-mods-segment page-width">
+	<div class="profile-game-mods-segment">
 		<div class="game-mod-selector" id="mod-menu">
 			{{ range $modInt, $modString := gameMods }}
 			<span class="{{ $modInt }}item game-mode-selector-item" data-mode="{{ $modInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modString }}</span>
 			{{ end }}
 		</div>
 	</div>
-
+	<div class="profile-bg" style="--bg: var(--profile-bg)"></div>
+</div>
 {{ end }}
 {{ end }}

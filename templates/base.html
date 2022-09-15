@@ -61,6 +61,7 @@ function recalcRestrictedBannerHeight() {
 	
 	<body {{ if $ds }} class="ds"{{ end }}>
 		<div class="ui full height main wrapper"
+		style="{{ if .KyutGrillBlur }}--profile-bg: url({{ .KyutGrill }}){{ else if .SolidColour }} --profile-bg: background-color: {{ .SolidColour }}{{ end }}"
 			>
 			{{ template "navbar" . }}
 			{{/*

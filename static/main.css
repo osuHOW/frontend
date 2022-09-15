@@ -332,6 +332,11 @@
 	display: flex;
     max-width: 1000px;
 }
+.page-width {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .page-width{
         width: 993px;
