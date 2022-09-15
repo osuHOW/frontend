@@ -30,3 +30,15 @@
 	display: flex;
 	min-height: 122px;
 }
+.profile-username-container {
+	display: flex;
+}
+.profile-username-text {
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 33px;
+	text-align: center;
+	color: white;
+	align-self: center;
+
+}

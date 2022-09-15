@@ -25,6 +25,7 @@
 		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
 		</div>
+		{{/* TODO: fix this */}}
 		{{ $modString := gameMods }}
 		{{ $modInt := gameMods }}
 		{{ $modeString := modes }}
@@ -45,6 +46,11 @@
 	<div class="profile-bg" style="--bg: var(--profile-bg)"></div>
 	<div class="profile-user-segment">
 		<img class="profile-avatar" src="{{ config "AvatarURL" }}/{{ .id }}">
+		<div class="profile-username-container">
+			<div class="profile-username-text">
+				{{ .username }}
+			</div>
+		</div>
 	</div>
 </div>
 {{ end }}
