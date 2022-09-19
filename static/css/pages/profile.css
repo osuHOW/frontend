@@ -71,7 +71,7 @@
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 16px;
-	color: #18FFB1;
+	color: var(--color);
 	margin-top: auto;
 	margin-bottom: auto;
 	background: #191D1B;
@@ -79,4 +79,6 @@
 	padding: 4px 11px;
 	/* correcting for the text having a little blank space at the bottom so we arent off-center */
 	padding-top: 5.4px;
+	/* margin for additional badges if we have any */
+	margin-right: 3px;
 }

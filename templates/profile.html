@@ -14,8 +14,6 @@
 {{ $favouritemode := _or $gqm .favourite_mode }}
 {{ $user := . }}
 
-{{ $dev := has .privileges 165387 }}
-
 <link rel="stylesheet" href="/static/css/pages/profile.css" />
 <div class="page-width">
 			{{/* TODO: what's this for? */}}
@@ -55,8 +53,9 @@
 					<div class="profile-username-text">
 						{{ .username }}
 					</div>
-					{{ if $dev }}
-						<div class="profile-badge">DEV</div>
+					{{ range .badges }}
+						{{/* just repurpose the icon for now */}}
+						<div class="profile-badge" style="--color: {{ .icon }}">{{ .name }}</div>
 					{{ end }}
 				</div>
 				<div class="profile-country-container">
