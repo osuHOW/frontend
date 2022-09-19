@@ -52,6 +52,8 @@
 	text-align: center;
 	color: white;
 	align-self: center;
+	/* for badges */
+	margin-right: 10px;
 }
 .profile-country-container {
 	font-weight: 700;
@@ -64,4 +66,17 @@
 .profile-country-flag {
 	width: 37px;
 	margin-right: 11px;
+}
+.profile-badge {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	color: #18FFB1;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #191D1B;
+	border-radius: 12.5px;
+	padding: 4px 11px;
+	/* correcting for the text having a little blank space at the bottom so we arent off-center */
+	padding-top: 5.4px;
 }
