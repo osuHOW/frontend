@@ -46,9 +46,19 @@
 	<div class="profile-bg" style="--bg: var(--profile-bg)"></div>
 	<div class="profile-user-segment">
 		<img class="profile-avatar" src="{{ config "AvatarURL" }}/{{ .id }}">
-		<div class="profile-username-container">
-			<div class="profile-username-text">
-				{{ .username }}
+		<div class="profile-main-info-container">
+			<div class="profile-main-details-container">
+				<div class="profile-username-container">
+					<div class="profile-username-text">
+						{{ .username }}
+					</div>
+				</div>
+				<div class="profile-country-container">
+					<img
+					src="https://twemoji.maxcdn.com/v/latest/svg/{{ countryCodepoints .country }}.svg"
+					class="profile-country-flag" />
+					{{ countryReadable1 .country }}
+				</div>
 			</div>
 		</div>
 	</div>

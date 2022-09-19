@@ -30,8 +30,20 @@
 	display: flex;
 	min-height: 122px;
 }
+
+.profile-main-info-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* flex: 1; */
+}
+.profile-main-details-container {
+	display: flex;
+	flex-direction: column;
+}
 .profile-username-container {
 	display: flex;
+	flex-direction: row;
 }
 .profile-username-text {
 	font-weight: 700;
@@ -40,5 +52,16 @@
 	text-align: center;
 	color: white;
 	align-self: center;
-
+}
+.profile-country-container {
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 17px;
+	display: flex;
+	align-items: center;
+	color: white;
+}
+.profile-country-flag {
+	width: 37px;
+	margin-right: 11px;
 }
