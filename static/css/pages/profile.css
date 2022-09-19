@@ -78,7 +78,21 @@
 	border-radius: 12.5px;
 	padding: 4px 11px;
 	/* correcting for the text having a little blank space at the bottom so we arent off-center */
-	padding-top: 5.4px;
+	padding-top: 6.5px;
+	padding-bottom: 4.5px;
 	/* margin for additional badges if we have any */
 	margin-right: 3px;
+}
+.profile-donor-badge {
+	color: white;
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #f6a;
+	border-radius: 12.5px;
+	padding: 5.5px 5.5px;
+	margin-right: 3px;
+	/* corrections for off-centerness of icon */
+	padding-top: 6px;
+	padding-bottom: 5px;
 }
