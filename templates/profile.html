@@ -66,11 +66,34 @@
 						<div class="profile-badge" style="--color: {{ .icon }}">{{ .name }}</div>
 					{{ end }}
 				</div>
-				<div class="profile-country-container">
-					<img
-					src="https://twemoji.maxcdn.com/v/latest/svg/{{ countryCodepoints .country }}.svg"
-					class="profile-country-flag" />
-					{{ countryReadable1 .country }}
+				<div class="profile-country-clan-container">
+					<div class="profile-country-container">
+						<img
+						src="https://twemoji.maxcdn.com/v/latest/svg/{{ countryCodepoints .country }}.svg"
+						class="profile-country-flag" />
+						{{ countryReadable1 .country }}
+					</div>
+
+					{{/* get clan info */}}
+					{{ $clan := . }}
+
+					{{ if eq $clan.clan.name "" }}
+						{{/* just don't show anything if we arent in a clan */}}
+					{{ else }}
+						<div class="profile-clan-container">
+							<i class="fa-solid fa-users profile-clan-flag"></i>
+							{{/* show our clan name */}}
+							{{ $clan.clan.name }}
+						</div>
+					{{ end }}
+				</div>
+			</div>
+			<div class="profile-pinned-medal-container">
+				<div class="profile-pinned-medal-text-container">
+					pinned medals <img src="/static/icons/pinned-medal.svg" class="profile-pinned-medal-icon"/>
+				</div>
+				<div class="profile-pinned-medal-medal-container">
+					TODO: pinned medals
 				</div>
 			</div>
 		</div>
