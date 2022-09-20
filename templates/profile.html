@@ -55,6 +55,9 @@
 					<div class="profile-username-text">
 						{{ .username }}
 					</div>
+					{{ if .verified_player }}
+						<span class="fa-solid fa-check profile-verified-badge"></span>
+					{{ end }}
 					{{ if $donor }}
 						<span class="fas fa-heart profile-donor-badge"></span>
 					{{ end }}
