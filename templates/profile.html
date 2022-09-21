@@ -41,9 +41,9 @@
 		</div>
 	</div>
 	<div class="profile-game-mods-segment">
-		<div class="game-mod-selector" id="mod-menu">
+		<div class="profile-game-mod-selector" id="mod-menu">
 			{{ range $modInt, $modString := gameMods }}
-			<span class="{{ $modInt }}item game-mode-selector-item" data-mode="{{ $modInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modString }}</span>
+			<span class="{{ $modInt }}item profile-game-mode-selector-item" data-mode="{{ $modInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modString }}</span>
 			{{ end }}
 		</div>
 	</div>
