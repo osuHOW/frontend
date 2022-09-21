@@ -10,18 +10,19 @@
 {{/* get some data we need */}}
 {{ $global := . }}
 {{ $gqm := atoi (.Gin.Query "mode") }}
+{{ $grx := atoi (.Gin.Query "rx") }}
 {{ with (.Get "users/full?id=%d" .UserID) }}
 {{ $favouritemode := _or $gqm .favourite_mode }}
+{{ $preferRelax := _or $grx 0 }}
 {{ $user := . }}
-
 
 {{ $donor := has .privileges 4 }}
 
 <link rel="stylesheet" href="/static/css/pages/profile.css" />
 <div class="page-width">
-			{{/* TODO: what's this for? */}}
 			<script>
 				window.favouriteMode = {{ $favouritemode }};
+				window.preferRelax = {{ $preferRelax }};
 				window.userID = {{ .id }};
 			</script>
 	<div class="main-container-topper">
@@ -29,22 +30,18 @@
 		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
 		</div>
-		{{/* TODO: fix this */}}
-		{{ $modString := gameMods }}
-		{{ $modInt := gameMods }}
-		{{ $modeString := modes }}
-		{{ $modeInt := modes }}
 		<div class="game-mode-selector" id="mode-menu">
 			{{ range $modeInt, $modeString := modes }}
-				<span class="{{ favMode $favouritemode $modeInt }}item game-mode-selector-item" data-mode="{{ $modeInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modeString }}</span>
+				<span class="{{ favMode $favouritemode $modeInt }}item game-mode-selector-item" data-mode="{{ $modeInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}">{{ $modeString }}</span>
 			{{ end }}
 		</div>
 	</div>
 	<div class="profile-game-mods-segment">
-		<div class="profile-game-mod-selector" id="mod-menu">
-			{{ range $modInt, $modString := gameMods }}
-			<span class="{{ $modInt }}item profile-game-mode-selector-item" data-mode="{{ $modInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modString }}</span>
-			{{ end }}
+		<div class="profile-game-mod-selector" id="rx-menu">
+			{{/* TODO: add back autopilot */}}
+			<span class="0 item{{ if eq (int $preferRelax) 0 }} active{{ end }} profile-game-mode-selector-item" data-rx="0" href="/u/{{ $user.id }}?rx=0">Regular</span>
+			<span class="1 item{{ if eq (int $preferRelax) 1 }} active{{ end }} profile-game-mode-selector-item" data-rx="1" href="/u/{{ $user.id }}?rx=1">Relax</span>
+			<span class="2 item{{ if eq (int $preferRelax) 2 }} active{{ end }} profile-game-mode-selector-item" data-rx="2" href="/u/{{ $user.id }}?rx=2">Autopilot</span>
 		</div>
 	</div>
 	<div class="profile-bg" style="--bg: var(--profile-bg)"></div>
@@ -110,8 +107,10 @@
 		{{ end }}
 		<div class="profile-user-info-playtime-container">
 			<i class="fa-solid fa-play profile-user-info-playtime-icon"></i>
-			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
-			<div class="profile-user-info-playtime-text" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
+			{{ range $rx, $_ := .stats }}
+				{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
+					<div class="profile-user-info-playtime-text" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>{{ playtimeConv .playtime }}</div>
+				{{ end }}
 			{{ end }}
 		</div>
 	</div>
