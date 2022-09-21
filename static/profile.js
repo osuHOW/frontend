@@ -1,36 +1,39 @@
 // code that is executed on every user profile
-$(document).ready(function() {
+$(document).ready(function () {
 	var wl = window.location;
 	var newPathName = wl.pathname;
 	// userID is defined in profile.html
 	if (newPathName.split("/")[2] != userID) {
 		newPathName = "/u/" + userID;
 	}
-	// if there's no mode parameter in the querystring, add it
+
 	let newSearch = wl.search;
 
 	if (wl.search.indexOf("mode=") === -1) {
 		newSearch = "?mode=" + favouriteMode;
 	}
 
-	if (wl.search.indexOf("rx=") === -1)
+	if (wl.search.indexOf("rx=") === -1 || wl.search.indexOf("?rx=") != -1)
 		newSearch += "&rx=" + preferRelax;
 
 	if (wl.search != newSearch)
 		window.history.replaceState('', document.title, newPathName + newSearch + wl.hash);
 	else if (wl.pathname != newPathName)
 		window.history.replaceState('', document.title, newPathName + wl.search + wl.hash);
-	setDefaultScoreTable();
 
-	$("#rx-menu>.item").click(function(e) {
+	setDefaultScoreTable();
+	checkRelaxMania(favouriteMode, preferRelax);
+
+	$("#rx-menu>.simple-banner-swtich").click(function (e) {
 		e.preventDefault();
 		if ($(this).hasClass("active"))
 			return;
 
 		preferRelax = $(this).data("rx");
-		$("[data-mode]:not(.item):not([hidden])").attr("hidden", "");
-		$("[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]:not(.item)").removeAttr("hidden");
-		$("#rx-menu>.active.item").removeClass("active");
+		checkRelaxMania(favouriteMode, preferRelax);
+		$("[data-mode]:not(.simple-banner-swtich):not([hidden])").attr("hidden", "");
+		$("[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]:not(.simple-banner-swtich)").removeAttr("hidden");
+		$("#rx-menu>.active.simple-banner-swtich").removeClass("active");
 		var needsLoad = $("#scores-zone>[data-mode=" + favouriteMode + "][data-loaded=0][data-rx=" + preferRelax + "]");
 		if (needsLoad.length > 0)
 			initialiseScores(needsLoad, favouriteMode);
@@ -38,17 +41,17 @@ $(document).ready(function() {
 		window.history.replaceState('', document.title, `${wl.pathname}?mode=${favouriteMode}&rx=${preferRelax}${wl.hash}`)
 	});
 
-
 	// when an item in the mode menu is clicked, it means we should change the mode.
-	$("#mode-menu>.item").click(function(e) {
+	$("#mode-menu>.simple-banner-swtich").click(function (e) {
 		e.preventDefault();
 		if ($(this).hasClass("active"))
 			return;
 		var m = $(this).data("mode");
 		favouriteMode = m;
-		$("[data-mode]:not(.item):not([hidden])").attr("hidden", "");
-		$("[data-mode=" + m + "][data-rx=" + preferRelax + "]:not(.item)").removeAttr("hidden");
-		$("#mode-menu>.active.item").removeClass("active");
+		checkRelaxMania(m, preferRelax);
+		$("[data-mode]:not(.simple-banner-swtich):not([hidden])").attr("hidden", "");
+		$("[data-mode=" + m + "][data-rx=" + preferRelax + "]:not(.simple-banner-swtich)").removeAttr("hidden");
+		$("#mode-menu>.active.simple-banner-swtich").removeClass("active");
 		var needsLoad = $("#scores-zone>[data-mode=" + m + "][data-loaded=0][data-rx=" + preferRelax + "]");
 		if (needsLoad.length > 0)
 			initialiseScores(needsLoad, m);
@@ -56,199 +59,97 @@ $(document).ready(function() {
 		window.history.replaceState('', document.title, `${wl.pathname}?mode=${m}&rx=${preferRelax}${wl.hash}`);
 	});
 	initialiseAchievements();
+	initialiseUserpage();
 	initialiseFriends();
 	// load scores page for the current favourite mode
-	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode)};
+	var i = function () { initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode) };
 	if (i18nLoaded)
 		i();
 	else
-		i18next.on("loaded", function() {
+		i18next.on("loaded", function () {
 			i();
 		});
-	loadOnlineStatus();
-	setInterval(loadOnlineStatus, 10000);
 });
 
-function formatOnlineStatusBeatmap(a) {
-	var hasLink = a.beatmap.id > 0;
-	return "<i>" + (hasLink ? "<a href='/b/" + escapeHTML(a.beatmap.id) + "'>" : "") + escapeHTML(a.text) + (hasLink ? '</a>' : '' ) + "</i>";
-}
+function initialiseUserpage() {
+	api("users/userpage", { id: userID }, (resp) => {
+		var userpage = $("#userpage-content")
 
-function loadOnlineStatus() {
-	// load in-game status through delta api
-	banchoAPI('clients/' + userID, {}, function(resp) {
+		if (!resp.userpage_compiled) return
 
-		var client = null;
-		resp.clients.forEach(function (el) {
-			if (el.type === 0 || client === null) {
-				client = el
-			}
-		});
-		if (client !== null) {
-			var icon;
-			var text;
-			switch (client.type) {
-				case 1: {
-					// irc
-					icon = 'blue comment';
-					text = 'Online through IRC';
-				}; break;
-				case 0: {
-					// bancho
-					switch (client.action.id) {
-						case 1: {
-							icon = 'bed';
-							text = 'AFK';
-						}; break
-						case 2: {
-							icon = 'teal play circle';
-							text = "Playing " + formatOnlineStatusBeatmap(client.action);
-						}; break
-						case 3: {
-							icon = 'orange paint brush';
-							text = "Editing " + formatOnlineStatusBeatmap(client.action);
-						}; break;
-						case 4: {
-							icon = 'violet paint brush';
-							text = "Modding " + formatOnlineStatusBeatmap(client.action);
-						}; break;
-						case 5: {
-							icon = 'olive gamepad';
-							text = "In Multiplayer Match";
-						}; break;
-						case 12: {
-							icon = 'green play circle';
-							text = "Multiplaying " + formatOnlineStatusBeatmap(client.action);
-						}; break;
-						case 11: {
-							icon = 'orange map signs';
-							text = "In Multiplayer Lobby";
-						}; break;
-						case 6: {
-							icon = 'pink eye';
-							text = "Spectating " + formatOnlineStatusBeatmap(client.action);
-						}; break;
-						default: {
-							icon = 'green circle';
-							text = 'Online';
-						};
-					}
-				}; break;
-				case 2: {
-					// ws
-					icon = 'green cogs';
-					text = 'Online';
-				}; break
-			}
-		} else {
-			// offline
-			icon = 'circle';
-			text = 'Offline'
-		}
-		$('#online>.icon').attr('class', icon + ' icon');
-		$('#online>span').html(text);
-	});
-}
-
-function loadMostPlayedBeatmaps(mode) {
-	var mostPlayedTable = $("#scores-zone div[data-mode=" + mode + "] table[data-type='most-played']");
-	currentPage[mode].mostPlayed++
-	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
-		if (resp.beatmaps === null) {
-			return;
-		}
-		resp.beatmaps.forEach(function(el, idx) {
-			mostPlayedTable.children('tbody').append(
-				$("<tr style='background: linear-gradient(90deg,#212121,#00000087,#212121), url(https://assets.ppy.sh/beatmaps/"+ el.beatmap.beatmapset_id +"/covers/cover.jpg) no-repeat right !important; background-size: cover !important;' />").append(
-					$("<td />").append(
-						$("<h4 class='ui image header' />").append(
-						$("<div class='content' />").append(
-							$("<a href='/beatmaps/" + el.beatmap.beatmap_id + "' />").append(
-								$('<b />').text(el.beatmap.song_name)
-							)
-						)
-					)
-					),
-					$("<td class='right aligned' />").append(
-						$('<i class="play circle icon" />'),
-						$('<b />').text(el.playcount)
-					)
-				)			
-			)
-		})
-		if (resp.beatmaps.length === 5) {
-			mostPlayedTable.find('.load-more').removeClass('disabled')
-		}
+		userpage.css("display", "")
+		userpage.html(resp.userpage_compiled)
+		userpage.removeClass("loading")
 	})
 }
 
 function initialiseAchievements() {
 	api('users/achievements' + (currentUserID == userID ? '?all' : ''),
-		{id: userID}, function (resp) {
-		var achievements = resp.achievements;
-		// no achievements -- show default message
-		if (achievements.length === 0) {
-			$("#achievements")
-				.append($("<div class='ui sixteen wide column'>")
-					.text(T("Nothing here. Yet.")));
-			$("#load-more-achievements").remove();
-			return;
-		}
+		{ id: userID }, function (resp) {
+			var achievements = resp.achievements;
+			// no achievements -- show default message
+			if (achievements.length === 0) {
+				$("#achievements")
+					.append($("<div class='ui sixteen wide column'>")
+						.text(T("Nothing here. Yet.")));
+				$("#load-more-achievements").remove();
+				return;
+			}
 
-		var displayAchievements = function(limit, achievedOnly) {
-			var $ach = $("#achievements").empty();
-			limit = limit < 0 ? achievements.length : limit;
-			var shown = 0;
-			for (var i = 0; i < achievements.length; i++) {
-				var ach = achievements[i];
-				if (shown >= limit || (achievedOnly && !ach.achieved)) {
-					continue;
+			var displayAchievements = function (limit, achievedOnly) {
+				var $ach = $("#achievements").empty();
+				limit = limit < 0 ? achievements.length : limit;
+				var shown = 0;
+				for (var i = 0; i < achievements.length; i++) {
+					var ach = achievements[i];
+					if (shown >= limit || (achievedOnly && !ach.achieved)) {
+						continue;
+					}
+					shown++;
+					$ach.append(
+						$("<div class='ui two wide column'>").append(
+							$("<img src='https://s.ripple.moe/images/medals-" +
+								"client/" + ach.icon + ".png' alt='" + ach.name +
+								"' class='" +
+								(!ach.achieved ? "locked-achievement" : "achievement") +
+								"'>").popup({
+									title: ach.name,
+									content: ach.description,
+									position: "bottom center",
+									distanceAway: 10
+								})
+						)
+					);
 				}
-				shown++;
-				$ach.append(
-					$("<div class='ui two wide column'>").append(
-						$("<img src='https://s.ripple.moe/images/medals-" +
-							"client/" + ach.icon + ".png' alt='" + ach.name +
-							"' class='" +
-							(!ach.achieved ? "locked-achievement" : "achievement") +
-							"'>").popup({
-							title: ach.name,
-							content: ach.description,
-							position: "bottom center",
-							distanceAway: 10
-						})
-					)
-				);
-			}
-			// if we've shown nothing, and achievedOnly is enabled, try again
-			// this time disabling it.
-			if (shown == 0 && achievedOnly) {
-				displayAchievements(limit, false);
-			}
-		};
+				// if we've shown nothing, and achievedOnly is enabled, try again
+				// this time disabling it.
+				if (shown == 0 && achievedOnly) {
+					displayAchievements(limit, false);
+				}
+			};
 
-		// only 8 achievements - we can remove the button completely, because
-		// it won't be used (no more achievements).
-		// otherwise, we simply remove the disabled class and add the click handler
-		// to activate it.
-		if (achievements.length <= 8) {
-			$("#load-more-achievements").remove();
-		} else {
-			$("#load-more-achievements")
-				.removeClass("disabled")
-				.click(function() {
-				$(this).remove();
-				displayAchievements(-1, false);
-			});
-		}
-		displayAchievements(8, true);
-	});
+			// only 8 achievements - we can remove the button completely, because
+			// it won't be used (no more achievements).
+			// otherwise, we simply remove the disabled class and add the click handler
+			// to activate it.
+			if (achievements.length <= 8) {
+				$("#load-more-achievements").remove();
+			} else {
+				$("#load-more-achievements")
+					.removeClass("disabled")
+					.click(function () {
+						$(this).remove();
+						displayAchievements(-1, false);
+					});
+			}
+			displayAchievements(8, true);
+		});
 }
 
 function initialiseFriends() {
 	var b = $("#add-friend-button");
 	if (b.length == 0) return;
-	api('friends/with', {id: userID}, setFriendOnResponse);
+	api('friends/with', { id: userID }, setFriendOnResponse);
 	b.click(friendClick);
 }
 function setFriendOnResponse(r) {
@@ -261,24 +162,24 @@ function setFriend(i) {
 	var b = $("#add-friend-button");
 	b.removeClass("loading green blue red");
 	switch (i) {
-	case 0:
-		b
-			.addClass("blue")
-			.attr("title", T("Add friend"))
-			.html("<i class='plus icon'></i>");
-		break;
-	case 1:
-		b
-			.addClass("green")
-			.attr("title", T("Remove friend"))
-			.html("<i class='minus icon'></i>");
-		break;
-	case 2:
-		b
-			.addClass("red")
-			.attr("title", T("Unmutual friend"))
-			.html("<i class='heart icon'></i>");
-		break;
+		case 0:
+			b
+				.addClass("blue")
+				.attr("title", T("Add friend"))
+				.html(`<i class="fas fa-user-plus"></i>`);
+			break;
+		case 1:
+			b
+				.addClass("green")
+				.attr("title", T("Remove friend"))
+				.html(`<i class="fas fa-user-times"></i>`);
+			break;
+		case 2:
+			b
+				.addClass("red")
+				.attr("title", T("Unmutual friend"))
+				.html(`<i class="fas fa-user-friends"></i>`);
+			break;
 	}
 	b.attr("data-friends", i > 0 ? 1 : 0)
 }
@@ -286,203 +187,508 @@ function friendClick() {
 	var t = $(this);
 	if (t.hasClass("loading")) return;
 	t.addClass("loading");
-	api("friends/" + (t.attr("data-friends") == 1 ? "del" : "add"), {user: userID}, setFriendOnResponse, true);
+	api("friends/" + (t.attr("data-friends") == 1 ? "del" : "add"), { user: userID }, setFriendOnResponse, true);
 }
 
 var defaultScoreTable;
 function setDefaultScoreTable() {
-	defaultScoreTable = $("<table class='ui table score-table' />")
+	defaultScoreTable = $("<div class='score-data' />")
 		.append(
-			$("<thead />").append(
-				$("<tr />").append(
-					$("<th>" + T("General info") + "</th>"),
-					$("<th>"+ T("Score") + "</th>")
-				)
+			$("<div class='scores' />")
+		)
+		.append(
+			$("<div class='extra-block' />").append(
+				$("<a class='show-button'>" + T("Load more") + "</a>").click(loadMoreClick)
 			)
 		)
-		.append(
-			$("<tbody />")
-		)
-		.append(
-			$("<tfoot />").append(
-				$("<tr />").append(
-					$("<th colspan=2 />").append(
-						$("<div class='ui right floated pagination menu' />").append(
-							$("<a class='disabled item load-more-button'>" + T("Load more") + "</a>").click(loadMoreClick)
-						)
-					)
-				)
-			)
-		)
-	;
+		;
 }
-i18next.on('loaded', function(loaded) {
+
+i18next.on('loaded', function (loaded) {
 	setDefaultScoreTable();
 });
-
 function initialiseScores(el, mode) {
 	el.attr("data-loaded", "1");
-	var pinned = defaultScoreTable.clone(true).addClass("orange");
-	var best = defaultScoreTable.clone(true).addClass("orange");
-	var recent = defaultScoreTable.clone(true).addClass("blue");
-	var mostPlayedBeatmapsTable = $("<table class='ui table F-table yellow' data-mode='" + mode + "' />")
-			.append(
-					$("<thead />").append(
-							$("<tr />").append(
-									$("<th>"+ T("Beatmap") + "</th>"),
-									$("<th class='right aligned'>"+ T("Plays") + "</th>")
-							)
-					)
-			)
-			.append(
-					$('<tbody />')
-			)
-			.append(
-					$("<tfoot />").append(
-							$("<tr />").append(
-									$("<th colspan=2 />").append(
-											$("<div class='ui right floated pagination menu' />").append(
-													$("<a class='load-more disabled item'>" + T("Load more") + "</a>").click(loadMoreMostPlayed)
-											)
-									)
-							)
-					)
-			)
+	var pinned = defaultScoreTable.clone(true);
+	var best = defaultScoreTable.clone(true);
+
+	var most_played = defaultScoreTable.clone(true);
+
+	var first = defaultScoreTable.clone(true);
+	var recent = defaultScoreTable.clone(true);
+
+	let rxAsString = preferRelax != 0 ? (preferRelax == 1 ? "r" : "a") : "v"
+	let firstSuffix = `${rxAsString}${mode}`
+
+	pinned.attr("data-type", "pinned");
 	best.attr("data-type", "best");
+	most_played.attr("data-type", "most_played");
+	first.attr("data-type", "first");
 	recent.attr("data-type", "recent");
-	mostPlayedBeatmapsTable.attr("data-type", "most-played");
-	recent.addClass("no bottom margin");
-	el.append($("<div class='ui segments no bottom margin' />").append(
-		$("<div class='ui segment' />").append("<h2 class='ui header'>	" + T("Best scores") + "</h2>", best),
-		$("<div class='ui segment' />").append("<h2 class='ui header'>" + T("Most played beatmaps") + "</h2>", mostPlayedBeatmapsTable),
-		$("<div class='ui segment' />").append("<h2 class='ui header'>" + T("Recent scores") + "</h2>", recent)
+	el.append($("<div class='ui segments' />").append(
+		$("<div class='ui segment margin sui' />").append(`<div class='header-top'><h2 class='ui header'>${T("Pinned scores")}</h2></div>`, pinned),
+		$("<div class='ui segment margin sui' />").append(`<div class='header-top'><h2 class='ui header'>${T("Best scores")}</h2></div>`, best),
+		$("<div class='ui segment margin sui' />").append(`<div class='header-top'><h2 class='ui header'>${T("Most played beatmaps")}</h2></div>`, most_played),
+		$("<div class='ui segment margin sui' />").append(`<div class='header-top'><h2 class='ui header'>${T("First Place Ranks")} <span id='first-${firstSuffix}' style='font-size: medium;'>(.. in total)</span></h2></div>`, first),
+		$("<div class='ui segment margin sui' />").append(`<div class='header-top'><h2 class='ui header'>${T("Recent scores (24h)")}</h2></div>`, recent),
 	));
+	loadScoresPage("pinned", mode);
 	loadScoresPage("best", mode);
+	loadMostPlayedBeatmaps("most_played", mode);
+	loadScoresPage("first", mode);
 	loadScoresPage("recent", mode);
-	loadMostPlayedBeatmaps(mode);
+	$('#user-scores').removeClass('load-data')
 };
 function loadMoreClick() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
 	t.addClass("disabled");
-	var type = t.parents("table[data-type]").data("type");
+	var type = t.parents("div[data-type]").data("type");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadScoresPage(type, mode);
 }
-function loadMoreMostPlayed() {
-	var t = $(this);
-	if (t.hasClass("disabled"))
-		return;
-	t.addClass("disabled");
-	var mode = t.parents("div[data-mode]").data("mode");
-	loadMostPlayedBeatmaps(mode);
-}
+
 // currentPage for each mode
 var currentPage = {
-	0: {best: 0, recent: 0, mostPlayed: 0},
-	1: {best: 0, recent: 0, mostPlayed: 0},
-	2: {best: 0, recent: 0, mostPlayed: 0},
-	3: {best: 0, recent: 0, mostPlayed: 0},
+	0: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	1: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	2: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	3: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 }
 };
 
 var rPage = {
-	0: {best: 0, recent: 0/*, first: 0*/},
-	1: {best: 0, recent: 0/*, first: 0*/},
-	2: {best: 0, recent: 0/*, first: 0*/},
-	3: {best: 0, recent: 0/*, first: 0*/}
+	0: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	1: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	2: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	3: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 }
 };
-var scoreStore = {};
-function loadScoresPage(type, mode) {
-	var table = $("#scores-zone div[data-mode=" + mode + "][data-rx=" + preferRelax + "] table[data-type=" + type + "] tbody");
+
+var aPage = {
+	0: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	1: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	2: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 },
+	3: { pinned: 0, best: 0, most_played: 0, recent: 0, first: 0 }
+};
+
+const scoreNotFoundElement = `<div class="map-single" id="not-found-container">
+<div class="map-content1">
+	<div class="map-data">
+		<div class="map-image" style="background:linear-gradient(rgb(0 0 0 / 70%), rgb(0 0 0 / 70%)); background-size: cover;">
+			<div class="map-grade rank-SHD">: (</div>
+		</div>
+		<div class="map-title-block map-padding">
+			<div class="map-title">
+				<h4>No score available</h4>
+			</div>
+			<div class="play-stats">
+				Maybe you should play something?
+			</div>
+		</div>
+	</div>
+</div>
+</div>`
+
+function loadMostPlayedBeatmaps(type, mode) {
+	var mostPlayedTable = $("#scores-zone div[data-mode=" + mode + "][data-rx=" + preferRelax + "] div[data-type=" + type + "] .scores");
 
 	var page;
-	if (preferRelax) page = ++rPage[mode][type];
+	if (preferRelax == 1) page = ++rPage[mode][type];
+	else if (preferRelax == 2) page = ++aPage[mode][type];
 	else page = ++currentPage[mode][type];
-	console.log("loadScoresPage with", {
-		page: page,
-		type: type,
-		mode: mode,
-		rx: preferRelax,
-	});
-	var limit = type === 'best' ? 10 : 5;
-	api("users/scores/" + type, {
-		mode: mode,
-		p: page,
-		l: limit,
-		rx: preferRelax,
-		id: userID,
-	}, function(r) {
-		if (r.scores == null) {
+
+	api('users/most_played', { id: userID, mode: mode, p: page, l: 5, rx: preferRelax }, function (resp) {
+		if (resp.most_played_beatmaps == null) {
+			mostPlayedTable.html(scoreNotFoundElement)
 			disableLoadMoreButton(type, mode);
 			return;
 		}
-		r.scores.forEach(function(v, idx){
-			scoreStore[v.id] = v;
-			var scoreRank = getRank(mode, v.mods, v.accuracy, v.count_300, v.count_100, v.count_50, v.count_miss);
-			var scoreRankIcon = "<img src='/static/ranking-icons/" + scoreRank + ".svg' class='score rank' alt='" + scoreRank + "'> ";
-			var rowColor = '';
 
-			if (type === 'recent') {
-				rowColor = v.completed === 3 ? 'positive' : v.completed < 2 ? 'error' : '';
-			}
-			table.append($("<tr class='new score-row " + rowColor + "' data-scoreid='" + v.id + "' style='background: linear-gradient(90deg,#212121,#00000087,#212121), url(https://i0.wp.com/assets.ppy.sh/beatmaps/"+ v.beatmap.beatmapset_id +"/covers/cover.jpg) no-repeat right !important; background-size: cover !important;' />").append(
-				$(
-					"<td>" + (v.completed < 2 ? '' : scoreRankIcon) +
-					escapeHTML(v.beatmap.song_name) + " <b>" + getScoreMods(v.mods) + "</b> <i>(" + v.accuracy.toFixed(2) + "%)</i><br />" +
-					"<div class='subtitle'><time class='new timeago' datetime='" + v.time + "'>" + v.time + "</time></div></td>"
-				),
-				$("<td><b>" + ppOrScore(v.pp, v.score) + "</b> " + weightedPP(type, page, idx, v.pp) +	(v.completed == 3 ? "<br>" + downloadStar(v.id) : "") +	"</td>")
-			));
+		resp.most_played_beatmaps.forEach(function (el, idx) {
+			mostPlayedTable.append(`
+			<div class="new map-single" style="cursor: auto">
+				<div class="map-content1">
+					<div class="map-data">
+						<div class="map-image" style="background:linear-gradient( rgb(0 0 0 / 70%), rgb(0 0 0 / 70%) ), url(https://assets.ppy.sh/beatmaps/${el.beatmap.beatmapset_id}/covers/cover@2x.jpg); background-size: cover;">
+						</div>
+						<div class="map-title-block">
+							<div class="map-title">
+								<a class="beatmap-link" href="/b/${el.beatmap.beatmap_id}">
+									${escapeHTML(el.beatmap.song_name)}
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="map-content2">
+					<div class="score-details d-flex">
+						<div class="score-details_right-block">
+							<div class="score-details_pp-block">
+								<div class="map-pp">
+									<i class="fa-solid fa-play"></i> <b>${el.playcount}</b>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>`
+			)
+		})
 
-		});
-		$(".new.timeago").timeago().removeClass("new");
-		$(".new.score-row").click(viewScoreInfo).removeClass("new");
-		$(".new.downloadstar").click(function(e) {
-			e.stopPropagation();
-		}).removeClass("new");
 		var enable = true;
-		if (r.scores.length !== limit)
+		if (resp.most_played_beatmaps.length != 5)
 			enable = false;
+
 		disableLoadMoreButton(type, mode, enable);
+	})
+}
+
+var scoreStore = {};
+function loadScoresPage(type, mode) {
+	var table = $("#scores-zone div[data-mode=" + mode + "][data-rx=" + preferRelax + "] div[data-type=" + type + "] .scores");
+
+	// redirect it to most played load.
+	if (type == "most_played") {
+		return loadMostPlayedBeatmaps(type, mode)
+	}
+
+	var page;
+	if (preferRelax == 1) page = ++rPage[mode][type];
+	else if (preferRelax == 2) page = ++aPage[mode][type];
+	else page = ++currentPage[mode][type];
+
+	if (type != "pinned") {
+		api("users/scores/" + type, {
+			mode: mode,
+			p: page,
+			l: 10,
+			rx: preferRelax,
+			id: userID,
+			uid: userID,
+			actual_id: window.actualID
+		}, function (r) {
+			if (type === 'first') {
+				let rxAsString = preferRelax != 0 ? (preferRelax == 1 ? "r" : "a") : "v"
+				let firstSuffix = `${rxAsString}${mode}`
+				$(`#first-${firstSuffix}`).text(`(${r.total} in total)`)
+			}
+
+			console.log(r, type)
+			if (r.scores == null) {
+				disableLoadMoreButton(type, mode);
+				table.html(scoreNotFoundElement)
+				return;
+			} else {
+				if (r.scores.length === 0) {
+					disableLoadMoreButton(type, mode);
+					table.html(scoreNotFoundElement)
+					return;
+				}
+			}
+
+			r.scores.forEach(function (v, idx) {
+				scoreStore[v.id] = v;
+
+				if (v.completed != 0) {
+					var scoreRank = getRank(mode, v.mods, v.accuracy, v.count_300, v.count_100, v.count_50, v.count_miss);
+				} else {
+					var scoreRank = 'F';
+				}
+
+				table.append(`
+				<div class="new map-single complete-${v.completed}" data-scoreid="${v.id}">
+					<div class="map-content1">
+						<div class="map-data">
+							<div class="map-image" style="background:linear-gradient( rgb(0 0 0 / 70%), rgb(0 0 0 / 70%) ), url(https://assets.ppy.sh/beatmaps/${v.beatmap.beatmapset_id}/covers/cover@2x.jpg); background-size: cover;">
+								<div class="map-grade rank-${scoreRank}">${scoreRank.replace("HD", "")}</div>
+							</div>
+							<div class="map-title-block">
+								<div class="map-title"><a class="beatmap-link">
+									${escapeHTML(v.beatmap.song_name)}
+									</a>
+								</div>
+								<div class="play-stats">
+									${addCommas(v.score)} / ${addCommas(v.max_combo)}x / <b>${getScoreMods(v.mods, true)}</b>
+								</div>
+								<div class="map-date">
+									<time class="new timeago" datetime="${v.time}">
+										${v.time}
+									</time>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="map-content2">
+						<div class="score-details d-flex">
+							<div class="score-details_right-block">
+								<div class="score-details_pp-block">
+									<div class="map-pp">
+										${ppOrScore(v.pp, v.score)}
+									</div>
+									<div class="map-acc">accuracy:&nbsp;<b>
+										${v.accuracy.toFixed(2)}%
+										</b>
+									</div>
+								</div>
+								<div data-btns-score-id='${v.id}'>
+									${downloadStar(v.id)}
+									${userID == window.actualID && !v.pinned ? pinButton(v.id, preferRelax) : ""}
+								</div>
+								<div class="score-details_icon-block">
+									<i class="angle right icon"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				`);
+			});
+			$(".new.timeago").timeago().removeClass("new");
+			$(".new.map-single").click(viewScoreInfo).removeClass("new");
+			$(".new.downloadstar").click(function (e) {
+				e.stopPropagation();
+			}).removeClass("new");
+			$(".new.pinbutton").click(function (e) {
+				e.stopPropagation();
+			}).removeClass("new");
+			$(".new.unpinbutton").click(function (e) {
+				e.stopPropagation();
+			}).removeClass("new");
+			var enable = true;
+			if (r.scores.length != 10)
+				enable = false;
+			disableLoadMoreButton(type, mode, enable);
+		});
+	} else {
+		pin_api("pinned", {
+			mode: mode,
+			p: page,
+			l: 10,
+			rx: preferRelax,
+			id: userID,
+		}, function (r) {
+			if (r.scores.length === 0) {
+				table.html(scoreNotFoundElement)
+				disableLoadMoreButton(type, mode);
+				return;
+			}
+
+			r.scores.forEach(score => do_pin(table, score, mode));
+			$(".new.timeago").timeago().removeClass("new");
+			$(".new.map-single").click(viewScoreInfo).removeClass("new");
+			$(".new.downloadstar").click(function (e) {
+				e.stopPropagation();
+			}).removeClass("new");
+			$(".new.pinbutton").click(function (e) {
+				e.stopPropagation();
+			}).removeClass("new");
+			$(".new.unpinbutton").click(function (e) {
+				e.stopPropagation();
+			}).removeClass("new");
+			var enable = true;
+			if (r.scores.length != 10)
+				enable = false;
+			disableLoadMoreButton(type, mode, enable);
+		});
+	}
+}
+function refreshTable(type) {
+	loadScoresPage(type, mode);
+}
+
+function do_pin(table, score, mode) {
+	scoreStore[score.id] = score;
+	if (score.completed != 0) {
+		var scoreRank = getRank(mode, score.mods, score.accuracy, score.count_300, score.count_100, score.count_50, score.count_miss);
+	} else {
+		var scoreRank = 'F';
+	}
+	table.append(`
+	<div class="new map-single complete-${score.completed}" data-pinnedscoreid="${score.id}">
+		<div class="map-content1">
+			<div class="map-data">
+				<div class="map-image" style="background:linear-gradient( rgb(0 0 0 / 70%), rgb(0 0 0 / 70%) ), url(https://assets.ppy.sh/beatmaps/${score.beatmap.beatmapset_id}/covers/cover@2x.jpg); background-size: cover;">
+					<div class="map-grade rank-${scoreRank}">${scoreRank.replace("HD", "")}</div>
+				</div>
+				<div class="map-title-block">
+					<div class="map-title"><a class="beatmap-link">
+						${escapeHTML(score.beatmap.song_name)}
+						</a>
+					</div>
+					<div class="play-stats">
+						${addCommas(score.score)} / ${addCommas(score.max_combo)}x / <b>${getScoreMods(score.mods, true)}</b>
+					</div>
+					<div class="map-date">
+						<time class="new timeago" datetime="${score.time}">
+							${score.time}
+						</time>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="map-content2">
+			<div class="score-details d-flex">
+				<div class="score-details_right-block">
+					<div class="score-details_pp-block">
+						<div class="map-pp">
+							${ppOrScore(score.pp, score.score)}
+						</div>
+						<div class="map-acc">accuracy:&nbsp;<b>
+							${score.accuracy.toFixed(2)}%
+							</b>
+						</div>
+					</div>
+					${downloadStar(score.id)}
+					${userID == window.actualID ? unpinButton(score.id, preferRelax) : ""}
+					<div class="score-details_icon-block">
+						<i class="angle right icon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	`);
+}
+
+function pinSuccess(data) {
+	score = scoreStore[data['score_id']]
+
+	var table = $("#scores-zone div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "] div[data-type=pinned] .scores");
+	if (!table) return showMessage("error", "Tell Flame to fix this");
+
+	notFoundElement = table.find("#not-found-container")
+	if (table[0].childElementCount === 1 && notFoundElement) {
+		notFoundElement.remove()
+	}
+
+	do_pin(table, score, favouriteMode);
+	$(".new.timeago").timeago().removeClass("new");
+	$(".new.downloadstar").click(function (e) {
+		e.stopPropagation();
+	}).removeClass("new");
+	$(".new.unpinbutton").click(function (e) {
+		e.stopPropagation();
+	}).removeClass("new");
+
+	var otherScores = $(`[data-btns-score-id="${data['score_id']}"]`)
+	otherScores.find('.pinbutton').remove();
+
+	showMessage("success", "Score pinned.");
+}
+
+function unpinSuccess(data) {
+	var table = $("#scores-zone div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "] div[data-type=pinned] .scores");
+	var row = $(`div[data-pinnedscoreid=${data['score_id']}]`)
+	row.remove()
+
+	if (table[0].childElementCount === 0) {
+		table.html(scoreNotFoundElement)
+	}
+
+	var otherScores = $(`[data-btns-score-id="${data['score_id']}"]`)
+	otherScores.append(pinButton(data['score_id'], preferRelax))
+
+	$(".new.pinbutton").click(function (e) {
+		e.stopPropagation();
+	}).removeClass("new");
+
+	showMessage("success", "Score unpinned.");
+}
+
+function pin_api(endpoint, data, success, failure, post) {
+	if (typeof data == "function") {
+		success = data;
+		data = null;
+	}
+	if (typeof failure == "boolean") {
+		post = failure;
+		failure = undefined;
+	}
+
+	var errorMessage =
+		"An error occurred while contacting the Akatsuki API. Please report this to an Akatsuki developer.";
+
+	$.ajax({
+		method: (post ? "POST" : "GET"),
+		dataType: "json",
+		url: hanayoConf.baseAPI + "/pinned/" + endpoint,
+		data: (post ? JSON.stringify(data) : data),
+		contentType: (post ? "application/json; charset=utf-8" : ""),
+		success: function (data) {
+			if (data.code >= 500) {
+				console.warn(data);
+				showMessage("error", errorMessage);
+			}
+			success(data);
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			if ((jqXHR.status >= 400 && jqXHR.status < 500) &&
+				typeof failure == "function") {
+				failure(jqXHR.responseJSON);
+				return;
+			}
+			console.warn(jqXHR, textStatus, errorThrown);
+			showMessage("error", errorMessage);
+		},
 	});
+};
+
+function pinScore(id, rx) {
+	pin_api("pin", { id: id, rx: rx }, pinSuccess, function (data) { }, true);
 }
+
+function unpinScore(id, rx) {
+	pin_api("unpin", { id: id, rx: rx }, unpinSuccess, function (data) { }, true);
+}
+
+function pinButton(id, rx) {
+	return `<a href="#" class="new pinbutton" title="Pin Score" onclick='pinScore("${id}", ${rx})'><i class='pin icon'></i></a>`
+}
+
+function unpinButton(id, rx) {
+	return `<a href="#" class="new unpinbutton" title="Unpin Score" onclick='unpinScore("${id}", ${rx})'><i class='pin icon'></i></a>`
+}
+
 function downloadStar(id) {
-	return "<a href='/web/replays/" + id + "' class='new downloadstar'><i class='star icon'></i>" + T("Download") + "</a>";
+	return "<a href='/web/replays/" + id + "' title='Download Replay' class='new downloadstar'><i class='fa-solid fa-download icon'></i></a>";
 }
+
 function weightedPP(type, page, idx, pp) {
 	if (type != "best" || pp == 0)
 		return "";
-	var perc = Math.pow(0.95, ((page - 1) * 20) + idx);
+	var perc = Math.pow(0.95, ((page - 1) * 10) + idx);
 	var wpp = pp * perc;
-	return "<i title='Weighted PP, " + Math.round(perc*100) + "%'>(" + wpp.toFixed(2) + "pp)</i>";
+	return "<i title='Weighted PP, " + Math.round(perc * 100) + "%'>(" + wpp.toFixed(2) + "pp)</i>";
 }
 function disableLoadMoreButton(type, mode, enable) {
-	var button = $("#scores-zone div[data-mode=" + mode + "][data-rx=" + preferRelax + "] table[data-type=" + type + "] .load-more-button");
+	var button = $("#scores-zone div[data-mode=" + mode + "][data-rx=" + preferRelax + "] div[data-type=" + type + "] .show-button");
 	if (enable) button.removeClass("disabled");
 	else button.addClass("disabled");
 }
 function viewScoreInfo() {
 	var scoreid = $(this).data("scoreid");
-	if (!scoreid && scoreid !== 0) return;
+	if (!scoreid && scoreid !== 0) {
+		scoreid = $(this).data("pinnedscoreid");
+
+		if (!scoreid && scoreid !== 0) return;
+	}
+
 	var s = scoreStore[scoreid];
 	if (s === undefined) return;
 
 	// data to be displayed in the table.
 	var data = {
-		"Points":			 addCommas(s.score),
-		"PP":					 addCommas(s.pp),
-		"Beatmap":			"<a href='/b/" + s.beatmap.beatmap_id + "'>" + escapeHTML(s.beatmap.song_name) + "</a>",
-		"Accuracy":		 s.accuracy + "%",
-		"Max combo":		addCommas(s.max_combo) + "/" + addCommas(s.beatmap.max_combo)
-											+ (s.full_combo ? " " + T("(full combo)") : ""),
-		"Difficulty":	 T("{{ stars }} star", {
+		"Points": addCommas(s.score),
+		"PP": addCommas(s.pp),
+		"Beatmap": "<a href='/b/" + s.beatmap.beatmap_id + "'>" + escapeHTML(s.beatmap.song_name) + "</a>",
+		"Accuracy": s.accuracy + "%",
+		"Max combo": addCommas(s.max_combo) + "/" + addCommas(s.beatmap.max_combo)
+			+ (s.full_combo ? " " + T("(full combo)") : ""),
+		"Difficulty": T("{{ stars }} star", {
 			stars: s.beatmap.difficulty2[modesShort[s.play_mode]],
 			count: Math.round(s.beatmap.difficulty2[modesShort[s.play_mode]]),
-	 }),
-		"Mods":				 getScoreMods(s.mods, true),
-		"Passed":			 T(s.completed >= 2 ? "Yes" : "No"),
-		"Personal high score": T(s.completed === 3 ? "Yes" : "No")
+		}),
+		"Mods": getScoreMods(s.mods, true),
 	};
 
 	// hits data
@@ -495,18 +701,19 @@ function viewScoreInfo() {
 		s.count_geki,
 		s.count_katu,
 		s.count_miss,
-	].forEach(function(val, i) {
+	].forEach(function (val, i) {
 		hd[trans[i]] = val;
 	});
 
 	data = $.extend(data, hd, {
-		"Ranked?":			T(s.completed == 3 ? "Yes" : "No"),
-		"Achieved":		 s.time,
-		"Mode":				 modes[s.play_mode],
+		"Ranked?": T(s.completed == 3 ? "Yes" : "No"),
+		"Achieved": s.time,
+		"Mode": modes[s.play_mode],
+		"File": "<a href='/web/replays/" + s.id + "' class='new downloadstar'>Replay</a>",
 	});
 
 	var els = [];
-	$.each(data, function(key, value) {
+	$.each(data, function (key, value) {
 		els.push(
 			$("<tr />").append(
 				$("<td>" + T(key) + "</td>"),
@@ -556,7 +763,7 @@ var modeTranslations = [
 ];
 
 function getRank(gameMode, mods, acc, c300, c100, c50, cmiss) {
-	var total = c300+c100+c50+cmiss;
+	var total = c300 + c100 + c50 + cmiss;
 
 	// Hidden | Flashlight | FadeIn
 	var hdfl = (mods & (1049608)) > 0;
@@ -564,7 +771,7 @@ function getRank(gameMode, mods, acc, c300, c100, c50, cmiss) {
 	var ss = hdfl ? "SSHD" : "SS";
 	var s = hdfl ? "SHD" : "S";
 
-	switch(gameMode) {
+	switch (gameMode) {
 		case 0:
 		case 1:
 			var ratio300 = c300 / total;
@@ -627,7 +834,7 @@ function getRank(gameMode, mods, acc, c300, c100, c50, cmiss) {
 
 function ppOrScore(pp, score) {
 	if (pp != 0)
-		return addCommas(pp.toFixed(2)) + "pp";
+		return addCommas(Math.round(pp)) + "pp";
 	return addCommas(score);
 }
 
@@ -637,3 +844,29 @@ function beatmapLink(type, id) {
 	return "<a href='/b/" + id + "'>" + id + '</a>';
 }
 
+function checkRelaxMania(mode, rx) {
+	if (rx == 1) {
+		for (i = 0; i <= 3; i++) {
+			$(`.simple-banner-swtich[data-mode='${i}']`).removeClass('disabled')
+		}
+		$(".simple-banner-swtich[data-mode='3']").addClass('disabled')
+	} else if (rx == 2) {
+		for (i = 1; i <= 3; i++) {
+			$(`.simple-banner-swtich[data-mode='${i}']`).addClass('disabled')
+		}
+	} else {
+		for (i = 0; i <= 3; i++) {
+			$(`.simple-banner-swtich[data-mode='${i}']`).removeClass('disabled')
+		}
+	}
+
+	if (mode === 3) {
+		$(".simple-banner-swtich[data-rx='1']").addClass('disabled')
+		$(".simple-banner-swtich[data-rx='2']").addClass('disabled')
+	} else if (mode === 1 || mode === 2) {
+		$(".simple-banner-swtich[data-rx='2']").addClass('disabled')
+	} else {
+		$(".simple-banner-swtich[data-rx='1']").removeClass('disabled')
+		$(".simple-banner-swtich[data-rx='2']").removeClass('disabled')
+	}
+}
