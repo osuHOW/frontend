@@ -422,14 +422,15 @@ body {
 }
 
 .game-mode-selector-item {
-    color: rgba(255,255,255,.93);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 1rem;
-    margin-right: 8px;
+    margin-left: 25px;
     user-select: none;
 }
 
 .active.item.game-mode-selector-item{
     font-weight: 700;
+    color: rgba(255,255,255,.93) !important;
 }
 
 *, ::after, ::before {
