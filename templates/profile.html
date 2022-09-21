@@ -16,7 +16,6 @@
 {{ $preferRelax := _or $grx 0 }}
 {{ $user := . }}
 
-
 {{ $donor := has .privileges 4 }}
 
 <link rel="stylesheet" href="/static/css/pages/profile.css" />
@@ -31,15 +30,12 @@
 		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
 		</div>
-		{{/* TODO: fix this */}}
-		{{ $modString := gameMods }}
-		{{ $modInt := gameMods }}
 		{{ $modeString := modes }}
 		{{ $modeInt := modes }}
 		<div class="game-mode-selector" id="mode-menu">
 			
 			{{ range $modeInt, $modeString := modes }}
-				<span class="{{ favMode $favouritemode $modeInt }}item game-mode-selector-item" data-mode="{{ $modeInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}&mod={{ $modInt }}">{{ $modeString }}</span>
+				<span class="{{ favMode $favouritemode $modeInt }}item game-mode-selector-item" data-mode="{{ $modeInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}">{{ $modeString }}</span>
 			{{ end }}
 		</div>
 	</div>
@@ -114,9 +110,9 @@
 		<div class="profile-user-info-playtime-container">
 			<i class="fa-solid fa-play profile-user-info-playtime-icon"></i>
 			{{ range $rx, $_ := .stats }}
-			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
-			<div class="profile-user-info-playtime-text" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
-			{{ end }}
+				{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
+					<div class="profile-user-info-playtime-text" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
+				{{ end }}
 			{{ end }}
 		</div>
 	</div>
