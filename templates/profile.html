@@ -14,7 +14,6 @@
 {{ with (.Get "users/full?id=%d" .UserID) }}
 {{ $favouritemode := _or $gqm .favourite_mode }}
 {{ $preferRelax := _or $grx 0 }}
-{{ $data := . }}
 {{ $user := . }}
 
 
@@ -48,7 +47,7 @@
 		<div class="profile-game-mod-selector" id="rx-menu">
 			{{/* TODO: add back autopilot */}}
 			<span class="0 item{{ if eq (int $preferRelax) 0 }} active{{ end }} profile-game-mode-selector-item" data-rx="0" href="/u/{{ $user.id }}?rx=0">Regular</span>
-			<span class="1 item profile-game-mode-selector-item" data-rx="1" href="/u/{{ $user.id }}?rx=1">Relax</span>
+			<span class="1 item{{ if eq (int $preferRelax) 1 }} active{{ end }} profile-game-mode-selector-item" data-rx="1" href="/u/{{ $user.id }}?rx=1">Relax</span>
 		</div>
 	</div>
 	<div class="profile-bg" style="--bg: var(--profile-bg)"></div>
@@ -114,9 +113,10 @@
 		{{ end }}
 		<div class="profile-user-info-playtime-container">
 			<i class="fa-solid fa-play profile-user-info-playtime-icon"></i>
-			{{ $rx := . }}
-			{{ range $k, $v := (slice $data.std $data.taiko $data.ctb $data.mania) }}
+			{{ range $rx, $_ := .stats }}
+			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
 			<div class="profile-user-info-playtime-text" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
+			{{ end }}
 			{{ end }}
 		</div>
 	</div>
