@@ -8,11 +8,12 @@
 {{/* TODO: show a banner if the user is silenced */}}
 {{ define "tpl" }}
 {{/* get some data we need */}}
+{{ $global := . }}
 {{ $gqm := atoi (.Gin.Query "mode") }}
 {{ with (.Get "users/full?id=%d" .UserID) }}
-{{ $global := . }}
 {{ $favouritemode := _or $gqm .favourite_mode }}
 {{ $user := . }}
+
 
 {{ $donor := has .privileges 4 }}
 
@@ -96,6 +97,22 @@
 					TODO: pinned medals
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="profile-user-info-bar">
+		<div class="profile-user-info-text">joined</div>
+		<div class="profile-user-info-text-bold">{{ (time $user.registered_on) }}</div>
+		<div class="profile-user-info-text">last seen</div>
+		<div class="profile-user-info-text-bold">{{ (time $user.latest_activity) }}</div>
+		{{ with playstyle .play_style $global }}
+		<div class="profile-user-info-text">plays with</div>
+		<div class="profile-user-info-text-bold">{{ . }}</div>
+		{{ end }}
+		<div class="profile-user-info-playtime-container">
+			<i class="fa-solid fa-play profile-user-info-playtime-icon"></i>
+			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
+			<div class="profile-user-info-text-bold" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
+			{{ end }}
 		</div>
 	</div>
 </div>

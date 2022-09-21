@@ -157,3 +157,36 @@
 	text-align: right;
 	color: white;
 }
+.profile-user-info-bar {
+	background: #373E3C;
+	display: flex;
+	flex-direction: row;
+	padding-inline: 4em;
+	height: 55px;
+	align-items: center;
+	width: 100%;
+}
+.profile-user-info-text {
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 16px;
+	margin-right: 6px;
+	color: white;
+}
+.profile-user-info-text-bold {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	margin-right: 26px;
+	color: white;
+}
+.profile-user-info-playtime-container {
+	display: flex;
+	flex-direction: row;
+	margin-left: auto
+}
+.profile-user-info-playtime-icon {
+	font-size: 14px;
+	color: white;
+	margin-right: 10px;
+}
