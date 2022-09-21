@@ -111,7 +111,7 @@
 		<div class="profile-user-info-playtime-container">
 			<i class="fa-solid fa-play profile-user-info-playtime-icon"></i>
 			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
-			<div class="profile-user-info-text-bold" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
+			<div class="profile-user-info-playtime-text" data-mode="{{ $k }}" {{ if ne $k (int $favouritemode) }} hidden{{ end }}>{{ playtimeConv .play_time }}</div>
 			{{ end }}
 		</div>
 	</div>

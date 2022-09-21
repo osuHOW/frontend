@@ -190,3 +190,9 @@
 	color: white;
 	margin-right: 10px;
 }
+.profile-user-info-playtime-text {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	color: white;
+}
