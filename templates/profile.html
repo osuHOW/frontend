@@ -30,10 +30,7 @@
 		<div style="/*! margin: 2em; */margin-left: 2em;align-content: center;display: flex;">
 			<span style="text-color: rgba(255,255,255,.93);color: rgba(255,255,255,.93);font-size: 1rem;">{{ .username }}'s Profile</span>
 		</div>
-		{{ $modeString := modes }}
-		{{ $modeInt := modes }}
 		<div class="game-mode-selector" id="mode-menu">
-			
 			{{ range $modeInt, $modeString := modes }}
 				<span class="{{ favMode $favouritemode $modeInt }}item game-mode-selector-item" data-mode="{{ $modeInt }}" href="/u/{{ $user.id }}?mode={{ $modeInt }}">{{ $modeString }}</span>
 			{{ end }}
@@ -44,6 +41,7 @@
 			{{/* TODO: add back autopilot */}}
 			<span class="0 item{{ if eq (int $preferRelax) 0 }} active{{ end }} profile-game-mode-selector-item" data-rx="0" href="/u/{{ $user.id }}?rx=0">Regular</span>
 			<span class="1 item{{ if eq (int $preferRelax) 1 }} active{{ end }} profile-game-mode-selector-item" data-rx="1" href="/u/{{ $user.id }}?rx=1">Relax</span>
+			<span class="2 item{{ if eq (int $preferRelax) 2 }} active{{ end }} profile-game-mode-selector-item" data-rx="2" href="/u/{{ $user.id }}?rx=2">Autopilot</span>
 		</div>
 	</div>
 	<div class="profile-bg" style="--bg: var(--profile-bg)"></div>
