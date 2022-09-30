@@ -45,10 +45,11 @@
 						</div>
 						<div class="field">
 							<div class="form-label-text">{{ .T "Password (at least 8 characters)" }}</div>
-							<input tabindex="2" type="password" name="password" placeholder="{{ .T "Password" }}" value="{{ .FormData.password }}" required pattern="^.{8,}$">
+							<input tabindex="2" type="password" name="password" placeholder="{{ .T "Password" }}" spellcheck="false" value="{{ .FormData.password }}" required pattern="^.{8,}$">
 						</div>
 						<div class="field">
 							<div class="form-label-text">{{ .T "Email (used for password reset)" }}</div>
+							{{/* TODO: don't require email */}}
 							<input tabindex="3" type="email" name="email" placeholder="{{ .T "Email" }}" value="{{ .FormData.email }}" required>
 						</div>
 						<div class="field">

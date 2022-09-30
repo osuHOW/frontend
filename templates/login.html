@@ -34,7 +34,7 @@ KyutGrillHue=212deg
 						</div>
 						<div class="field">
 							<div class="form-label-text">{{ .T "Password" }} <a href="/pwreset">{{ .T "(forgot?)" }}</a></div>
-							<input tabindex="2" type="password" name="password" placeholder="{{ .T "Password" }}" value="{{ .FormData.password }}" required>
+							<input tabindex="2" type="password" name="password" spellcheck="false" placeholder="{{ .T "Password" }}" value="{{ .FormData.password }}" required>
 						</div>
 						<input type="hidden" name="redir" value="{{ or (.Gin.Query "redir") .FormData.redir }}">
 						{{ ieForm .Gin }}
