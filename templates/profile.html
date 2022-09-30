@@ -124,7 +124,35 @@
 			<div class="profile-user-info-playtime-text">TODO</div>
 		</div>
 	</div>
-	<div class="profile-main-stats-container"></div>
+	{{/* improve this */}}
+	<div class="profile-main-stats-container">
+		{{ range $rx, $_ := .stats }}
+			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
+				<div class="profile-stats-container" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
+					<div>
+						<div class="profile-stats-left-text">ranked score</div>
+						<div class="profile-stats-left-text">total score</div>
+						<div class="profile-stats-left-text">playcount</div>
+						<div class="profile-stats-left-text">max combo</div>
+						<div class="profile-stats-left-text">followers</div>
+						<div class="profile-stats-left-text">replays watched</div>
+						<div class="profile-stats-left-text">total hits</div>
+						<div class="profile-stats-left-text">accuracy</div>
+					</div>
+					<div class="profile-stats-right-text-container">
+						<div class="profile-stats-right-text">{{ humanize .ranked_score }}</div>
+						<div class="profile-stats-right-text">{{ humanize .total_score }}</div>
+						<div class="profile-stats-right-text">{{ humanize .playcount }}</div>
+						<div class="profile-stats-right-text">TODO</div>
+						<div class="profile-stats-right-text">TODO</div>
+						<div class="profile-stats-right-text">{{ humanize .replays_watched }}</div>
+						<div class="profile-stats-right-text">{{ humanize .total_hits }}</div>
+						<div class="profile-stats-right-text">{{ printf "%.2f" .accuracy }}%</div>
+					</div>
+				</div>
+			{{ end }}
+		{{ end }}
+	</div>
 </div>
 {{ end }}
 {{ end }}

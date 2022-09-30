@@ -238,4 +238,31 @@
 	flex-direction: row;
 	min-height: 304px;
 	width: 100%;
+	align-items: center;
+	padding-inline: 48px;
+}
+.profile-stats-container {
+	background: #2C3130;
+	border-radius: 8px;
+	display: flex;
+	position: absolute;
+	min-height: 263px;
+	min-width: 261px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-inline: 4px;
+	padding: 18px;
+}
+.profile-stats-left-text {
+	font-weight: 400;
+	font-size: 15px;
+	color: white;
+}
+.profile-stats-right-text-container {
+	margin-left: auto;
+}
+.profile-stats-right-text {
+	font-weight: 700;
+	font-size: 15px;
+	color: white;
 }
