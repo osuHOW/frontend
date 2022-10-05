@@ -10,3 +10,4 @@ semantic/gulpfile.tmp.*.js
 static/oauth-apps/*
 !static/oauth-apps/.keep
 .DS_Store
+.vs
