@@ -245,9 +245,8 @@
 	background: #2C3130;
 	border-radius: 8px;
 	display: flex;
-	position: absolute;
-	min-height: 263px;
-	min-width: 261px;
+	height: 263px;
+	width: 261px;
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-inline: 4px;
@@ -265,4 +264,65 @@
 	font-weight: 700;
 	font-size: 15px;
 	color: white;
+}
+.profile-rank-stats-container {
+	display: flex;
+	width: 658px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-inline: 4px;
+	flex-direction: column;
+}
+.profile-rank-info-container{
+	background: #373E3C;
+	border-radius: 8px 8px 0px 0px;
+	padding: 18px;
+	display:flex;
+	width: 100%;
+	flex-direction: row;
+	/* nice */
+	max-height: 69px;
+}
+.profile-rank-text-sm{
+	color: #FFFFFF;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 14px;
+}
+.profile-rank-text-lg{
+	margin-top: 2px;
+	color: #18FFB1;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 24px;
+}
+.profile-country-rank-container{
+	margin-left: 24px;
+}
+.profile-game-ranks-container{
+	margin-left: auto;
+	color: #FFFFFF
+}
+.profile-rank-graph-container{
+	width: 658px;
+	height: 147px;
+	background: #2C3130;
+	display:flex;
+	width: 100%;
+	padding: 18px;
+}
+.profile-stats-bottom-bit{
+	background: #373E3C;
+	border-radius: 0px 0px 8px 8px;
+	padding: 18px;
+	display:flex;
+	width: 100%;
+	flex-direction: row;
+	max-height: 47px;
+}
+.profile-stats-bottom-bit-text {
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 15px;
+	color: #FFFFFF;
 }

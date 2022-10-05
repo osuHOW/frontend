@@ -124,10 +124,35 @@
 			<div class="profile-user-info-playtime-text">TODO</div>
 		</div>
 	</div>
-	{{/* improve this */}}
+
 	<div class="profile-main-stats-container">
 		{{ range $rx, $_ := .stats }}
 			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
+				{{/* we are praying it will be the same size as the other box */}}
+				<div class="profile-rank-stats-container" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
+					<div class="profile-rank-info-container">
+						<div>
+							<div class="profile-rank-text-sm">global rank</div>
+							<div class="profile-rank-text-lg">{{ with and $v $v.global_leaderboard_rank }}#{{ . }}{{ else }}-{{ end }}</div>
+						</div>
+						<div class="profile-country-rank-container">
+							<div class="profile-rank-text-sm">country rank</div>
+							<div class="profile-rank-text-lg">{{ with and $v $v.country_leaderboard_rank }}#{{ . }}{{ else }}-{{ end }}</div>
+						</div>
+						<div class="profile-game-ranks-container">
+							TODO: Game ranks
+						</div>
+					</div>
+					<div class="profile-rank-graph-container">
+
+					</div>
+					<div class="profile-stats-bottom-bit">
+						<div class="profile-stats-bottom-bit-text">
+							{{ humanize .pp }} pp
+						</div>
+					</div>
+				</div>
+				{{/* this is rather cursed, needs to be improved. */}}
 				<div class="profile-stats-container" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
 					<div>
 						<div class="profile-stats-left-text">ranked score</div>

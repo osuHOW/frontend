@@ -1,3 +1,7 @@
+[hidden], template {
+    display: none !important;
+}
+
 body {
 	font-family: 'Comfortaa', 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	font-size: 14px;
