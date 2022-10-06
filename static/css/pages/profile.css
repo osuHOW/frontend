@@ -251,19 +251,26 @@
 	margin-bottom: auto;
 	margin-inline: 4px;
 	padding: 18px;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	/* padding so the space between the items looks less cursed,
+	   change if you are adding new items. */
+	padding-block: 32px;
 }
 .profile-stats-left-text {
 	font-weight: 400;
 	font-size: 15px;
 	color: white;
 }
-.profile-stats-right-text-container {
-	margin-left: auto;
-}
 .profile-stats-right-text {
 	font-weight: 700;
 	font-size: 15px;
 	color: white;
+	margin-left:auto;
+}
+.profile-stats-text-container{
+	display: flex;
 }
 .profile-rank-stats-container {
 	display: flex;
