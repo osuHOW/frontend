@@ -249,14 +249,12 @@ function initialisePinnedAchievements() {
 	api('users/achievements/pinned',
 		{id: userID}, function (resp) {
 		var achievements = resp.achievements;
-		// if we don't have pinned medals, we remove the container so its just blank space
 		if (achievements.length === 0) {
-			$("#pinned-medals-container").remove();
 			return;
 		}
 
 		var displayAchievements = function(limit, achievedOnly) {
-			var $ach = $("#pinned-medals").empty();
+			var $base = $("#pinned-medals-container").empty();
 			limit = 5
 			var shown = 0;
 			for (var i = 0; i < achievements.length; i++) {
@@ -265,6 +263,9 @@ function initialisePinnedAchievements() {
 					continue;
 				}
 				shown++;
+				// create a container for the pinned medals
+				$base.append("<div class=\"profile-pinned-medal-text-container\"> pinned medals <img src=\"/static/icons/pinned-medal.svg\" class=\"profile-pinned-medal-icon\"/> </div> <div id=\"pinned-medals\" class=\"profile-pinned-medal-medal-container\"></div>")
+				var $ach = $("#pinned-medals").empty();
 				$ach.append(
 					$("<i class='profile-pinned-medal-medal-icon' style=\"--pinned-medal-icon: url('https://s.eggradio.tk/images/medals-" + "client/" + ach.icon + ".png')\"" + "/>").popup({
 						title: ach.name,

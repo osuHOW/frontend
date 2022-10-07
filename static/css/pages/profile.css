@@ -131,9 +131,9 @@
 }
 .profile-pinned-medal-container {
 	margin-left: auto;
-	display: flex;
 	flex-direction: column;
 	width: 100%;
+	display: flex;
 }
 .profile-pinned-medal-text-container {
 	font-weight: 700;
