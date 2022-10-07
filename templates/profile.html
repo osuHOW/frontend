@@ -39,7 +39,6 @@
 	</div>
 	<div class="profile-game-mods-segment">
 		<div class="profile-game-mod-selector" id="rx-menu">
-			{{/* TODO: add back autopilot */}}
 			<span class="0 item{{ if eq (int $preferRelax) 0 }} active{{ end }} profile-game-mode-selector-item" data-rx="0" href="/u/{{ $user.id }}?rx=0">Regular</span>
 			<span class="1 item{{ if eq (int $preferRelax) 1 }} active{{ end }} profile-game-mode-selector-item" data-rx="1" href="/u/{{ $user.id }}?rx=1">Relax</span>
 			<span class="2 item{{ if eq (int $preferRelax) 2 }} active{{ end }} profile-game-mode-selector-item" data-rx="2" href="/u/{{ $user.id }}?rx=2">Autopilot</span>
@@ -91,9 +90,7 @@
 				<div class="profile-pinned-medal-text-container">
 					pinned medals <img src="/static/icons/pinned-medal.svg" class="profile-pinned-medal-icon"/>
 				</div>
-				<div class="profile-pinned-medal-medal-container">
-					TODO: pinned medals
-				</div>
+				<div id="pinned-medals" class="profile-pinned-medal-medal-container"></div>
 			</div>
 		</div>
 	</div>

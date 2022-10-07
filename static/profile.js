@@ -55,6 +55,7 @@ $(document).ready(function() {
 		$(this).addClass("active");
 		window.history.replaceState('', document.title, `${wl.pathname}?mode=${m}&rx=${preferRelax}${wl.hash}`);
 	});
+	initialisePinnedAchievements()
 	initialiseAchievements();
 	initialiseFriends();
 	// load scores page for the current favourite mode
@@ -207,7 +208,7 @@ function initialiseAchievements() {
 				shown++;
 				$ach.append(
 					$("<div class='ui two wide column'>").append(
-						$("<img src='https://s.ripple.moe/images/medals-" +
+						$("<img src='https://s.eggradio.tk/images/medals-" +
 							"client/" + ach.icon + ".png' alt='" + ach.name +
 							"' class='" +
 							(!ach.achieved ? "locked-achievement" : "achievement") +
@@ -218,6 +219,59 @@ function initialiseAchievements() {
 							distanceAway: 10
 						})
 					)
+				);
+			}
+			// if we've shown nothing, and achievedOnly is enabled, try again
+			// this time disabling it.
+			if (shown == 0 && achievedOnly) {
+				displayAchievements(limit, false);
+			}
+		};
+
+		// only 8 achievements - we can remove the button completely, because
+		// it won't be used (no more achievements).
+		// otherwise, we simply remove the disabled class and add the click handler
+		// to activate it.
+		if (achievements.length <= 8) {
+			$("#load-more-achievements").remove();
+		} else {
+			$("#load-more-achievements")
+				.removeClass("disabled")
+				.click(function() {
+				$(this).remove();
+				displayAchievements(-1, false);
+			});
+		}
+		displayAchievements(8, true);
+	});
+}
+function initialisePinnedAchievements() {
+	api('users/achievements/pinned',
+		{id: userID}, function (resp) {
+		var achievements = resp.achievements;
+		// if we don't have pinned medals, we remove the container so its just blank space
+		if (achievements.length === 0) {
+			$("#pinned-medals-container").remove();
+			return;
+		}
+
+		var displayAchievements = function(limit, achievedOnly) {
+			var $ach = $("#pinned-medals").empty();
+			limit = 5
+			var shown = 0;
+			for (var i = 0; i < achievements.length; i++) {
+				var ach = achievements[i];
+				if (shown >= limit || (achievedOnly && !ach.achieved)) {
+					continue;
+				}
+				shown++;
+				$ach.append(
+					$("<i class='profile-pinned-medal-medal-icon' style=\"--pinned-medal-icon: url('https://s.eggradio.tk/images/medals-" + "client/" + ach.icon + ".png')\"" + "/>").popup({
+						title: ach.name,
+						content: ach.description,
+						position: "bottom center",
+						distanceAway: 10
+					})
 				);
 			}
 			// if we've shown nothing, and achievedOnly is enabled, try again
