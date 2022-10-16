@@ -313,7 +313,7 @@ function initialiseAchievements() {
 				shown++;
 				$ach.append(
 					$("<div class='ui two wide column'>").append(
-						$("<img src='https://s.eggradio.tk/images/medals-" +
+						$("<img src='https://s.osuhow.cf/images/medals-" +
 							"client/" + ach.icon + ".png' alt='" + ach.name +
 							"' class='" +
 							(!ach.achieved ? "locked-achievement" : "achievement") +
@@ -374,7 +374,7 @@ function initialisePinnedAchievements() {
 				shown++;
 				
 				$ach.append(
-					$("<i class='profile-pinned-medal-medal-icon' style=\"--pinned-medal-icon: url('https://s.eggradio.tk/images/medals-" + "client/" + ach.icon + ".png')\"" + "/>").popup({
+					$("<i class='profile-pinned-medal-medal-icon' style=\"--pinned-medal-icon: url('https://s.osuhow.cf/images/medals-" + "client/" + ach.icon + ".png')\"" + "/>").popup({
 						title: ach.name,
 						content: ach.description,
 						position: "bottom center",
