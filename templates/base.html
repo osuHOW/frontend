@@ -181,7 +181,7 @@ function recalcRestrictedBannerHeight() {
 			var currentUserID = {{ .Context.User.ID }};
 		</script>
 		{{/* If we got some more scripts to print, print'em */}}
-		<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.2"></script>
+		<script src="/static/twemoji.min.js"></script>
 		<script src="/static/dist.min.js?{{ unixNano }}"></script>
 		<script src="/static/timeago-locale/jquery.timeago.en.js"></script>
 		{{ if .Scripts }}
