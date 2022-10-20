@@ -4,13 +4,4 @@
 This is a super experimental redesign of hanayo, it will eventually replace our existing frontend design.
 If you are looking for a frontend to run your own server, this is far from completion, and it won't be for at least another six months (realistically much more), until then, you should check out [Akatsuki's fork of hanayo](https://github.com/osuAkatsuki/hanayo) or [Varkaria's guweb](https://github.com/Varkaria/guweb)
 
-Running this code should be as simple as typing
-```
-go get
-go build
-./frontend
-```
-
-if not, you can try deleting the vendor folder and trying again.
-
-at the moment, this code only works on linux
+If you wish to contribute or you just have questions, please contact obamacode#8219 on discord, or make an issue on this repo.
