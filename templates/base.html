@@ -128,8 +128,8 @@ function recalcRestrictedBannerHeight() {
 					</div>
 				{{ end }}
 			</div>
-
 		</div>
+
 		<div class="footer">
 			<div class="page-container">
 				<div class="footer-container">
@@ -167,10 +167,18 @@ function recalcRestrictedBannerHeight() {
 								
 							</div>
 					</div>
-
 				</div>
-
-			</div>		<script>
+			</div>
+		</div>
+		</div>
+		{{ if eq (config "BaseURL") "https://shine.osuhow.cf" }}
+			<div class="preview-site-footer">
+				<div class="preview-site-footer-title">
+					You're on the osuHOW shine preview! Everything you see here (including this banner!) is not final and is subject to major changes in the not too distant future!
+				</div>
+			</div>
+		{{ end }}
+			<script>
 			var frontendConf = {
 				avatars:   {{ .Conf.AvatarURL }},
 				banchoAPI: {{ .Conf.BanchoAPIPublic }},
