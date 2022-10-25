@@ -1,3 +1,5 @@
+/* todo: mobile support */
+
 .profile-game-mods-segment {
 	padding: 2em;
     height: 55px;
@@ -341,4 +343,12 @@
 	font-size: 15px;
 	line-height: 15px;
 	color: #FFFFFF;
+}
+.profile-level-info-container {
+	background: #2C3130;
+	display: flex;
+	padding-inline: 4em;
+	min-height: 72px;
+	align-items: center;
+	width: 100%;
 }
