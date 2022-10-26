@@ -236,22 +236,22 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: repeating-linear-gradient( -45deg, yellow, yellow 40px, black 40px, black 80px );
+    background: repeating-linear-gradient( -45deg, #cfaf00, #cfaf00 40px, #ffda00 40px, #ffda00 80px );
     text-align: center;
     border-top: 0px;
-    padding: 30px;
+    padding: 20px;
     display:flex;
 }
 
 .preview-site-footer-title {
     border-radius: 24px 24px 24px 24px;
     display:flex;
-    color: white;
+    color: black;
     padding: 14px;
     margin-right: auto;
     margin-left: auto;
-    background:black;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .footer {
