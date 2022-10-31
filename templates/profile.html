@@ -125,6 +125,7 @@
 		{{ range $rx, $_ := .stats }}
 			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
 				{{/* we are praying it will be the same size as the other box */}}
+				{{/* TODO: if there's a better way to do this, do it */}}
 				<div class="profile-rank-stats-container" data-rx="{{ $rx }}" data-mode="{{ $k }}" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
 					<div class="profile-rank-info-container">
 						<div>
@@ -194,10 +195,17 @@
 		{{ end }}
 	</div>
 	<div class="profile-level-info-container">
+		{{/* level */}}
+		{{ range $rx, $_ := .stats }}
+			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
+				<div class="progress-bar" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
+					<div class="progress-bar-inner" style="width: {{ levelPercent .level }}%; --progress-bar-color: #FFDC60"></div>
+				</div>
+			{{ end }}
+		{{ end}}
+		{{/* medal count */}}
 		<div class="progress-bar">
-			<div class="progress-bar-inner" style="width: 50%; --progress-bar-color: #FFDC60"></div>
-		</div>
-		<div class="progress-bar">
+			
 			<div class="progress-bar-inner" style="width: 50%; --progress-bar-color: #FF66AA"></div>
 		</div>
 	</div>
