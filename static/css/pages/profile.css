@@ -363,10 +363,11 @@
 	font-weight: 700;
     display: flex;
 	color: white;
-	background-image: url(/static/icons/level.svg);
+	background-image: var(--level-icon);
 	margin-right: 5px;
 	background-repeat: no-repeat;
 }
+
 .profile-level-info-container {
 	display: flex;
 	padding: 10px;
