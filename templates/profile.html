@@ -194,19 +194,35 @@
 			{{ end }}
 		{{ end }}
 	</div>
-	<div class="profile-level-info-container">
+	<div class="profile-level-info-bar">
 		{{/* level */}}
 		{{ range $rx, $_ := .stats }}
 			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
-				<div class="progress-bar" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
-					<div class="progress-bar-inner" style="width: {{ levelPercent .level }}%; --progress-bar-color: #FFDC60"></div>
+				<div class="profile-level-info-container" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
+					<div class="profile-level-icon-container">
+						<div class="profile-level-info-icon-text">
+							{{ level .level }}
+						</div>
+					</div>
+					<div class="profile-level-progress-bar-container">
+						<div class="profile-level-info-text-container">
+							<div class="profile-level-info-text">Level</div>
+							<div class="profile-level-info-text" style="margin-left:auto;">{{ levelPercent .level }}%</div>
+						</div>
+						<div class="progress-bar profile-level-info-progress-bar" >
+							<div class="progress-bar-inner" style="width: {{ levelPercent .level }}%; --progress-bar-color: #FFDC60"></div>
+						</div>
+					</div>
 				</div>
 			{{ end }}
 		{{ end}}
 		{{/* medal count */}}
-		<div class="progress-bar">
-			
-			<div class="progress-bar-inner" style="width: 50%; --progress-bar-color: #FF66AA"></div>
+		<div class="profile-level-info-container">
+			<div class="profile-level-progress-bar-container">
+				<div class="progress-bar">
+					<div class="progress-bar-inner" style="width: 50%; --progress-bar-color: #FF66AA"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
