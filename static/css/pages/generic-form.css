@@ -37,11 +37,7 @@
     height: 96px;
     font-size: 96px;
 }
-/*todo: do this properly */
-.form-filler{
-    /* i hate */
-    flex-grow: 1;
-}
+
 .form-label-text{
     color: white;
     font-weight: 400;
