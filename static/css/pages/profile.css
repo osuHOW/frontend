@@ -65,6 +65,7 @@
 	align-items: center;
 	color: white;
 	margin-right: 15px;
+	inline-size: max-content;
 }
 .profile-clan-container {
 	font-weight: 700;
@@ -74,6 +75,7 @@
 	align-items: center;
 	color: white;
 	margin-right: 15px;
+	inline-size: max-content;
 }
 .profile-country-flag {
 	width: 37px;
