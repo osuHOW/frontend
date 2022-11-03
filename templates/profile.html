@@ -196,9 +196,7 @@
 			{{ range $k, $v := (slice .std .taiko .ctb .mania) }}
 				<div class="profile-level-info-container" style="--level-icon: url(/static/icons/level.png);" {{ if or (ne $rx (int $preferRelax)) (ne $k (int $favouritemode)) }} hidden{{ end }}>
 					<div class="profile-level-icon-container">
-						<div class="profile-level-info-icon-text">
-							{{ level .level }}
-						</div>
+						{{ level .level }}
 					</div>
 					<div class="profile-level-progress-bar-container">
 						<div class="profile-level-info-text-container">
@@ -215,9 +213,7 @@
 		{{/* medal count */}}
 		<div class="profile-level-info-container" style="--level-icon: url(/static/icons/medal.png);">
 			<div class="profile-level-icon-container">
-				<div class="profile-level-info-icon-text">
-					888
-				</div>
+				888
 			</div>
 			<div class="profile-level-progress-bar-container">
 				<div class="profile-level-info-text-container">

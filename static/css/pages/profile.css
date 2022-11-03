@@ -355,17 +355,18 @@
 	gap: 10px;
 }
 .profile-level-icon-container {
+	display: flex;
 	align-items: center;
-    text-align: center;
-    width: 48px;
-    height: 48px;
-    font-size: 16px;
-	font-weight: 700;
-    display: flex;
-	color: white;
+	justify-content: center;
+	text-align: center;
+	width: 48px;
+	height: 48px;
 	background-image: var(--level-icon);
-	margin-right: 5px;
 	background-repeat: no-repeat;
+	font-size: 14px;
+	font-weight: 700;
+	color: white;
+	margin-right:5px;
 }
 
 .profile-level-info-container {
@@ -390,14 +391,6 @@
 	font-size: 14px;
 	line-height: 16px;
 	margin-bottom: 4px;
-}
-.profile-level-info-icon-text{
-	color:white;
-	font-weight: 700;
-	font-size: 14px;
-	line-height: 16px;
-	margin-left:auto;
-	margin-right:auto;
 }
 .profile-level-info-text-container {
 	display:flex;
