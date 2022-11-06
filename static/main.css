@@ -480,12 +480,16 @@ body {
 }
 .beatmap-info-panel-slim-main-container{
     background-image: var(--beatmap-background);
+    /* fallback incase theres no background */
+    background-color: #2E3836;
+    background-size:cover;
+    background-position-y: center;
     min-height: 69px;
     border-radius: 8px;
     padding: 0px 40px 0px 70px;
 }
 .beatmap-info-panel-slim-glass-container {
-	background: rgba(23, 28, 27, 0.9);
+	background: rgba(23, 28, 27, 0.84);
 	backdrop-filter: blur(2px);
 	border-radius: 8px;
 	transform: skew(-35deg);

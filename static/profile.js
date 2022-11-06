@@ -257,7 +257,7 @@ function loadGraph(mode, cdata, minPP, maxPP) {
 
 
 function loadMostPlayedBeatmaps(mode) {
-	var mostPlayedTable = $("#scores-zone div[data-mode=" + mode + "] table[data-type='most-played']");
+	var mostPlayedTable = $("div[data-mode=" + mode + "] table[data-type='most-played']");
 	currentPage[mode].mostPlayed++
 	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
 		if (resp.beatmaps === null) {
