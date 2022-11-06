@@ -244,7 +244,6 @@
 					{{ with $global.Get "users/most_played?id=%.0f" .id }}
 						{{ if .beatmaps }}
 							{{ range .beatmaps }}
-								{{/* use some random proxy otherwise it wont work when you have a switcher on */}}
 								<div class="beatmap-info-panel-slim-main-container" style="--beatmap-background: url('https://assets.ppy.sh/beatmaps/{{ .beatmapset_id }}/covers/cover.jpg');">
 									<div class="beatmap-info-panel-slim-glass-container">
 										<div class="beatmap-info-panel-slim-playtime-container">
