@@ -422,12 +422,6 @@
 	align-items: flex-start;
 	display:flex;
 }
-.profile-big-panel-content{
-	background:#202524;
-	padding-inline: 41px;
-	padding-block: 18px;
-	border-radius: 0px 0px 8px 8px;
-}
 .profile-big-panel-htext-container {
 	border-radius: 0px 0px 5px 0px ;
 	transform: skew(-35deg) translatex(-40px);
@@ -447,5 +441,23 @@
 	color: rgba(0, 0, 0, 0.8) ;
 	margin-left: 38px ;
 	margin-right: 1em;
-
+}
+.profile-big-panel-content{
+	background:#202524;
+	padding-inline: 41px;
+	padding-block: 18px;
+	border-radius: 0px 0px 8px 8px;
+}
+.profile-big-panel-text {
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 22px;
+	color: #18FFB1;
+	margin-top:4px;
+}
+.profile-most-played-container{
+	margin-top:3px;
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
 }
