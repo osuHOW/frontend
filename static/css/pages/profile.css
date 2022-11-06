@@ -459,5 +459,8 @@
 	margin-top:3px;
 	display: flex;
 	flex-direction: column;
-	gap: 9px;
+	gap: 2px;
+	max-height: 497px;
+	overflow: scroll;
+	scrollbar-width: none;
 }

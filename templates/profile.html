@@ -239,11 +239,11 @@
 				<div class="profile-big-panel-text">
 					most played beatmaps
 				</div>
+				<div class="profile-most-played-container" data-type="most-played">
 				{{/* i really should be using js, but i do it like this because i suck at js */}}
-				{{ with $global.Get "users/most_played?id=%.0f" .id }}
-					{{ if .beatmaps }}
-						{{ range .beatmaps }}
-							<div class="profile-most-played-container" data-type="most-played">
+					{{ with $global.Get "users/most_played?id=%.0f" .id }}
+						{{ if .beatmaps }}
+							{{ range .beatmaps }}
 								{{/* use some random proxy otherwise it wont work when you have a switcher on */}}
 								<div class="beatmap-info-panel-slim-main-container" style="--beatmap-background: url('https://i0.wp.com/assets.ppy.sh/beatmaps/{{ .beatmapset_id }}/covers/cover.jpg');">
 									<div class="beatmap-info-panel-slim-glass-container">
@@ -258,17 +258,17 @@
 														{{ .artist }} - <b>{{ .title }}</b>
 													</div>
 													<div class="beatmap-info-panel-slim-text-sm">
-														mapped by <b>{{ .creator }}</b>
+															mapped by <b>{{ .creator }}</b>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							{{ end }}
 						{{ end }}
 					{{ end }}
-				{{ end }}
+				</div>
 			</div>
 		</div>
 	</div>
