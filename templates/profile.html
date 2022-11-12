@@ -240,7 +240,7 @@
 					most played beatmaps
 				</div>
 				<div class="profile-most-played-container" data-type="most-played">
-				{{/* i really should be using js, but i do it like this because i suck at js */}}
+				{{/* TODO: redo this in js and make it have a load more button instead of scrolling */}}
 					{{ with $global.Get "users/most_played?id=%.0f" .id }}
 						{{ if .beatmaps }}
 							{{ range .beatmaps }}
@@ -268,6 +268,45 @@
 						{{ end }}
 					{{ end }}
 				</div>
+			</div>
+		</div>
+		<div class="profile-big-panel-container">
+			<div class="profile-big-panel-topper">
+				<div class="profile-big-panel-htext-container">
+					<div class="profile-big-panel-htext">
+						beatmaps
+					</div>
+				</div>
+			</div>
+			{{ with $global.Get "users/favourites?id=%.0f" .id }}
+				{{ if .beatmaps }}
+					<div class="profile-big-panel-content">
+						<div class="profile-big-panel-text">
+							favourites
+						</div>
+						<div class="profile-most-played-container" data-type="most-played">
+						{{/* TODO: redo this in js and make it have a load more button instead of scrolling */}}
+							{{ range .beatmaps }}
+								<div class="beatmap-info-panel-slim-main-container" style="--beatmap-background: url('https://assets.ppy.sh/beatmaps/{{ .beatmapset_id }}/covers/cover.jpg');">
+									<div class="beatmap-info-panel-slim-glass-container">
+										<div class="beatmap-info-panel-slim-info-background">
+											<div class="beatmap-info-panel-slim-info-container">
+												<div class="beatmap-info-panel-slim-text-container">
+													<div class="beatmap-info-panel-slim-text-lg">
+														{{ .artist }} - <b>{{ .title }}</b>
+													</div>
+													<div class="beatmap-info-panel-slim-text-sm">
+															mapped by <b>{{ .creator }}</b>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							{{ end }}
+						</div>
+					{{ end }}
+				{{ end }}
 			</div>
 		</div>
 	</div>
