@@ -61,6 +61,9 @@ $(document).ready(function() {
 	var mostPlayedButtonContainer = $("#most-played-button-container");
 	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button\">placeholder load more button!</button>").click(loadMoreMostPlayed))
 	loadMostPlayedBeatmaps();
+	var favouriteBeatmapsButtonContainer = $("#favourite-beatmaps-button-container");
+	favouriteBeatmapsButtonContainer.append($("<button class=\"solid-button profile-load-more-button\">placeholder load more button!</button>").click(loadMoreFavourites))
+	loadFavouriteBeatmaps();
 	// load scores page for the current favourite mode
 	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode)};
 	if (i18nLoaded)
@@ -383,7 +386,7 @@ function loadMostPlayedBeatmaps() {
 	var mode = 0
 	var mostPlayedTable = $("#most-played");
 	currentPage[mode].mostPlayed++
-	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
+	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 20}, function (resp) {
 		if (resp.beatmaps === null) {
 			return;
 		}
@@ -395,6 +398,40 @@ function loadMostPlayedBeatmaps() {
 											<i class=\"fa-solid fa-play beatmap-info-panel-slim-playtime-icon\"></i> \
 											<div class=\"beatmap-info-panel-slim-playtime-text\">" + el.playcount + "</div> \
 										</div> \
+										<div class=\"beatmap-info-panel-slim-info-background\"> \
+											<div class=\"beatmap-info-panel-slim-info-container\"> \
+												<div class=\"beatmap-info-panel-slim-text-container\"> \
+													<div class=\"beatmap-info-panel-slim-text-lg\"> \
+														" + el.artist + " - <b>" + el.title + "</b> \
+													</div> \
+													<div class=\"beatmap-info-panel-slim-text-sm\"> \
+															mapped by <b>" + el.creator + "</b> \
+													</div> \
+												</div> \
+											</div> \
+										</div> \
+									</div> \
+								</div>")
+			);
+		}
+		)
+		
+								
+	})
+}
+
+function loadFavouriteBeatmaps() {
+	var mode = 0
+	var favouritesTable = $("#favourites");
+	currentPage[mode].favouritesCount++
+	api('users/favourites', {id: userID, mode: mode, p: currentPage[mode].favouritesCount, l: 20}, function (resp) {
+		if (resp.beatmaps === null) {
+			return;
+		}
+		resp.beatmaps.forEach(function(el, idx) {
+			favouritesTable.append(
+				$("<div class=\"beatmap-info-panel-slim-main-container\" style=\"--beatmap-background: url('https://assets.ppy.sh/beatmaps/" + el.beatmapset_id + "/covers/cover.jpg');\"> \
+									<div class=\"beatmap-info-panel-slim-glass-container\"> \
 										<div class=\"beatmap-info-panel-slim-info-background\"> \
 											<div class=\"beatmap-info-panel-slim-info-container\"> \
 												<div class=\"beatmap-info-panel-slim-text-container\"> \
@@ -550,6 +587,14 @@ function loadMoreMostPlayed() {
 	t.addClass("disabled");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadMostPlayedBeatmaps(mode);
+}
+function loadMoreFavourites() {
+	var t = $(this);
+	if (t.hasClass("disabled"))
+		return;
+	t.addClass("disabled");
+	var mode = t.parents("div[data-mode]").data("mode");
+	loadFavouriteBeatmaps(mode);
 }
 // currentPage for each mode
 var currentPage = {
