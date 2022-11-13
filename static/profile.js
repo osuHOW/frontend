@@ -58,6 +58,8 @@ $(document).ready(function() {
 	initialisePinnedAchievements();
 	initialiseAchievements();
 	initialiseFriends();
+	var mostPlayedButtonContainer = $("#most-played-button-container");
+	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button\">placeholder load more button!</button>").click(loadMoreMostPlayed))
 	loadMostPlayedBeatmaps();
 	// load scores page for the current favourite mode
 	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode)};
@@ -379,7 +381,7 @@ function initialiseAchievements() {
 
 function loadMostPlayedBeatmaps() {
 	var mode = 0
-	var mostPlayedTable = $("#most-played").empty();
+	var mostPlayedTable = $("#most-played");
 	currentPage[mode].mostPlayed++
 	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
 		if (resp.beatmaps === null) {
@@ -410,9 +412,8 @@ function loadMostPlayedBeatmaps() {
 			);
 		}
 		)
-		if (resp.beatmaps.length === 5) {
-			mostPlayedTable.find('.load-more').removeClass('disabled')
-		}
+		
+								
 	})
 }
 

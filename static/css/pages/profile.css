@@ -463,3 +463,9 @@
 	scrollbar-width: none;
 	overflow-x: visible;
 }
+.profile-load-more-button {
+	display:flex;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 14px;
+}
