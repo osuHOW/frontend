@@ -423,8 +423,8 @@ function loadMostPlayedBeatmaps() {
 function loadFavouriteBeatmaps() {
 	var mode = 0
 	var favouritesTable = $("#favourites");
-	currentPage[mode].favouritesCount++
-	api('users/favourites', {id: userID, mode: mode, p: currentPage[mode].favouritesCount, l: 20}, function (resp) {
+	currentPage[mode].favourites++
+	api('users/favourites', {id: userID, mode: mode, p: currentPage[mode].favourites, l: 20}, function (resp) {
 		if (resp.beatmaps === null) {
 			return;
 		}
@@ -575,7 +575,7 @@ function loadMoreClick() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
-	t.addClass("disabled");
+	//t.addClass("disabled");
 	var type = t.parents("table[data-type]").data("type");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadScoresPage(type, mode);
@@ -584,7 +584,7 @@ function loadMoreMostPlayed() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
-	t.addClass("disabled");
+	//t.addClass("disabled");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadMostPlayedBeatmaps(mode);
 }
@@ -592,16 +592,16 @@ function loadMoreFavourites() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
-	t.addClass("disabled");
+	//t.addClass("disabled");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadFavouriteBeatmaps(mode);
 }
 // currentPage for each mode
 var currentPage = {
-	0: {best: 0, recent: 0, mostPlayed: 0},
-	1: {best: 0, recent: 0, mostPlayed: 0},
-	2: {best: 0, recent: 0, mostPlayed: 0},
-	3: {best: 0, recent: 0, mostPlayed: 0},
+	0: {best: 0, recent: 0, mostPlayed: 0, favourites: 0},
+	1: {best: 0, recent: 0, mostPlayed: 0, favourites: 0},
+	2: {best: 0, recent: 0, mostPlayed: 0, favourites: 0},
+	3: {best: 0, recent: 0, mostPlayed: 0, favourites: 0},
 };
 
 var rPage = {
