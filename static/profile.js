@@ -55,9 +55,10 @@ $(document).ready(function() {
 		$(this).addClass("active");
 		window.history.replaceState('', document.title, `${wl.pathname}?mode=${m}&rx=${preferRelax}${wl.hash}`);
 	});
-	initialisePinnedAchievements()
+	initialisePinnedAchievements();
 	initialiseAchievements();
 	initialiseFriends();
+	loadMostPlayedBeatmaps();
 	// load scores page for the current favourite mode
 	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode)};
 	if (i18nLoaded)
@@ -80,7 +81,62 @@ $(document).ready(function() {
 		return;
 	});
 });
+function initialisePinnedAchievements() {
+	api('users/achievements/pinned',
+		{id: userID}, function (resp) {
+		var achievements = resp.achievements;
+		if (achievements.length === 0) {
+			return;
+		}
 
+		var displayAchievements = function(limit, achievedOnly) {
+			var $base = $("#pinned-medals-container").empty();
+			// create a container for the pinned medals
+			$base.append("<div class=\"profile-pinned-medal-text-container\"> pinned medals <img src=\"/static/icons/pinned-medal.svg\" class=\"profile-pinned-medal-icon\"/> </div> <div id=\"pinned-medals\" class=\"profile-pinned-medal-medal-container\"></div>")
+			var $ach = $("#pinned-medals").empty();
+			limit = 5
+			var shown = 0;
+			
+			for (var i = 0; i < achievements.length; i++) {
+				var ach = achievements[i];
+				if (shown >= limit || (achievedOnly && !ach.achieved)) {
+					continue;
+				}
+				shown++;
+				
+				$ach.append(
+					$("<i class='profile-pinned-medal-medal-icon' style=\"--pinned-medal-icon: url('https://s.osuhow.cf/images/medals-" + "client/" + ach.icon + ".png')\"" + "/>").popup({
+						title: ach.name,
+						content: ach.description,
+						position: "bottom center",
+						distanceAway: 10
+					})
+				);
+			}
+			// if we've shown nothing, and achievedOnly is enabled, try again
+			// this time disabling it.
+			if (shown == 0 && achievedOnly) {
+				displayAchievements(limit, false);
+			}
+		};
+
+		// only 8 achievements - we can remove the button completely, because
+		// it won't be used (no more achievements).
+		// otherwise, we simply remove the disabled class and add the click handler
+		// to activate it.
+		if (achievements.length <= 8) {
+			$("#load-more-achievements").remove();
+		} else {
+			$("#load-more-achievements")
+				.removeClass("disabled")
+				.click(function() {
+				$(this).remove();
+				displayAchievements(-1, false);
+			});
+		}
+		displayAchievements(8, true);
+	});
+}
 function formatOnlineStatusBeatmap(a) {
 	var hasLink = a.beatmap.id > 0;
 	return "<i>" + (hasLink ? "<a href='/b/" + escapeHTML(a.beatmap.id) + "'>" : "") + escapeHTML(a.text) + (hasLink ? '</a>' : '' ) + "</i>";
@@ -256,37 +312,6 @@ function loadGraph(mode, cdata, minPP, maxPP) {
 }
 
 
-function loadMostPlayedBeatmaps(mode) {
-	var mostPlayedTable = $("div[data-mode=" + mode + "] table[data-type='most-played']");
-	currentPage[mode].mostPlayed++
-	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
-		if (resp.beatmaps === null) {
-			return;
-		}
-		resp.beatmaps.forEach(function(el, idx) {
-			mostPlayedTable.children('tbody').append(
-				$("<tr style='background: linear-gradient(90deg,#212121,#00000087,#212121), url(https://assets.ppy.sh/beatmaps/"+ el.beatmap.beatmapset_id +"/covers/cover.jpg) no-repeat right !important; background-size: cover !important;' />").append(
-					$("<td />").append(
-						$("<h4 class='ui image header' />").append(
-						$("<div class='content' />").append(
-							$("<a href='/beatmaps/" + el.beatmap.beatmap_id + "' />").append(
-								$('<b />').text(el.beatmap.song_name)
-							)
-						)
-					)
-					),
-					$("<td class='right aligned' />").append(
-						$('<i class="play circle icon" />'),
-						$('<b />').text(el.playcount)
-					)
-				)			
-			)
-		})
-		if (resp.beatmaps.length === 5) {
-			mostPlayedTable.find('.load-more').removeClass('disabled')
-		}
-	})
-}
 
 function initialiseAchievements() {
 	api('users/achievements' + (currentUserID == userID ? '?all' : ''),
@@ -350,62 +375,47 @@ function initialiseAchievements() {
 		displayAchievements(8, true);
 	});
 }
-function initialisePinnedAchievements() {
-	api('users/achievements/pinned',
-		{id: userID}, function (resp) {
-		var achievements = resp.achievements;
-		if (achievements.length === 0) {
+
+
+function loadMostPlayedBeatmaps() {
+	var mode = 0
+	var mostPlayedTable = $("#most-played").empty();
+	currentPage[mode].mostPlayed++
+	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
+		if (resp.beatmaps === null) {
 			return;
 		}
-
-		var displayAchievements = function(limit, achievedOnly) {
-			var $base = $("#pinned-medals-container").empty();
-			// create a container for the pinned medals
-			$base.append("<div class=\"profile-pinned-medal-text-container\"> pinned medals <img src=\"/static/icons/pinned-medal.svg\" class=\"profile-pinned-medal-icon\"/> </div> <div id=\"pinned-medals\" class=\"profile-pinned-medal-medal-container\"></div>")
-			var $ach = $("#pinned-medals").empty();
-			limit = 5
-			var shown = 0;
-			
-			for (var i = 0; i < achievements.length; i++) {
-				var ach = achievements[i];
-				if (shown >= limit || (achievedOnly && !ach.achieved)) {
-					continue;
-				}
-				shown++;
-				
-				$ach.append(
-					$("<i class='profile-pinned-medal-medal-icon' style=\"--pinned-medal-icon: url('https://s.osuhow.cf/images/medals-" + "client/" + ach.icon + ".png')\"" + "/>").popup({
-						title: ach.name,
-						content: ach.description,
-						position: "bottom center",
-						distanceAway: 10
-					})
-				);
-			}
-			// if we've shown nothing, and achievedOnly is enabled, try again
-			// this time disabling it.
-			if (shown == 0 && achievedOnly) {
-				displayAchievements(limit, false);
-			}
-		};
-
-		// only 8 achievements - we can remove the button completely, because
-		// it won't be used (no more achievements).
-		// otherwise, we simply remove the disabled class and add the click handler
-		// to activate it.
-		if (achievements.length <= 8) {
-			$("#load-more-achievements").remove();
-		} else {
-			$("#load-more-achievements")
-				.removeClass("disabled")
-				.click(function() {
-				$(this).remove();
-				displayAchievements(-1, false);
-			});
+		resp.beatmaps.forEach(function(el, idx) {
+			mostPlayedTable.append(
+				$("<div class=\"beatmap-info-panel-slim-main-container\" style=\"--beatmap-background: url('https://assets.ppy.sh/beatmaps/" + el.beatmapset_id + "/covers/cover.jpg');\"> \
+									<div class=\"beatmap-info-panel-slim-glass-container\"> \
+										<div class=\"beatmap-info-panel-slim-playtime-container\"> \
+											<i class=\"fa-solid fa-play beatmap-info-panel-slim-playtime-icon\"></i> \
+											<div class=\"beatmap-info-panel-slim-playtime-text\">" + el.playcount + "</div> \
+										</div> \
+										<div class=\"beatmap-info-panel-slim-info-background\"> \
+											<div class=\"beatmap-info-panel-slim-info-container\"> \
+												<div class=\"beatmap-info-panel-slim-text-container\"> \
+													<div class=\"beatmap-info-panel-slim-text-lg\"> \
+														" + el.artist + " - <b>" + el.title + "</b> \
+													</div> \
+													<div class=\"beatmap-info-panel-slim-text-sm\"> \
+															mapped by <b>" + el.creator + "</b> \
+													</div> \
+												</div> \
+											</div> \
+										</div> \
+									</div> \
+								</div>")
+			);
 		}
-		displayAchievements(8, true);
-	});
+		)
+		if (resp.beatmaps.length === 5) {
+			mostPlayedTable.find('.load-more').removeClass('disabled')
+		}
+	})
 }
+
 
 function initialiseFriends() {
 	var b = $("#add-friend-button");
