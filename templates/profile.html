@@ -278,9 +278,9 @@
 					</div>
 				</div>
 			</div>
-			{{ with $global.Get "users/favourites?id=%.0f" .id }}
-				{{ if .beatmaps }}
-					<div class="profile-big-panel-content">
+				<div class="profile-big-panel-content">
+					{{ with $global.Get "users/favourites?id=%.0f" .id }}
+						{{ if .beatmaps }}
 						<div class="profile-big-panel-text">
 							favourites
 						</div>
@@ -304,9 +304,9 @@
 									</div>
 								</div>
 							{{ end }}
-						</div>
+						{{ end }}
 					{{ end }}
-				{{ end }}
+				</div>
 			</div>
 		</div>
 	</div>

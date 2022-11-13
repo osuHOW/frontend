@@ -487,6 +487,14 @@ body {
     min-height: 69px;
     border-radius: 8px;
     padding: 0px 40px 0px 70px;
+    transition: all 0.1s ease;
+}
+.beatmap-info-panel-slim-main-container:hover{
+    box-shadow: 0px 4px 35px #18ffb225;
+    text-shadow: 0px 0px 10px #18ffb225;
+    transform: scale(1.01);
+    z-index: 1;
+
 }
 .beatmap-info-panel-slim-glass-container {
 	background: rgba(23, 28, 27, 0.84);
