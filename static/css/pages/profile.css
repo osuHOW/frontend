@@ -105,6 +105,11 @@
 	padding-bottom: 4.5px;
 	/* margin for additional badges if we have any */
 	margin-right: 3px;
+	transition: all 0.1s ease;
+}
+.profile-badge:hover {
+	box-shadow: 0px 0px 5px var(--color);
+	z-index: 7;
 }
 .profile-donor-badge {
 	color: white;
@@ -120,7 +125,14 @@
 	/* even though the icon isn't off center, firefox incorrecly renders it as 
 	   being slightly higher than normal on 100% zoom, setting the padding to 6px fixes this. */
 	padding-top: 6px;
+    transition: all 0.1s ease;
 }
+.profile-donor-badge:hover {
+	box-shadow: 3px 7px 18px rgba(255, 102, 171, 0.371);
+	text-shadow: 0px 0px 20px rgba(255, 102, 171, 1);
+	z-index: 6;
+}
+
 .profile-verified-badge {
 	/* same as page color */
 	color: #2E3836;
@@ -136,7 +148,15 @@
 	/* even though the icon isn't off center, firefox incorrecly renders it as 
 	   being slightly higher than normal on 100% zoom, setting the padding to 6px fixes this. */
 	padding-top: 6px;
+    transition: all 0.1s ease;
 }
+.profile-verified-badge:hover {
+	box-shadow: 3px 7px 18px #18ffb24a;
+	text-shadow: 0px 0px 20px #18FFB1;
+	z-index: 5;
+
+}
+
 .profile-pinned-medal-container {
 	margin-left: auto;
 	flex-direction: column;
@@ -227,6 +247,11 @@
     font-size: 1rem;
     margin-right: 25px;
     user-select: none;
+    transition: all 0.1s ease;
+}
+
+.profile-game-mode-selector-item:hover {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.676);
 }
 
 .profile-active.item.game-mode-selector-item{

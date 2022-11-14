@@ -69,6 +69,13 @@ body {
 	text-align: center;
 	box-shadow: 0 0 0 1px transparent inset,0 0 0 0 rgba(34,36,38,.15) inset;
 	user-select: none;
+    transition: all 0.3s ease;
+}
+.solid-button:hover {
+    box-shadow: 0px 4px 35px #18ffb225;
+    text-shadow: 0px 0px 10px #18ffb225;
+    transform: scale(1.01);
+    z-index: 1;
 }
 .warning-button {
     position: relative;
@@ -88,6 +95,13 @@ body {
 	text-align: center;
 	box-shadow: 0 0 0 1px transparent inset,0 0 0 0 rgba(34,36,38,.15) inset;
 	user-select: none;
+    transition: all 0.3s ease;
+}
+.warning-button:hover {
+    box-shadow: 0px 4px 35px #eb4b5e3f;
+    text-shadow: 0px 0px 10px #eb4b5e3f;
+    transform: scale(1.01);
+    z-index: 1;
 }
 .hollow-button {
     background-color: transparent;
@@ -107,6 +121,23 @@ body {
 	text-align: center;
 	box-shadow: 0 0 0 1px transparent inset,0 0 0 0 rgba(34,36,38,.15) inset;
 	user-select: none;
+    transition: all 0.3s ease;
+}
+.hollow-button:hover {
+    box-shadow: 0px 4px 35px #18ffb225;
+    text-shadow: 0px 0px 10px #18ffb225;
+    transform: scale(1.01);
+    z-index: 1;
+}
+.disabled {
+    background: rgba(24, 255, 177, 0.25) !important;
+    color: rgba(238, 238, 238, 0.8) !important;
+}
+.disabled:hover {
+    box-shadow: unset !important;
+    text-shadow: unset !important;
+    transform: unset !important;
+    z-index: unset !important;
 }
 .textbox {
     position: relative;
@@ -453,6 +484,11 @@ body {
     font-size: 1rem;
     margin-left: 25px;
     user-select: none;
+    transition: all 0.1s ease;
+}
+
+.game-mode-selector-item:hover {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.676);
 }
 
 .active.item.game-mode-selector-item{

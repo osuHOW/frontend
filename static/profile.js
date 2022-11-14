@@ -59,10 +59,10 @@ $(document).ready(function() {
 	initialiseAchievements();
 	initialiseFriends();
 	var mostPlayedButtonContainer = $("#most-played-button-container");
-	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button\">placeholder load more button!</button>").click(loadMoreMostPlayed))
+	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button\" id=\"load-more-most-played\">placeholder load more button!</button>").click(loadMoreMostPlayed))
 	loadMostPlayedBeatmaps();
 	var favouriteBeatmapsButtonContainer = $("#favourite-beatmaps-button-container");
-	favouriteBeatmapsButtonContainer.append($("<button class=\"solid-button profile-load-more-button\">placeholder load more button!</button>").click(loadMoreFavourites))
+	favouriteBeatmapsButtonContainer.append($("<button class=\"solid-button profile-load-more-button\" id=\"load-more-favourites\">placeholder load more button!</button>").click(loadMoreFavourites))
 	loadFavouriteBeatmaps();
 	// load scores page for the current favourite mode
 	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode)};
@@ -415,6 +415,9 @@ function loadMostPlayedBeatmaps() {
 			);
 		}
 		)
+		if (resp.beatmaps.length >= 7) {
+			$("#load-more-most-played").removeClass('disabled');
+		}
 		
 								
 	})
@@ -450,6 +453,9 @@ function loadFavouriteBeatmaps() {
 		}
 		)
 		
+		if (resp.beatmaps.length >= 7) {
+			$("#load-more-favourites").removeClass('disabled');
+		}
 								
 	})
 }
@@ -575,7 +581,7 @@ function loadMoreClick() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
-	//t.addClass("disabled");
+	t.addClass("disabled");
 	var type = t.parents("table[data-type]").data("type");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadScoresPage(type, mode);
@@ -584,7 +590,7 @@ function loadMoreMostPlayed() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
-	//t.addClass("disabled");
+	t.addClass("disabled");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadMostPlayedBeatmaps(mode);
 }
@@ -592,7 +598,7 @@ function loadMoreFavourites() {
 	var t = $(this);
 	if (t.hasClass("disabled"))
 		return;
-	//t.addClass("disabled");
+	t.addClass("disabled");
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadFavouriteBeatmaps(mode);
 }
