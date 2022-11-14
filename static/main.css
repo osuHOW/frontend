@@ -564,6 +564,10 @@ body {
     font-size: 18px;
     color: white;
     font-weight:400;
+    max-width: 520px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .beatmap-info-panel-slim-text-sm{
     font-size: 14px;

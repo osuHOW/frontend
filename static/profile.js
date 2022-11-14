@@ -59,19 +59,12 @@ $(document).ready(function() {
 	initialiseAchievements();
 	initialiseFriends();
 	var mostPlayedButtonContainer = $("#most-played-button-container");
-	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button\" id=\"load-more-most-played\">placeholder load more button!</button>").click(loadMoreMostPlayed))
+	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button disabled\" id=\"load-more-most-played\">placeholder load more button!</button>").click(loadMoreMostPlayed))
 	loadMostPlayedBeatmaps();
 	var favouriteBeatmapsButtonContainer = $("#favourite-beatmaps-button-container");
-	favouriteBeatmapsButtonContainer.append($("<button class=\"solid-button profile-load-more-button\" id=\"load-more-favourites\">placeholder load more button!</button>").click(loadMoreFavourites))
+	favouriteBeatmapsButtonContainer.append($("<button class=\"solid-button profile-load-more-button disabled\" id=\"load-more-favourites\">placeholder load more button!</button>").click(loadMoreFavourites))
 	loadFavouriteBeatmaps();
 	// load scores page for the current favourite mode
-	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "][data-rx=" + preferRelax + "]"), favouriteMode)};
-	if (i18nLoaded)
-		i();
-	else
-		i18next.on("loaded", function() {
-			i();
-		});
 	loadOnlineStatus();
 	setInterval(loadOnlineStatus, 10000);
 	// graphs
@@ -386,11 +379,13 @@ function loadMostPlayedBeatmaps() {
 	var mode = 0
 	var mostPlayedTable = $("#most-played");
 	currentPage[mode].mostPlayed++
-	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 20}, function (resp) {
+	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 7}, function (resp) {
 		if (resp.beatmaps === null) {
 			return;
 		}
+		var mostPlayedCardCount = 0
 		resp.beatmaps.forEach(function(el, idx) {
+			mostPlayedCardCount++;
 			mostPlayedTable.append(
 				$("<div class=\"beatmap-info-panel-slim-main-container\" style=\"--beatmap-background: url('https://assets.ppy.sh/beatmaps/" + el.beatmapset_id + "/covers/cover.jpg');\"> \
 									<div class=\"beatmap-info-panel-slim-glass-container\"> \
@@ -415,7 +410,8 @@ function loadMostPlayedBeatmaps() {
 			);
 		}
 		)
-		if (resp.beatmaps.length >= 7) {
+		console.log(mostPlayedCardCount)
+		if (mostPlayedCardCount >= 6) {
 			$("#load-more-most-played").removeClass('disabled');
 		}
 		
@@ -427,11 +423,13 @@ function loadFavouriteBeatmaps() {
 	var mode = 0
 	var favouritesTable = $("#favourites");
 	currentPage[mode].favourites++
-	api('users/favourites', {id: userID, mode: mode, p: currentPage[mode].favourites, l: 20}, function (resp) {
+	api('users/favourites', {id: userID, mode: mode, p: currentPage[mode].favourites, l: 7}, function (resp) {
 		if (resp.beatmaps === null) {
 			return;
 		}
+		var favouriteCardCount = 0
 		resp.beatmaps.forEach(function(el, idx) {
+			favouriteCardCount++;
 			favouritesTable.append(
 				$("<div class=\"beatmap-info-panel-slim-main-container\" style=\"--beatmap-background: url('https://assets.ppy.sh/beatmaps/" + el.beatmapset_id + "/covers/cover.jpg');\"> \
 									<div class=\"beatmap-info-panel-slim-glass-container\"> \
@@ -452,8 +450,8 @@ function loadFavouriteBeatmaps() {
 			);
 		}
 		)
-		
-		if (resp.beatmaps.length >= 7) {
+		console.log(favouriteCardCount)
+		if (favouriteCardCount >= 6) {
 			$("#load-more-favourites").removeClass('disabled');
 		}
 								
