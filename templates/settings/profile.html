@@ -26,13 +26,13 @@ MinPrivileges=2
 					</div>
 					<div class="field">
 						<label>{{ .T "Alternative username (cannot be used for login)" }}</label>
-						<input type="text" name="username_aka" value="{{ $d.username_aka }}" placeholder="{{ .T "Also known as..." }}">
+						<input type="text" name="username_aka" value="{{ $d.username_aka }}" placeholder="{{ .T "Also known as..." }}" onchange="this.form.submit()">
 					</div>
 					<div class="field">
 						<label>{{ .T "Favourite mode" }}</label>
 						<select class="ui dropdown" name="favourite_mode" data-cast="int">
 							{{ range $k, $v := modes }}
-								<option value="{{ $k }}" {{ if eq (int $d.favourite_mode) $k }}selected{{ end }}>{{ $v }}</a>
+								<option onchange="this.form.submit()" value="{{ $k }}" {{ if eq (int $d.favourite_mode) $k }}selected{{ end }}>{{ $v }}</a>
 							{{ end }}
 						</select>
 					</div>
@@ -43,7 +43,7 @@ MinPrivileges=2
 							<div class="column">
 								{{ $checked := band (int $d.play_style) (shift 1 $k) }}
 								<div class="ui checkbox">
-									<input type="checkbox" data-sv="{{ shift 1 $k }}" {{ if $checked }}checked{{ end }}>
+									<input onchange="this.form.submit()" type="checkbox" data-sv="{{ shift 1 $k }}" {{ if $checked }}checked{{ end }}>
 									<label>{{ $.T $v }}</label>
 								</div>
 							</div>
