@@ -211,11 +211,6 @@ var singlePageSnippets = {
         obj.play_style = ps;
         var f = $(this);
         api("users/self/settings", obj, function(data) {
-          if (darkSetting != isDark) {
-            window.location.reload();
-            return;
-          }
-          showMessage("success", "Your new settings have been saved.");
           f.removeClass("loading");
         }, true);
         return false;
