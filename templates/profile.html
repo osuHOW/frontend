@@ -213,15 +213,15 @@
 		{{/* medal count */}}
 		<div class="profile-level-info-container" style="--level-icon: url(/static/icons/medal.png);">
 			<div class="profile-level-icon-container">
-				888
+				{{ .medal_count }}
 			</div>
 			<div class="profile-level-progress-bar-container">
 				<div class="profile-level-info-text-container">
 					<div class="profile-level-info-text">Medals</div>
-					<div class="profile-level-info-text" style="margin-left:auto;">TODO</div>
+					<div class="profile-level-info-text" style="margin-left:auto;">{{ .medal_percentage }}%</div>
 				</div>
 				<div class="progress-bar profile-level-info-progress-bar" >
-					<div class="progress-bar-inner" style="width: 50%; --progress-bar-color: #FF66AA"></div>
+					<div class="progress-bar-inner" style="width: {{ .medal_percentage }}%; --progress-bar-color: #FF66AA"></div>
 				</div>
 			</div>
 		</div>
