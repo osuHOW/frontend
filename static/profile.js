@@ -322,7 +322,7 @@ function initialiseChartGraph(graphType, udpate) {
   window.graphPoints = []
   window.countryRankPoints = []
   window.graphName = graphType == "pp" ? "Performance Points" : "Global Rank"
-  window.graphColor = graphType == "pp" ? '#e03997' : '#2185d0'
+  window.graphColor = graphType == "pp" ? '#FFFFFF' : '#FFFFFF'
   var yaxisReverse = graphType == "pp" ? false : true
 
   api(`users/get_activity`, { userid: userID, mode: favouriteMode, rx: preferRelax }, (resp) => {
@@ -346,22 +346,23 @@ function initialiseChartGraph(graphType, udpate) {
         },
       ],
       grid: {
-        show: true,
+        show: false,
         borderColor: '#383838',
         position: 'back',
         xaxis: {
           lines: {
-            show: true
+            show: false
           }
         },   
         yaxis: {
           lines: {
-            show: true
+            show: false
           }
         },
       },
       chart: {
-        height: 160,
+		width: 603,
+        height: 120,
         type: 'line',
         fontFamily: '"Rubik", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         zoom: {
