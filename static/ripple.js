@@ -543,6 +543,11 @@ function _api(base, endpoint, data, success, failure, post, handleAllFailures) {
     contentType : (post ? "application/json; charset=utf-8" : ""),
     success : function(data) {
       if (data.code != 200) {
+        // put thing here
+        if (endpoint == "profile-history/rank" || endpoint == "profile-history/pp") {
+          success(data);
+          return
+        }
         if (typeof failure === "function" &&
           (handleAllFailures || (data.code >= 400 && data.code < 500))
         ) {

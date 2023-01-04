@@ -360,6 +360,9 @@
 	width: 100%;
 	padding: 18px;
 }
+.apexcharts-tooltip-title {
+	text-align: center !important;
+  }
 .profile-stats-bottom-bit{
 	background: #373E3C;
 	border-radius: 0px 0px 8px 8px;

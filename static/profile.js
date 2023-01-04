@@ -36,6 +36,7 @@ $(document).ready(function() {
 			initialiseScores(needsLoad, favouriteMode);
 		$(this).addClass("active");
 		window.history.replaceState('', document.title, `${wl.pathname}?mode=${favouriteMode}&rx=${preferRelax}${wl.hash}`)
+		initialiseChartGraph(graphType, true);
 	});
 
 
@@ -54,10 +55,12 @@ $(document).ready(function() {
 			initialiseScores(needsLoad, m);
 		$(this).addClass("active");
 		window.history.replaceState('', document.title, `${wl.pathname}?mode=${m}&rx=${preferRelax}${wl.hash}`);
+		initialiseChartGraph(graphType, true);
 	});
 	initialisePinnedAchievements();
 	initialiseAchievements();
 	initialiseFriends();
+	initialiseChartGraph(graphType, false);
 	var mostPlayedButtonContainer = $("#most-played-button-container");
 	mostPlayedButtonContainer.append($("<button class=\"solid-button profile-load-more-button disabled\" id=\"load-more-most-played\">placeholder load more button!</button>").click(loadMoreMostPlayed))
 	loadMostPlayedBeatmaps();
@@ -67,17 +70,6 @@ $(document).ready(function() {
 	// load scores page for the current favourite mode
 	loadOnlineStatus();
 	setInterval(loadOnlineStatus, 10000);
-	// graphs
-	api("users/get_activity", {
-        mode: favouriteMode,
-		rx: preferRelax,
-        userid: userID,
-    }, function (r) {
-        //Loading Graps!
-        var dataFormatted = convert_to_normal_format(r.ppGraph.data)
-        loadGraph(favouriteMode, dataFormatted, r.ppGraph.minLimit, r.ppGraph.maxLimit)
-		return;
-	});
 });
 function initialisePinnedAchievements() {
 	api('users/achievements/pinned',
@@ -261,53 +253,194 @@ function con_data(data) {
     ];
 }
 
-function loadGraph(mode, cdata, minPP, maxPP) {
-    var chart;
-
-    nv.addGraph(function() {
-        chart = nv.models.lineChart()
-        .options({
-            margin: {left: 80, bottom: 45},
-            x: function(d) { return d[0] },
-            y: function(d) { return d[1] },
-            showXAxis: true,
-            showYAxis: true
-        })
-        ;
-
-        chart.xAxis
-        .axisLabel("Days")
-        .tickFormat(function(d) {
-            if (d == 0) return "now";
-	  	    return -d + " days ago";
-        });
-
-        chart.yAxis
-        .axisLabel('Performance')
-        .tickFormat(function(d) {
-            if (d == 0) return "-";
-            return d +"pp";
-        })
-        ;
-
-        chart.yScale(d3.scale.log().clamp(true));
-
-        chart.forceY([minPP,maxPP]);
-        chart.yAxis.tickValues(-maxPP);
-
-        chart.xAxis.tickValues([-31, -15, 0]);
-        chart.forceX([-31,0]);
-
-        // No disabling / enabling elements allowed.
-        chart.legend.updateState(false);
-        chart.interpolate("basis");
-
-        var svg = d3.select('#graph1 div[data-mode="' + mode + '"] svg');
-
-        svg.datum(con_data(cdata))
-        .call(chart);
-    })
+function createLabels(dataLength) {
+	var labels = ["Today"]
+	for (var i = 1; i < dataLength; i++) {
+		if (i == 1) {
+			labels.push(`1 day ago`)
+		} else {
+			labels.push(`${i} days ago`)
+		}
+	}
+	return labels.reverse()
 }
+
+function changeChart(type) {
+  if (graphType == type) return;
+
+  $(`#chart-btn-${graphType}`).removeClass("active");
+  $(`#chart-btn-${type}`).addClass("active");
+
+  graphType = type;
+  initialiseChartGraph(type, true);
+}
+
+function getCountryRank(idx) {
+  // country ranks are inconsistient because for now they are missing 1 day off
+
+  var rank = window.countryRankPoints[idx]
+  if (rank == undefined || rank == null) {
+    return "N/A"
+  }
+
+  return addCommas(rank)
+}
+
+function getGraphTooltip({series, seriesIndex, dataPointIndex, w}) {
+  var prefix = graphType == "rank" ? "#" : ""
+  return  ` 
+      <div 
+      class="apexcharts-tooltip-title" 
+      style="font-family: &quot;Rubik&quot;, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 12px;"
+      >${window.graphLabels[dataPointIndex]}</div>
+      <div class="apexcharts-tooltip-series-group apexcharts-active" style="order: 1; display: flex;">
+        <span class="apexcharts-tooltip-marker" style="background-color: ${graphColor};"></span>
+        <div class="apexcharts-tooltip-text" style="font-family: Rubik, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 12px;">
+          <div class="apexcharts-tooltip-y-group">
+            <span class="apexcharts-tooltip-text-y-label">${graphName}: </span>
+            <span class="apexcharts-tooltip-text-y-value">${prefix}${addCommas(series[seriesIndex][dataPointIndex])}</span>
+          </div>
+          ${graphType == 'rank' ? `<div class="apexcharts-tooltip-y-group">
+            <span class="apexcharts-tooltip-text-y-label">Country Rank: </span>
+            <span class="apexcharts-tooltip-text-y-value">#${getCountryRank(dataPointIndex)}</span>
+          </div>` : '' }
+          <div class="apexcharts-tooltip-goals-group">
+            <span class="apexcharts-tooltip-text-goals-label"></span>
+            <span class="apexcharts-tooltip-text-goals-value"></span>
+          </div>
+          <div class="apexcharts-tooltip-z-group">
+            <span class="apexcharts-tooltip-text-z-label"></span>
+            <span class="apexcharts-tooltip-text-z-value"></span>
+          </div>
+        </div>
+      </div>
+    `
+}
+
+function initialiseChartGraph(graphType, udpate) {
+  var modeVal = favouriteMode;
+  if (preferRelax == 1) {
+    modeVal += 4;
+  } else if (preferRelax == 2) {
+    modeVal += 7;
+  }
+
+  window.graphPoints = []
+  window.countryRankPoints = []
+  window.graphName = graphType == "pp" ? "Performance Points" : "Global Rank"
+  window.graphColor = graphType == "pp" ? '#e03997' : '#2185d0'
+  var yaxisReverse = graphType == "pp" ? false : true
+
+  api(`profile-history/${graphType}`, { user_id: userID, mode: modeVal }, (resp) => {
+    var chartCanvas = document.querySelector("#profile-history-graph");
+    var chartNotFound = document.querySelector("#profile-history-not-found");
+
+    if (resp.status == "error") {
+      chartNotFound.style.display = "block";
+      chartCanvas.style.display = "none";
+      return;
+    }
+
+    chartNotFound.style.display = "none";
+    chartCanvas.style.display = "block";
+    if (graphType === "rank") {
+      window.graphPoints = resp.data.captures.map((x) => x.overall);
+      window.countryRankPoints = resp.data.captures.map((x) => x.country);
+    } else {
+      window.graphPoints = resp.data.captures.map((x) => x.pp);
+    }
+
+    var minGraphOffset = Math.min(...window.graphPoints)
+    var maxGraphOffset = Math.max(...window.graphPoints)
+    var minMaxGraphOffset = minGraphOffset == maxGraphOffset ? 10 : 1
+
+    window.graphLabels = createLabels(window.graphPoints.length)
+    var options = {
+      series: [
+        {
+          name: graphName,
+          data: window.graphPoints
+        },
+      ],
+      grid: {
+        show: true,
+        borderColor: '#383838',
+        position: 'back',
+        xaxis: {
+          lines: {
+            show: true
+          }
+        },   
+        yaxis: {
+          lines: {
+            show: true
+          }
+        },
+      },
+      chart: {
+        height: 160,
+        type: 'line',
+        fontFamily: '"Rubik", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        zoom: {
+          enabled: false
+        },
+        toolbar: {
+          show: false,
+        },
+        background: 'rgba(0,0,0,0)'
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 4,
+      },
+      colors: [graphColor],
+      theme: {
+        mode: 'dark',
+      },
+      xaxis: {
+        labels: { show: false },
+        categories: window.graphLabels,
+        axisTicks: {
+          show: false,
+        },
+        tooltip: {
+          enabled: false,
+        }
+      },
+      yaxis: [
+        {
+          max: maxGraphOffset + minMaxGraphOffset,
+          min: minGraphOffset - minMaxGraphOffset,
+          reversed: yaxisReverse,
+          labels: { show: false },
+          tickAmount: 4,
+        },
+      ],
+      tooltip: {
+        custom: getGraphTooltip,
+      },
+      markers: {
+        size: 0,
+        fillColor: graphColor,
+        strokeWidth: 0,
+        hover: { size: 7 }
+      },
+    };
+
+    if (udpate) {
+      if ("chart" in window) {
+        window.chart.updateOptions(options)
+      } else {
+        window.chart = new ApexCharts(chartCanvas, options);
+        window.chart.render();
+      }
+    } else {
+      window.chart = new ApexCharts(chartCanvas, options);
+      window.chart.render();
+    }
+  });
+}
+
 
 
 

@@ -19,14 +19,17 @@
 {{ $donor := has .privileges 4 }}
 
 <link rel="stylesheet" href="/static/css/pages/profile.css" />
+
 {{/* used by profile.js to generate graphs */}}
-<script src="/static/d3.v3.min.js"></script>
-<script src="/static/nv.d3.js"></script>
+{{/* TODO: locally host these */}}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 <div class="page-width">
 			<script>
 				window.favouriteMode = {{ $favouritemode }};
 				window.preferRelax = {{ $preferRelax }};
 				window.userID = {{ .id }};
+				window.graphType = "rank";
 			</script>
 	<div class="main-container-topper">
 		{{/* TODO: Icons */}}
@@ -141,15 +144,37 @@
 						</div>
 					</div>
 					<div class="profile-rank-graph-container" id="graph1" data-tab="pp-chart">
-						{{/* TODO: finish graphs */}}
-						{{/* 
-						{{ range _range 4 }}
-						<div data-mode="{{ . }}" {{ if ne . (int $favouritemode) }} hidden{{ end }} data-loaded="0">
-							<svg style="height: 250px; width: 100%">
-							</svg>
+						<div
+						class="ui segment"
+						id="profile-history-content">
+						<div class="ui small buttons">
+						  <button
+							class="ui button active"
+							id="chart-btn-rank"
+							onclick="changeChart('rank')">
+							{{ $global.T "Rank" }}
+						  </button>
+						  <button
+							class="ui button"
+							id="chart-btn-pp"
+							onclick="changeChart('pp')">
+							{{ $global.T "PP" }}
+						  </button>
 						</div>
-						{{ end }}
-						*/}}
+						<div id="profile-history-graph" style="display: none;"></div>
+						<div id="profile-history-not-found" style="display: none">
+						  <div class="ui icon message" style="background: rgb(34, 33, 33)">
+							<div class="content">
+							  <div class="header">
+								{{ $global.T "No graph data found" }}
+							  </div>
+							  <p>
+								{{ $global.T "No graph data found for this user" }}
+							  </p>
+							</div>
+						  </div>
+						</div>
+					  </div>
 					</div>
 					<div class="profile-stats-bottom-bit">
 						<div class="profile-stats-bottom-bit-text">
