@@ -318,37 +318,20 @@ function getGraphTooltip({series, seriesIndex, dataPointIndex, w}) {
 }
 
 function initialiseChartGraph(graphType, udpate) {
-  var modeVal = favouriteMode;
-  if (preferRelax == 1) {
-    modeVal += 4;
-  } else if (preferRelax == 2) {
-    modeVal += 7;
-  }
-
+  graphType = "pp"
   window.graphPoints = []
   window.countryRankPoints = []
   window.graphName = graphType == "pp" ? "Performance Points" : "Global Rank"
   window.graphColor = graphType == "pp" ? '#e03997' : '#2185d0'
   var yaxisReverse = graphType == "pp" ? false : true
 
-  api(`profile-history/${graphType}`, { user_id: userID, mode: modeVal }, (resp) => {
+  api(`users/get_activity`, { userid: userID, mode: favouriteMode, rx: preferRelax }, (resp) => {
     var chartCanvas = document.querySelector("#profile-history-graph");
     var chartNotFound = document.querySelector("#profile-history-not-found");
 
-    if (resp.status == "error") {
-      chartNotFound.style.display = "block";
-      chartCanvas.style.display = "none";
-      return;
-    }
-
     chartNotFound.style.display = "none";
     chartCanvas.style.display = "block";
-    if (graphType === "rank") {
-      window.graphPoints = resp.data.captures.map((x) => x.overall);
-      window.countryRankPoints = resp.data.captures.map((x) => x.country);
-    } else {
-      window.graphPoints = resp.data.captures.map((x) => x.pp);
-    }
+    window.graphPoints = resp.ppGraph.data.map((x) => x.pp);
 
     var minGraphOffset = Math.min(...window.graphPoints)
     var maxGraphOffset = Math.max(...window.graphPoints)
